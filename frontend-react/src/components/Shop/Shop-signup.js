@@ -12,7 +12,7 @@ class ShopSignup extends Component {
             <input
               type="text"
               name="businessname"
-              value={this.state.businessname}
+              //value={this.state.businessname}
               onChange={e => this.changeHandler(e)}
             />
           </label>
@@ -20,7 +20,7 @@ class ShopSignup extends Component {
             <input
               type="text"
               name="firstname"
-              value={this.state.firstname}
+              //value={this.state.firstname}
               onChange={e => this.changeHandler(e)}
             />
           </label>
@@ -28,7 +28,7 @@ class ShopSignup extends Component {
             <input
               type="text"
               name="lastnanme"
-              value={this.state.lastnanme}
+              //value={this.state.lastnanme}
               onChange={e => this.changeHandler(e)}
             />
           </label>
@@ -36,7 +36,7 @@ class ShopSignup extends Component {
             <input
               type="text"
               name="username"
-              value={this.state.username}
+              //value={this.state.username}
               onChange={e => this.changeHandler(e)}
             />
           </label>
@@ -44,7 +44,7 @@ class ShopSignup extends Component {
             <input
               type="password"
               name="password"
-              value={this.state.password}
+              //value={this.state.password}
               onChange={e => this.changeHandler(e)}
             />
           </label>
@@ -61,7 +61,7 @@ class ShopSignup extends Component {
             <input
               type="text"
               name="streetname"
-              value={this.state.address.streetname}
+              //value={this.state.address.streetname}
               onChange={e => this.changeHandler(e)}
             />
           </label>
@@ -70,7 +70,7 @@ class ShopSignup extends Component {
             <input
               type="text"
               name="postcode"
-              value={this.state.address.postcode}
+              //value={this.state.address.postcode}
               onChange={e => this.changeHandler(e)}
             />
           </label>
@@ -79,7 +79,7 @@ class ShopSignup extends Component {
             <input
               type="text"
               name="city"
-              value={this.state.address.city}
+              //value={this.state.address.city}
               onChange={e => this.changeHandler(e)}
             />
           </label>
@@ -97,7 +97,7 @@ class ShopSignup extends Component {
             <input
               type="text"
               name="country"
-              value={this.state.address.country}
+              //value={this.state.address.country}
               onChange={e => this.changeHandler(e)}
             />
           </label>
@@ -106,7 +106,7 @@ class ShopSignup extends Component {
             <input
               type="text"
               name="phonenumber"
-              value={this.state.phonenumber}
+              //value={this.state.phonenumber}
               onChange={e => this.changeHandler(e)}
             />
           </label>
