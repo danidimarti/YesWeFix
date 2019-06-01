@@ -41,7 +41,7 @@ class SearchBar extends Component {
     return (
       <section>
         <Script
-          url="https://maps.googleapis.com/maps/api/js?key=AIzaSyC06Bq48L4lZa0KkHVfsH0ptiDQOFrgSQI&libraries=places"
+          url={`${process.env.REACT_APP_GG_URL}`}
           onLoad={this.handleScriptLoad.bind(this)}
         />
 
