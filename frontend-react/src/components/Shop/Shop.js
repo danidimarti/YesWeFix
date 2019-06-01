@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ShopSignup from './Shop-signup';
-import AuthService from "../auth/AuthService";
+//import AuthService from "../auth/AuthService";
 
 
 class Shop extends Component {
@@ -11,5 +11,5 @@ class Shop extends Component {
          );
     }
 }
- 
+    
 export default Shop;
