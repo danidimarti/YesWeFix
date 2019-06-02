@@ -1,7 +1,7 @@
 const express = require("express");
 const passport = require('passport');
 const router = express.Router();
-const User = require("../models/User");
+
 
 const User = require("../models/usermodel");
 const Repair = require("../models/shopmodel");
@@ -16,18 +16,32 @@ const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
 
-router.get("/login", (req, res, next) => {
+router.get("/user/login", (req, res, next) => {
   res.render("auth/login", { "message": req.flash("error") });
 });
 
-router.post("/login", passport.authenticate("local", {
-  successRedirect: "/",
-  failureRedirect: "/auth/login",
-  failureFlash: true,
-  passReqToCallback: true
-}));
+router.post('/user/login', (req, res, next) => {
+  passport.authenticate('local', (err, theUser, info) => {
+    if(err) {
+      res.status(500).json({message: err})
+      return
+    }
+  if(!theUser) {
+    res.status(401).json(info)
+    return
+  }
+  req.login(theUser, err => {
+    if(err){
+      res.status(500).json({message: err})
+      return
+    }
+    res.status(200).json(theUser)
+  })
 
-router.get("/signup", (req, res, next) => {
+  })(req, res, next)
+})
+
+router.get("/user/signup", (req, res, next) => {
   res.render("auth/signup");
 });
 
@@ -42,9 +56,9 @@ router.post("/user/signup", (req, res, next) => {
     res.status(400).json({ message: "Username or password can't be empty" });
     return;
   }
-  User.findOne({ username }, "username", (err, user) => {
-    if (user !== null) {
-      res.status(400).json({ message: "The username already exists" });
+  User.findOne({ email }, "email", (err, email) => {
+    if (email !== null) {
+      res.status(400).json({ message: "The email already exists" });
       return;
     }
 
@@ -70,15 +84,16 @@ router.post("/user/signup", (req, res, next) => {
 
 router.get("/user/currentuser", (req, res, next) => {
   if(req.isAuthenticated()) {
+    
     res.status(200).json(req.user);
     return
   }
   res.status(403).json({message: "unauthorized"})
 })
 
-router.get("/logout", (req, res) => {
+router.get("/user/logout", (req, res) => {
   req.logout();
-  res.redirect("/");
+  res.status(200).json({message: "Logout successful"});
 });
 
 module.exports = router;
