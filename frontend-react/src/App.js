@@ -8,32 +8,32 @@ import User from "./components/User/User";
 import AuthService from "../src/auth/AuthService";
 
 class App extends Component {
-  // state = {
-  //   user: null
-  // };
+  state = {
+    user: null
+  };
 
-  // service = new AuthService();
+  service = new AuthService();
 
-  // setUser = user => {
-  //   this.setState({ user: user });
-  // };
+  setUser = user => {
+    this.setState({ user: user });
+  };
 
-  // fetchUser = () => {
-  //   if (this.state.user === null) {
-  //     this.service
-  //       .currentUser()
-  //       .then(response => {
-  //         this.setState({ user: response });
-  //       })
-  //       .catch(err => {
-  //         this.setState({ user: null });
-  //       });
-  //   }
-  // };
+  fetchUser = () => {
+    if (this.state.user === null) {
+      this.service
+        .currentUser()
+        .then(response => {
+          this.setState({ user: response });
+        })
+        .catch(err => {
+          this.setState({ user: null });
+        });
+    }
+  };
 
-  // componentDidMount() {
-  //   this.fetchUser();
-  // }
+  componentDidMount() {
+    this.fetchUser();
+  }
   render() {
     return (
       <div>

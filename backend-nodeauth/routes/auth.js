@@ -16,9 +16,9 @@ const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
 
-router.get("/user/login", (req, res, next) => {
-  res.render("auth/login", { "message": req.flash("error") });
-});
+// router.get("/user/login", (req, res, next) => {
+//   res.render("auth/login", { "message": req.flash("error") });
+// });
 
 router.post('/user/login', (req, res, next) => {
   passport.authenticate('local', (err, theUser, info) => {
@@ -41,16 +41,17 @@ router.post('/user/login', (req, res, next) => {
   })(req, res, next)
 })
 
-router.get("/user/signup", (req, res, next) => {
-  res.render("auth/signup");
-});
+// router.get("/user/signup", (req, res, next) => {
+//   res.render("auth/signup");
+// });
 
 // Post route => to create new user
+
 router.post("/user/signup", (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
   const mobile = req.body.mobile;
-  const email = request.body.email;
+  const email = req.body.email;
 
   if (username === "" || password === "") {
     res.status(400).json({ message: "Username or password can't be empty" });
