@@ -21,16 +21,17 @@ export class FormRepairTypeDetails extends Component {
     this.props.prevStep();
   };
 
-  handleChangeMultiple = e => {
-    const { options } = e.target;
-    const input = [];
-    for (let i = 0, l = options.length; i < l; i += 1) {
-      if (options[i].selected) {
-        input.push(options[i].input);
-      }
-    }
-    this.props.changeHandler(input);
-  };
+  // handleChangeMultiple = e => {
+  //   const { name } = e.target;
+  //   const input = [];
+  //   console.log(e)
+  //   for (let i = 0, l = name.length; i < l; i += 1) {
+  //     if (name[i].selected) {
+  //       input.push(name[i].input);
+  //     }
+  //   }
+  //   this.props.changeHandler(input);
+  // };
 
   render() {
     const homeservices = [
@@ -78,25 +79,27 @@ export class FormRepairTypeDetails extends Component {
       <MuiThemeProvider>
         <React.Fragment>
           <AppBar title="Enter Your Personal Details" />
-          <FormControl >
+          <FormControl>
             <InputLabel htmlFor="select-multiple-checkbox">
               Home Repairs
             </InputLabel>
             <Select
               multiple
               value={values.repairtype}
+              onChange={e => changeHandler(e)}
               input={<Input id="select-multiple-checkbox" />}
               renderValue={selected => selected.join(", ")}
-                        >
+              name={"repairtype"}
+            >
               {homeservices.map(service => (
-                <MenuItem key={service} value={service}>
-                  <Checkbox checked={service.indexOf(service) > -1} />
+                <MenuItem key={service}  value={service}>
+                  {/* <Checkbox checked={service.indexOf(service) > -1} /> */}
                   <ListItemText primary={service} />
                 </MenuItem>
               ))}
             </Select>
           </FormControl>
-          
+
           <br />
           <RaisedButton
             label="Back"
@@ -117,10 +120,9 @@ export class FormRepairTypeDetails extends Component {
 }
 
 const styles = {
-    button: {
-      margin: 15
-    },
-    
-  };
+  button: {
+    margin: 15
+  }
+};
 
 export default FormRepairTypeDetails;

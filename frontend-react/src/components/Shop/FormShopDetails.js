@@ -21,35 +21,35 @@ export class FormShopDetails extends Component {
           <TextField
             hinttext="Enter Your Business Name"
             floatingLabelText="Business Name"
-            onChange={changeHandler("businessname")}
+            onChange={e => changeHandler(e)}
             defaultValue={values.businessname}
           />
           <br />
           <TextField
             hinttext="Enter Your Business Address"
             floatingLabelText="Business Address"
-            onChange={changeHandler("streetname")}
+            onChange={e => changeHandler(e)}
             defaultValue={values.streename}
           />
           <br />
           <TextField
             hinttext="Enter Your Postcode"
             floatingLabelText="Postcode"
-            onChange={changeHandler("postcode")}
+            onChange={e => changeHandler(e)}
             defaultValue={values.postcode}
           />
           <br />
           <TextField
             hinttext="Enter Your Phone number"
             floatingLabelText="Phone Number"
-            onChange={changeHandler("phonenumber")}
+            onChange={e => changeHandler(e)}
             defaultValue={values.phonenumber}
           />
           <br />
           <TextField
             hinttext="Enter Your kvk number"
             floatingLabelText="KvK"
-            onChange={changeHandler("kvk")}
+            onChange={e => changeHandler(e)}
             defaultValue={values.kvk}
           />
           <br />

@@ -6,7 +6,6 @@ const shopSchema = new Schema(
     businessname: String,
     firstname: String,
     lastnanme: String,
-    email: String,
     username: String,
     password: String,
     role: {
@@ -19,7 +18,7 @@ const shopSchema = new Schema(
       city: String,
       state: String,
       country: String,
-    
+ 
     phonenumber: String,
     kvk: Number,
     repairtype: String

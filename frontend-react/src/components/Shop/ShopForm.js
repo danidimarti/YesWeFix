@@ -4,7 +4,7 @@ import FormShopDetails from "./FormShopDetails";
 import FormEmployeeDetails from "./FormEmployeeDetails";
 import FormRepairTypeDetails from "./FormRepairTypeDetails";
 import Confirm from "./Confirm";
-import Success from './Success'
+import Success from "./Success";
 
 class ShopForm extends Component {
   state = {
@@ -27,7 +27,7 @@ class ShopForm extends Component {
     phonenumber: "",
     kvk: "",
 
-    repaitype: ""
+    repairtype: []
   };
 
   //Proceed to next step
@@ -47,10 +47,15 @@ class ShopForm extends Component {
   };
 
   //Handle fields change 11:07
-  changeHandler = input => e => {
+  changeHandler = e => {
+    console.log(e)
+    //console.log(this.state)
+    const { value, name } = e.target;
+
     this.setState({
-      [input]: e.target.value
+      [name]: value
     });
+
   };
 
   render() {
@@ -70,7 +75,7 @@ class ShopForm extends Component {
       country,
       phonenumber,
       kvk,
-      repaitype
+      repairtype
     } = this.state;
     const values = {
       businessname,
@@ -83,7 +88,7 @@ class ShopForm extends Component {
       postcode,
       phonenumber,
       kvk,
-      repaitype
+      repairtype
     };
 
     switch (step) {
@@ -125,7 +130,7 @@ class ShopForm extends Component {
         );
 
       case 5:
-        return <Success />
+        return <Success />;
     }
   }
 }
