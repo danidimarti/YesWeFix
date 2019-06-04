@@ -93,7 +93,7 @@ export class FormRepairTypeDetails extends Component {
             >
               {homeservices.map(service => (
                 <MenuItem key={service}  value={service}>
-                  {/* <Checkbox checked={service.indexOf(service) > -1} /> */}
+                  {/* <Checkbox checked={service.indexOf(service) > 0} /> */}
                   <ListItemText primary={service} />
                 </MenuItem>
               ))}
