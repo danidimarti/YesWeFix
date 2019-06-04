@@ -12,45 +12,33 @@ class User extends Component {
     user: null
   };
 
-  service = new AuthService();
+  // service = new AuthService();
 
-  setUser = user => {
-    this.setState({ user: user });
-  };
+  // setUser = user => {
+  //   this.setState({ user: user });
+  // };
 
-  fetchUser = () => {
-    if (this.state.user === null) {
-      this.service
-        .currentUser()
-        .then(response => {
-          this.setState({ user: response });
-        })
-        .catch(err => {
-          this.setState({ user: null });
-        });
-    }
-  };
+  // fetchUser = () => {
+  //   if (this.state.user === null) {
+  //     this.service
+  //       .currentUser()
+  //       .then(response => {
+  //         this.setState({ user: response });
+  //       })
+  //       .catch(err => {
+  //         this.setState({ user: null });
+  //       });
+  //   }
+  // };
 
   componentDidMount() {
-    this.fetchUser();
+    // this.fetchUser();
   }
   render() {
     return (
       <div>
-      
-        <Switch>
-          <Route exact path="/user/signup" component={Usersignup} />
-          <Route
-            exact
-            path="/user/login"
-            render={() => <Userlogin setUser={this.setUser} />}
-          />
-          <Route
-            exact
-            path="/user/currentuser"
-            render={() => <Userprofile currentUser={this.state.user} />}
-          />
-        </Switch>
+        <Usersignup />
+            
       </div>
     );
   }
