@@ -17,6 +17,7 @@ class App extends Component {
 
   setUser = user => {
     this.setState({ user: user });
+    
   };
 
   fetchUser = () => {
@@ -38,7 +39,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <SearchBar />
+        <User />
         
       </div>
     );

@@ -48,39 +48,40 @@ router.post('/user/login', (req, res, next) => {
 // Post route => to create new user
 
 router.post("/user/signup", (req, res, next) => {
-  const username = req.body.username;
+  const firstname = req.body.firstname;
   const password = req.body.password;
   const mobile = req.body.mobile;
   const email = req.body.email;
-
-  if (username === "" || password === "") {
+  console.log(email)
+  debugger
+  if (firstname === "" || password === "") {
     res.status(400).json({ message: "Username or password can't be empty" });
     return;
   }
-  User.findOne({ email }, "email", (err, email) => {
-    if (email !== null) {
+  User.findOne({ "email": email }).then((result) => {     
+    if(result){
       res.status(400).json({ message: "The email already exists" });
-      return;
-    }
-
-    const salt = bcrypt.genSaltSync(bcryptSalt);
-    const hashPass = bcrypt.hashSync(password, salt);
-
-    const newUser = new User({
-      username,
-      password: hashPass,
-      mobile,
-      email
-    });
-
-    newUser.save()
-    .then(() => {
-      res.status(200).json(newUser);
+    } else {
+      const salt = bcrypt.genSaltSync(bcryptSalt);
+        const hashPass = bcrypt.hashSync(password, salt);
+    
+        const newUser = new User({
+          firstname,
+          password: hashPass,
+          email,
+          mobile
+        });
+        debugger
+        console.log(newUser)
+        newUser.save()
+        .then(() => {
+          res.status(200).json(newUser);
+        })
+        .catch(err => {
+          res.status(500).json({ message: "Something went wrong" })
+        })
+      }
     })
-    .catch(err => {
-      res.status(500).json({ message: "Something went wrong" })
-    })
-  });
 });
 
 router.get("/user/currentuser", (req, res, next) => {
