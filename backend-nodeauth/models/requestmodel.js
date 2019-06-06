@@ -3,8 +3,9 @@ const Schema   = mongoose.Schema;
 
 const requestSchema = new Schema({
     userid : [ { type : Schema.Types.ObjectId, ref: 'User' } ],
+    subject: String,
     description : String,
-    photo : Buffer,  
+    imageUrl: { type: String, required: true },  
     status: {
       type: String,
       enum: ["sent", "accepted", 'closed']

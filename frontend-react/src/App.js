@@ -38,7 +38,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <ShopForm />
+        <SearchBar />
         
       </div>
     );
