@@ -10,6 +10,8 @@ import AuthService from "../src/auth/AuthService";
 import NearbySearch from './components/Map/NearbySearch'
 import SearchBar from './components/Map/SearchBar';
 //import SearchBar from './components/Map/SearchBar';
+import NavBar from './components/NavBar'
+import HomePage from './components/HomePage'
 
 class App extends Component {
   state = {
@@ -42,9 +44,13 @@ class App extends Component {
   render() {
     return (
       <div>
-        <SearchBar />
-        
-      </div>
+        <NavBar />
+        <HomePage />
+
+        <section id='phone'>
+
+        </section>
+        </div>
     );
   }
 }

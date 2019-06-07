@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Script from "react-load-script";
 import "bootstrap/dist/css/bootstrap.css";
+import "./SearchBar.css";
 
 class SearchBar extends Component {
   state = {
@@ -25,8 +26,7 @@ class SearchBar extends Component {
       this.handlePlaceSelect.bind(this)
     );
 
-    this.searbox = new google.maps.places.SearchBox(this.autocomplete)
-    
+    this.searbox = new google.maps.places.SearchBox(this.autocomplete);
   }
 
   handlePlaceSelect() {
@@ -34,7 +34,7 @@ class SearchBar extends Component {
     // Extract List of Places From Address Object
     let addressObject = this.autocomplete.getPlace();
     let address = addressObject.address_components;
-   
+
     // Check if address is valid
     if (address) {
       // Set State
@@ -48,42 +48,42 @@ class SearchBar extends Component {
 
   handleSubmit() {
     let addressObject = this.autocomplete.getPlace();
-    
+
     // Geometry
-        var lat = addressObject.geometry.location.lat;
-        var lng = addressObject.geometry.location.lng;
-        console.log(lat,lng)
+    var lat = addressObject.geometry.location.lat;
+    var lng = addressObject.geometry.location.lng;
+    console.log(lat, lng);
   }
 
   render() {
     return (
-      <section>
+      <div>
         <Script
           url={`${process.env.REACT_APP_GG_URL}`}
           onLoad={this.handleScriptLoad.bind(this)}
         />
 
-        <div
-          className="container"
-          style={{ display: "flex", alignItems: "center" }}
-        >
-          <input
-            type="text"
-            id="address-input"
-            name="address"
-            placeholder="Enter address here..."
-            className="form-control-lg"
-            style={{ width: `500px` }}
-          />
+        <form style={{ paddingTop: "20px" }}>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <input
+              type="text"
+              id="address-input"
+              name="address"
+              placeholder="Enter address here..."
 
-          <input
-            type="submit"
-            className="btn btn-info btn-lg mx-3"
-            value="Find Shop"
-            onClick={this.handleSubmit}
-          />
-        </div>
-      </section>
+              //style={{ width: `500px` }}
+            />
+
+            <input
+              type="submit"
+              id="submit"
+              className="input-group-btn"
+              value="Find Shop"
+              onClick={this.handleSubmit}
+            />
+          </div>
+        </form>
+      </div>
     );
   }
 }

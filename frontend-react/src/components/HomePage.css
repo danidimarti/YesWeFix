@@ -1,0 +1,32 @@
+.home-intro {
+    background-image: url("/frontend-react/src/components/bg.jpg");
+    background-size: cover;
+    height: 100%;
+    color: white;
+    text-align: center;
+    /* padding: 0px;
+    margin: 0px; */
+  }
+  body, html{
+    height: 100%;
+
+  }
+
+  .home-intro{
+      padding-bottom: 100px;
+  }
+
+  h1{
+      color: black;
+      text-align: left;
+      width: 400px;
+      padding-top: 100px;
+      
+  }
+
+ #piler{
+     width:250px;
+     
+ }
+
+  

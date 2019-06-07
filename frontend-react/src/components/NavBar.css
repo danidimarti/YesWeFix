@@ -1,0 +1,27 @@
+.square-logo{
+    width: 5%;
+    padding: 4px;
+    margin-left: 2%;
+       
+}
+.navbar{
+    padding-left: 15px;
+    padding-right: 15px; 
+}
+
+#btn-user{
+    /* border-radius: 5px 5px 5px 5px; */
+    padding: 5px;
+    border: 0.7px solid #1d8384;
+    background: white;
+    color: #1d8384;
+    width: 100px;
+    cursor: pointer;
+    
+}
+
+#btn-user:hover {
+    background: #95d2d3;
+    transition: all 0.30s;
+    border: #196d6e;
+}
