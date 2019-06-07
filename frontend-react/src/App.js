@@ -8,6 +8,8 @@ import User from "./components/User/User";
 import AuthService from "../src/auth/AuthService";
 //import ShopForm from './components/Shop/ShopForm';
 import NearbySearch from './components/Map/NearbySearch'
+import SearchBar from './components/Map/SearchBar';
+//import SearchBar from './components/Map/SearchBar';
 
 class App extends Component {
   state = {
@@ -40,7 +42,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <NearbySearch />
+        <SearchBar />
         
       </div>
     );

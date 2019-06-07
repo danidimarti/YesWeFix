@@ -11,7 +11,7 @@ import {
 import Geocode from "react-geocode";
 import Autocomplete from "react-google-autocomplete";
 //we need to import the data model form repair shops
-import * as parksData from "../data_temp/skateboard-parks.json";
+import * as shopData from "../Shop/shop-data/shoplist-data.json";
 import MapStyle from "./MapStyle.js";
 Geocode.enableDebug();
 
@@ -23,7 +23,7 @@ const Map = () => {
       defaultCenter={{ lat: 45.421532, lng: -75.697189 }}
       //defaultOptions={{styles: MapStyle}}
     >
-      {parksData.features.map(park => (
+      {shopData.features.map(park => (
         <Marker
           key={park.properties.PARK_ID}
           position={{
