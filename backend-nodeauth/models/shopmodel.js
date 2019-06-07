@@ -18,6 +18,7 @@ const shopSchema = new Schema(
       city: String,
       state: String,
       country: String,
+      
  
     phonenumber: String,
     kvk: Number,

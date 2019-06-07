@@ -3,6 +3,8 @@ import Script from "react-load-script";
 
 class SearchBar extends Component {
   state = {
+    defaultCenter: "",
+    
     address: "",
     query: ""
   };
@@ -12,7 +14,7 @@ class SearchBar extends Component {
     /*global google*/ var options = {
       types: ["address"]
     };
-    //initialize Google Autocomplete
+    //initialize Google Autocomplete and geocode
     this.autocomplete = new google.maps.places.Autocomplete(input, options);
     this.autocomplete.addListener(
       "place_changed",

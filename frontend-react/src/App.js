@@ -6,7 +6,8 @@ import "./App.css";
 import User from "./components/User/User";
 //import { Switch, Route } from "react-router-dom";
 import AuthService from "../src/auth/AuthService";
-import ShopForm from './components/Shop/ShopForm';
+//import ShopForm from './components/Shop/ShopForm';
+import NearbySearch from './components/Map/NearbySearch'
 
 class App extends Component {
   state = {
@@ -39,7 +40,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <User />
+        <NearbySearch />
         
       </div>
     );
