@@ -19,8 +19,8 @@ export default class Secret extends Component {
             <div>
                 <h1>SECRET PAGE of </h1>
                 {this.props.currentUser ? <p>{this.props.currentUser.username} is ALLOWED TO SEE SECRET</p> : "USER DENIED"}
-                <inpu>logout</inpu>
-                <input type="submit" value="logout" />
+                {/* <input>logout</input>
+                <input type="submit" value="logout" /> */}
             </div>
         )
     }

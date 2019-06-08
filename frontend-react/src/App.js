@@ -6,6 +6,7 @@ import {Route, Switch, Link} from 'react-router-dom'
 //import Shop from '../src/components/Shop/Shop'
 import User from "./components/User/User";
 import Userlogin from "./components/User/Userlogin";
+import Userprofile from "./components/User/Userprofile";
 //import { Switch, Route } from "react-router-dom";
 import AuthService from "../src/auth/AuthService";
 //import ShopForm from './components/Shop/ShopForm';
@@ -65,6 +66,7 @@ class App extends Component {
           <Route exact path='/'  render={props => <HomePage {...props} setLocation={this.setLocation}/>   }/>
           <Route exact path='/auth/user/signup' component={User}/>
           <Route path='/auth/user/login' component={Userlogin}/>
+          <Route path='/auth/user/profile' component={Userprofile}/>
           <Route exact path="/results" render={props => <Results {...props}  location={this.state.location} /> } />
         
         </Switch>

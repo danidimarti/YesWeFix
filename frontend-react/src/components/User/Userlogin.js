@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import AuthService from '../../auth/AuthService';
+import { Redirect } from 'react-router-dom'
 
 export default class Login extends Component {
 
     state = {
         username: "",
-        password: ""
+        password: "",
+        redirect: false
     }
 
     service = new AuthService();
@@ -26,11 +28,16 @@ export default class Login extends Component {
         this.service.login(username, password)
           .then(response => {
               console.log(response);
+              this.setState({
+                redirect: true
+              })
               // this.props.setUser(response)
           })
     }
   render() {
     return (
+      <div> 
+        {this.state.redirect ? <Redirect to='/auth/user/profile' /> : ""}
       <form onSubmit={e => this.handleSubmit(e)}>
         <h1>LOGIN</h1>
         <input
@@ -47,6 +54,7 @@ export default class Login extends Component {
         />
         <input type="submit" value="login" />
       </form>
+      </div>
     );
   }
 }
