@@ -26,7 +26,7 @@ export default class Login extends Component {
         this.service.login(username, password)
           .then(response => {
               console.log(response);
-              this.props.setUser(response)
+              // this.props.setUser(response)
           })
     }
   render() {

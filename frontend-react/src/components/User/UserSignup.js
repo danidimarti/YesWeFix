@@ -4,24 +4,24 @@ import { Redirect } from 'react-router-dom'
 
 class Usersignup extends Component {
   state = {
-    firstname: "",
+    username: "",
     password: "",
     mobile: "",
     email: "",
     redirect: false
   };
 
-  setRedirect = () => {
-    this.setState({
-      redirect: true
-    })
-  }
+  // setRedirect = () => {
+  //   this.setState({
+  //     redirect: true
+  //   })
+  // }
 
-  renderRedirect = () => {
-    if (this.state.redirect) {
-      return <Redirect to='/auth/user/login' />
-    }
-  }
+  // renderRedirect = () => {
+  //   if (this.state.redirect) {
+  //     return <Redirect to='/auth/user/login' />
+  //   }
+  // }
 
   authService = new AuthService();
 
@@ -35,12 +35,12 @@ class Usersignup extends Component {
   handleSubmit = (e) => {
       e.preventDefault();
 
-      const firstname = this.state.firstname;
+      const username = this.state.username;
       const password = this.state.password;
       const email = this.state.email;
       const mobile = this.state.mobile;
 
-      this.authService.signup(firstname, password, email, mobile)
+      this.authService.signup(username, password, email, mobile)
         .then(response => {
             console.log(response);
             this.setState({
@@ -53,7 +53,7 @@ class Usersignup extends Component {
   render() {
     return (
       <div>
-      {this.state.redirect ? <Redirect to='/login' /> : ""}
+      {this.state.redirect ? <Redirect to='/auth/user/login' /> : ""}
         <form onSubmit={(e) => this.handleSubmit(e)}>
             <h1>SIGNUP</h1>
             <input

@@ -8,8 +8,9 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
-const cors = require('cors');
-const session    = require("express-session");
+const cors         = require('cors');
+const session      = require("express-session");
+const passport     = require('passport');
 const MongoStore = require('connect-mongo')(session);
 const flash      = require("connect-flash");
 
@@ -64,7 +65,6 @@ hbs.registerHelper('ifUndefined', (value, options) => {
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
 
-
 // Enable authentication using session + passport
 app.use(session({
   secret: 'irongenerator',
@@ -72,17 +72,17 @@ app.use(session({
   saveUninitialized: true,
   store: new MongoStore( { mongooseConnection: mongoose.connection })
 }))
+
+// USE passport.initialize() and passport.session() HERE:
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(flash());
 require('./passport')(app);
 
 app.use(cors({
   credentials: true,
-  origin: ['https://maps.googleapis.com/maps/api/js'] // <== this will be the URL of our React app (it will be running on port 3000)
-}));
-
-app.use(cors({
-  credentials: true,
-  origin: ['http://localhost:3000'] // <== this will be the URL of our React app (it will be running on port 3000)
+  origin: ['https://maps.googleapis.com/maps/api/js', 'http://localhost:3000'] // <== this will be the URL of our React app (it will be running on port 3000)
 }));
 
 const index = require('./routes/index');
@@ -93,3 +93,4 @@ app.use('/auth', authRoutes);
 
 
 module.exports = app;
+

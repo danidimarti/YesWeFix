@@ -3,6 +3,7 @@ const passport = require('passport');
 const router = express.Router();
 
 
+
 const User = require("../models/usermodel");
 const Repair = require("../models/shopmodel");
 const Request = require("../models/requestmodel.js");
@@ -21,6 +22,7 @@ const bcryptSalt = 10;
 // });
 
 router.post('/user/login', (req, res, next) => {
+  console.log(req.body)
   passport.authenticate('local', (err, theUser, info) => {
     if(err) {
       res.status(500).json({message: err})
@@ -45,16 +47,51 @@ router.post('/user/login', (req, res, next) => {
 //   res.render("auth/signup");
 // });
 
+// Post route => to create new request
+
+router.post("/user/request", (req, res, next) => {
+  const subject = req.body.subject;
+  const description = req.body.description;
+  const imageUrl = req.body.imageUrl;
+  const status = req.body.status;
+
+  const newRequest = new Request ({
+    subject,
+    description,
+    imageUrl,
+    status
+  })
+  newRequest.save()
+  .then(() => {
+    res.status(200).json(newRequest);
+  })
+  .catch(err => {
+    res.status(500).json({ message: "Something went wrong" })
+  })
+});
+
+// Get route => to receive request
+
+router.get("/shop/request", (req, res, next) => {
+  // if shop is logged in the run and do a I find based on businessname
+  Request.find().then((result) => {
+   res.send(result);
+  })
+  .catch(err => { 
+    res.status(500).json({ message: "Something went wrong" })
+  })
+})
+
 // Post route => to create new user
 
 router.post("/user/signup", (req, res, next) => {
-  const firstname = req.body.firstname;
+  const username = req.body.username;
   const password = req.body.password;
   const mobile = req.body.mobile;
   const email = req.body.email;
   console.log(email)
   debugger
-  if (firstname === "" || password === "") {
+  if (username === "" || password === "") {
     res.status(400).json({ message: "Username or password can't be empty" });
     return;
   }
@@ -66,7 +103,7 @@ router.post("/user/signup", (req, res, next) => {
         const hashPass = bcrypt.hashSync(password, salt);
     
         const newUser = new User({
-          firstname,
+          username,
           password: hashPass,
           email,
           mobile

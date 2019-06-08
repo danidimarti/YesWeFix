@@ -5,6 +5,7 @@ const requestSchema = new Schema({
     userid : [ { type : Schema.Types.ObjectId, ref: 'User' } ],
     subject: String,
     description : String,
+    businessname : [ { type : Schema.Types.ObjectId, ref: 'Shop'} ],
     imageUrl: { type: String, required: true },  
     status: {
       type: String,

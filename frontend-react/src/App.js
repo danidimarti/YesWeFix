@@ -4,14 +4,16 @@ import "./App.css";
 //import SearchBar from './components/SearchBar'
 //import Shop from '../src/components/Shop/Shop'
 import User from "./components/User/User";
+import Userlogin from "./components/User/Userlogin";
 //import { Switch, Route } from "react-router-dom";
 import AuthService from "../src/auth/AuthService";
 //import ShopForm from './components/Shop/ShopForm';
 import NearbySearch from './components/Map/NearbySearch'
-import SearchBar from './components/Map/SearchBar';
 //import SearchBar from './components/Map/SearchBar';
-import NavBar from './components/NavBar'
-import HomePage from './components/HomePage'
+//import SearchBar from './components/Map/SearchBar';
+//import NavBar from './components/NavBar'
+//import HomePage from './components/HomePage'
+import { Switch, Route } from 'react-router-dom';
 
 class App extends Component {
   state = {
@@ -44,8 +46,14 @@ class App extends Component {
   render() {
     return (
       <div>
-        <NavBar />
-        <HomePage />
+        {/* <User /> */}
+
+        <Switch>
+          <Route exact path='/auth/user/signup' component={User}/>
+          <Route path='/auth/user/login' component={Userlogin}/>
+        </Switch>
+        
+       
 
         <section id='phone'>
 
