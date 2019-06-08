@@ -2,11 +2,15 @@ import React, { Component } from "react";
 import Script from "react-load-script";
 import "bootstrap/dist/css/bootstrap.css";
 import "./SearchBar.css";
+import MapRender from "./MapRender";
+import {withRouter} from 'react-router-dom'
 
 class SearchBar extends Component {
   state = {
     address: "",
-    query: ""
+    query: "",
+    lat: null,
+    lng: null
   };
 
   handleScriptLoad() {
@@ -40,19 +44,27 @@ class SearchBar extends Component {
       // Set State
       this.setState({
         address: address.formatted_address,
-        query: addressObject.formatted_address
+        query: addressObject.formatted_address,
+        lat: addressObject.geometry.location.lat(),
+        lng: addressObject.geometry.location.lng()
       });
-      //console.log(address);
+      console.log(address);
     }
   }
 
-  handleSubmit() {
+  handleSubmit(e) {
+    console.log(e);
+    e.preventDefault();
     let addressObject = this.autocomplete.getPlace();
+    if (addressObject) {
+      // Geometry
+      let lat = addressObject.geometry.location.lat();
+      let lng = addressObject.geometry.location.lng();
+      console.log(lat, lng);
+      this.props.setLocation({ lat, lng });
+      this.props.history.push('/results')
 
-    // Geometry
-    var lat = addressObject.geometry.location.lat;
-    var lng = addressObject.geometry.location.lng;
-    console.log(lat, lng);
+    }
   }
 
   render() {
@@ -73,13 +85,12 @@ class SearchBar extends Component {
 
               //style={{ width: `500px` }}
             />
-
-            <input
+          <input
               type="submit"
               id="submit"
               className="input-group-btn"
               value="Find Shop"
-              onClick={this.handleSubmit}
+              onClick={e => this.handleSubmit(e)}
             />
           </div>
         </form>
@@ -87,4 +98,4 @@ class SearchBar extends Component {
     );
   }
 }
-export default SearchBar;
+export default withRouter(SearchBar);
