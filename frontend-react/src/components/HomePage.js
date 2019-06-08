@@ -6,6 +6,7 @@ import logo from './logo-bg.png'
 import "./HomePage.css";
 import piler from './pilers-gif.gif'
 
+
 class HomePage extends Component {
    
 
@@ -18,7 +19,11 @@ class HomePage extends Component {
           <div className="row">
             <div className="col-lg-12 col-md-1- col-sm-10 col-xs-12 col-md-push-2">
               <h1>Discover the best repair shops near you</h1>
-              <SearchBar />
+              <SearchBar 
+              setLocation={this.props.setLocation}
+              
+              />
+              <section id="phone" />
              
             {/* <img id='piler' src={piler} alt='piler'/> */}
              
