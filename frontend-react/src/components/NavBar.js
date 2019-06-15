@@ -15,7 +15,7 @@ class NavbarPage extends Component {
   render() {
     return (
       <nav className="mb-1 navbar navbar-expand-lg navbar-dark orange lighten-1">
-        <a class="navbar-brand" href="#">
+        <a className="navbar-brand" href="#">
           <img src={logo} className="square-logo" alt="logo" />
         </a>
         <div>

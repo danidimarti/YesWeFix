@@ -63,9 +63,12 @@ class App extends Component {
         <NavBar />
         <Switch>
           <Route exact path='/'  render={props => <HomePage {...props} setLocation={this.setLocation}/>   }/>
+          <Route exact path="/results" render={props => <Results {...props}  location={this.state.location} /> } />
+          
+          
           <Route exact path='/auth/user/signup' component={User}/>
           <Route path='/auth/user/login' component={Userlogin}/>
-          <Route exact path="/results" render={props => <Results {...props}  location={this.state.location} /> } />
+          
         
         </Switch>
       

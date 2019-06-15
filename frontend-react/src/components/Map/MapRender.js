@@ -13,32 +13,24 @@ import MapStyle from "./MapStyle.js";
 import pin from "./pin-sm.png";
 
 class MapRender extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       location: this.props.location,
       selectedShop: null,
-      shopData: shopData,
+      shopData: this.props.shopData,
       bounds: null,
       loading: true
       // map: React.createRef()
-    
     };
     this.map = React.createRef();
   }
-  
-  
-  componentDidMount(){
+
+  componentDidMount() {
     this.setState({
       loading: false
-    })
+    });
   }
-  // selectedShop = shop => {
-  //   this.setState({
-  //     selectedShop: shop
-  //   });
-
-  // };
 
   setSelectedShop = shop => {
     console.log(shop);
@@ -54,17 +46,18 @@ class MapRender extends Component {
     });
   };
 
-  render() { 
+  render() {
     //const bounds = new window.google.maps.LatLngBounds()
     const WrappedMap = withScriptjs(
       withGoogleMap(props => (
-        <GoogleMap 
-        ref={map => {
-          this.map = map;
-        }}
-        onIdle={props.onMapIdle}
-        defaultZoom={15} 
-        defaultCenter={this.state.location} >
+        <GoogleMap
+          ref={map => {
+            this.map = map;
+          }}
+          onIdle={props.onMapIdle}
+          defaultZoom={15}
+          defaultCenter={this.state.location}
+        >
           {this.state.shopData.map((shop, index) => (
             <Marker
               key={shop.id}
@@ -112,20 +105,25 @@ class MapRender extends Component {
 
     return (
       <div>
-       {!this.state.loading ?  <WrappedMap
-         onMapIdle={() => {
-          let ne = this.map.getBounds().getNorthEast();
-          let sw = this.map.getBounds().getSouthWest();
-          console.log("Northeast bound is:", ne.lat() + ";" + ne.lng());
-          console.log("Southwest bound is:", sw.lat() + ";" + sw.lng());
-        }}
-          googleMapURL={`${process.env.REACT_APP_GG_URL}`}
-          //which elements (divs) is it going to place the map inside
-          loadingElement={<div style={{ height: `100%` }} />}
-          containerElement={<div style={{ width: "350px", height: `100%` }} />}
-          mapElement={<div style={{ height: `500px` }} />}
-          wrappedMap={WrappedMap}
-        /> : ""}
+        {!this.state.loading ? (
+          <WrappedMap
+            onMapIdle={() => {
+              let bounds = this.map.getBounds();
+              console.log("My bounds are:", bounds);
+              this.props.getMapBounds(bounds);
+            }}
+            googleMapURL={`${process.env.REACT_APP_GG_URL}`}
+            //which elements (divs) is it going to place the map inside
+            loadingElement={<div style={{ height: `100%` }} />}
+            containerElement={
+              <div style={{ width: "350px", height: `100%` }} />
+            }
+            mapElement={<div style={{ height: `500px` }} />}
+            wrappedMap={WrappedMap}
+          />
+        ) : (
+          ""
+        )}
       </div>
     );
   }
