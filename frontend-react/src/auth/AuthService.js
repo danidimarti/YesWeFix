@@ -12,8 +12,7 @@ class AuthService {
         username: username,
         password: password,
         mobile: mobile,
-        email: email
-      })
+        email: email})
       .then(response => response.data);
   };
 

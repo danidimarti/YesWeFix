@@ -5,9 +5,7 @@ const Schema   = mongoose.Schema;
 const userSchema = new Schema({
     username : String,
     mobile : String,
-    // email : {
-    //   home : {type: mongoose.SchemaTypes.Email, required: true}
-    // },
+    shop : {type : mongoose.SchemaTypes.ObjectId, ref: 'Shop'},
     email : String,
     password  : String
 }, {
