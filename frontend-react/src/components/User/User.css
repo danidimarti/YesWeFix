@@ -27,3 +27,15 @@
 .green-color {
     background:  #1d8384;
 }
+
+.card-header {
+    height: 50px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    color: white
+
+}
+
+.text-size{
+    font-size: 12px;
+}

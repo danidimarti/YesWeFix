@@ -27,7 +27,7 @@ var data = [
 		"lng": "4.924680",
 		"city": "Amsterdam",
 		"repairtype": "Choe maker",
-		"imageUrl": "./shop-img/shop2"
+		"imageUrl": "https://images.unsplash.com/photo-1473621038790-b778b4750efe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1052&q=80"
 	},
 	{
 		"id": "3",
@@ -42,7 +42,7 @@ var data = [
 		"lng": "4.922217",
 		"city": "Amsterdam",
 		"repairtype": "computer repair",
-		"imageUrl": "./shop-img/shop3"
+		"imageUrl": "https://images.unsplash.com/photo-1514996696876-5c856ca2a0a4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
 	},
 	{
 		"id": "4",
@@ -57,7 +57,7 @@ var data = [
 		"lng": "4.898038",
 		"city": "Amsterdam",
 		"repairtype": "carpenter",
-		"imageUrl": "./shop-img/shop4"
+		"imageUrl": "https://images.unsplash.com/photo-1461938337379-4b537cd2db74?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1001&q=80"
 	},
 	{
 		"id": "5",
@@ -72,7 +72,7 @@ var data = [
 		"lng": "4.921720",
 		"city": "Amsterdam",
 		"repairtype": " electrician  ",
-		"imageUrl": "./shop-img/shop5"
+		"imageUrl": "https://images.unsplash.com/photo-1517420704952-d9f39e95b43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
 	},
 	{
 		"id": "6",
@@ -87,7 +87,7 @@ var data = [
 		"lng": "4.881280",
 		"city": "Amsterdam",
 		"repairtype": " bike painter ",
-		"imageUrl": "./shop-img/shop6"
+		"imageUrl": "https://images.unsplash.com/photo-1534789266363-adfa086f3f63?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
 	},
 	{
 		"id": "7",
@@ -102,7 +102,7 @@ var data = [
 		"lng": "4.895565",
 		"city": "Amsterdam",
 		"repairtype": "appliances repair ",
-		"imageUrl": "./shop-img/shop7"
+		"imageUrl": "https://images.unsplash.com/photo-1530191601183-4de2969575ad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
 	},
 	{
 		"id": "8",
@@ -117,7 +117,7 @@ var data = [
 		"lng": "4.923509",
 		"city": "Amsterdam",
 		"repairtype": "carpenter",
-		"imageUrl": "./shop-img/shop8"
+		"imageUrl": "https://images.unsplash.com/photo-1505798577917-a65157d3320a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
 	},
 	{
 		"id": "9",
@@ -132,7 +132,7 @@ var data = [
 		"lng": "4.894835",
 		"city": "Amsterdam",
 		"repairtype": "computer repair",
-		"imageUrl": "./shop-img/shop9"
+		"imageUrl": "https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80"
 	},
 	{
 		"id": "10",
@@ -147,7 +147,7 @@ var data = [
 		"lng": "4.892938",
 		"city": "Amsterdam",
 		"repairtype": "computer repair",
-		"imageUrl": "./shop-img/shop10"
+		"imageUrl": "https://images.unsplash.com/photo-1542762933-ab3502717ce7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
 	} 
 	
 ]

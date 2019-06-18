@@ -3,6 +3,7 @@ import AuthService from "../../auth/AuthService";
 import { Redirect } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 import "./User.css";
+import {Link} from "react-router-dom"
 
 class Usersignup extends Component {
   state = {
@@ -54,44 +55,61 @@ class Usersignup extends Component {
 
   render() {
     return (
-      <div className="card">
-        {this.state.redirect ? <Redirect to="/auth/user/login" /> : ""}
-        <form className="text-center" onSubmit={e => this.handleSubmit(e)}>
-          <h1 className="card-header green-color white-text text-center py-4">
-            SIGNUP
-          </h1>
-          <div className="card-body px-lg-5 pt-0">
-          <input
-            type="text"
-            name="email"
-            value={this.state.email}
-            onChange={e => this.changeHandler(e)}
-            className="input"
-          />
-          <input
-            type="text"
-            name="mobile"
-            value={this.state.mobile}
-            onChange={e => this.changeHandler(e)}
-            className="input"
-          />
-          <input
-            type="text"
-            name="username"
-            value={this.state.username}
-            onChange={e => this.changeHandler(e)}
-            className="input"
-          />
-          <input
-            type="password"
-            name="password"
-            value={this.state.password}
-            onChange={e => this.changeHandler(e)}
-            className="input"
-          />
-          <input id="submit" type="submit" value="Sign in" />
+      <div className="container">
+        <div className=" row justify-content-center">
+          <div className="col-md-8" style={{ borderRadius: "0" }}>
+            {this.state.redirect ? <Redirect to="/auth/user/login" /> : ""}
+            <div className="card" style={{ borderRadius: "0" }}>
+              <div
+                className="card-header green-color white-text text-center"
+                style={{ borderRadius: "0" }}
+              >
+                Sign up
+              </div>
+              <form
+                className="form-horizontal"
+                onSubmit={e => this.handleSubmit(e)}
+              >
+                <div className="form-group">
+                <label for="email" class="cols-sm-2 control-label">Email</label>
+                <div>
+                  <input
+                    type="text"
+                    name="email"
+                    value={this.state.email}
+                    onChange={e => this.changeHandler(e)}
+                    className="input"
+                  />
+                  </div>
+                  <input
+                    type="text"
+                    name="mobile"
+                    value={this.state.mobile}
+                    onChange={e => this.changeHandler(e)}
+                    className="input"
+                  />
+                  <input
+                    type="text"
+                    name="username"
+                    value={this.state.username}
+                    onChange={e => this.changeHandler(e)}
+                    className="input"
+                  />
+                  <input
+                    type="password"
+                    name="password"
+                    value={this.state.password}
+                    onChange={e => this.changeHandler(e)}
+                    className="input"
+                  />
+                  <input id="submit" type="submit" value="Sign in" />
+               
+                </div>
+                <p className="text-center text-black text-size">Already have an account? <Link className="text-info" to="/auth/user/login">Login in</Link></p>
+              </form>
+            </div>
+          </div>
         </div>
-        </form>
       </div>
     );
   }
