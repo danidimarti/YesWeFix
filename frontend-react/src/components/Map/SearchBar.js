@@ -46,7 +46,8 @@ class SearchBar extends Component {
         address: address.formatted_address,
         query: addressObject.formatted_address,
         lat: addressObject.geometry.location.lat(),
-        lng: addressObject.geometry.location.lng()
+        lng: addressObject.geometry.location.lng(),
+        
       });
       console.log(address);
     }
