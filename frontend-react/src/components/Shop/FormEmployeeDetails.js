@@ -1,82 +1,147 @@
 import React, { Component } from "react";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
-import AppBar from "material-ui/AppBar";
-import FormControl from '@material-ui/core/FormControl';
-import TextField from "material-ui/TextField";
-import RaisedButton from "material-ui/RaisedButton";
-import NativeSelect from "@material-ui/core/NativeSelect";
+import SearchBar from "../Map/SearchBar";
+import AuthService from "../../auth/AuthService";
+import { Redirect } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.css";
+import "./Shop.css";
+import { Link } from "react-router-dom";
 
 //rce + tab (create class component)
-export class FormEmployeeDetails extends Component {
+class FormEmployeeDetails extends Component {
+  //rconst shortcut
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      email: "",
+      username: "",
+      password: "",
+      redirect: false
+    };
+  }
+
   continue = e => {
     e.preventDefault();
     this.props.nextStep();
   };
+
   back = e => {
     e.preventDefault();
     this.props.prevStep();
   };
 
-    render() {
+  authService = new AuthService();
+
+  handleSubmit = e => {
+    e.preventDefault();
+
+    const email = this.state.email;
+    const username = this.state.username;
+    const password = this.state.password;
+    
+    this.authService
+      .signup(email, username, password)
+      .then(response => {
+        console.log(response);
+        const settingUser = this.props.setUser(response);
+        this.setState({
+          redirect: true,
+          userState: settingUser
+        });
+      });
+  };
+
+  render() {
     const { values, changeHandler } = this.props;
     return (
-      <MuiThemeProvider>
-        <React.Fragment>
-          <AppBar title="Enter Your Personal Details" />
-          <TextField
-            hinttext="Enter Your First Name"
-            floatingLabelText="First Name"
-            onChange={changeHandler("firstname")}
-            defaultValue={values.firstname}
-          />
-          <br />
-          <TextField
-            hinttext="Enter Your Last Name"
-            floatingLabelText="Last Name"
-            onChange={changeHandler("lastnanme")}
-            defaultValue={values.lastnanme}
-          />
-          <br />
-          <TextField
-            hinttext="Enter Your Email"
-            floatingLabelText="Email"
-            onChange={changeHandler("email")}
-            defaultValue={values.email}
-          />
-          <br />
-          <TextField
-            id="standard-password-input"
-            hinttext="Choose a password"
-            floatingLabelText="Password"
-            onChange={changeHandler("password")}
-            defaultValue={values.password}
-            type="password"
-            autoComplete="current-password"
-            margin="normal"
-          />
-          <br />
-          <RaisedButton
-            label="Back"
-            primary={false}
-            style={styles.button}
-            onClick={this.back}
-          />
-          <RaisedButton
-            label="Continue"
-            primary={true}
-            style={styles.button}
-            onClick={this.continue}
-          />
-        </React.Fragment>
-      </MuiThemeProvider>
+      <div className="container" style={{ width: "70%" }}>
+        <div className=" row justify-content-center">
+          <div className="col-md-8" style={{ borderRadius: "0" }}>
+            {this.state.redirect ? <Redirect to="/auth/login" /> : ""}
+            <div
+              className="card"
+              style={{
+                borderRadius: "0",
+                borderColor: "black",
+                borderWidth: 0.5
+              }}
+            >
+              <div
+                className="card-header green-color white-text text-center"
+                style={{ borderRadius: "0", marginBottom: "0px" }}
+              >
+                Enter Personal Details
+              </div>
+              <form
+                className="form-horizontal"
+                onSubmit={e => this.handleSubmit(e)}
+              >
+                <div className="form-group">
+                  <div className="input-group">
+                    <span className="input-group-addon">
+                      <i class="fa fa-user fa" aria-hidden="true" />
+                    </span>
+                    <input
+                      type="text"
+                      name="email"
+                      value={this.state.email}
+                      onChange={e => this.changeHandler(e)}
+                      className="input"
+                      placeholder="Email"
+                    />
+                  </div>
+
+                  <input
+                    type="text"
+                    name="username"
+                    value={this.state.username}
+                    onChange={e => this.changeHandler(e)}
+                    className="input"
+                    placeholder="Username"
+                  />
+                  <div class="cols-sm-10">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="fa fa-envelope fa" aria-hidden="true" />
+                      </span>
+                      <input
+                        type="password"
+                        name="password"
+                        value={this.state.password}
+                        onChange={e => this.changeHandler(e)}
+                        className="input"
+                        placeholder="Password"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="cols-sm-10">
+                    <div class="input-group-btn">
+                      <input
+                        id="back-btn"
+                        className="btn-form btn-info"
+                        type="submit"
+                        value="Back"
+                        onClick={this.back}
+                      />
+                      <input
+                        id="continue-btn"
+                        className="btn-form btn-info"
+                        type="submit"
+                        value="Continue"
+                        onClick={this.continue}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     );
   }
 }
-
-const styles = {
-  button: {
-    margin: 15
-  }
-};
 
 export default FormEmployeeDetails;

@@ -1,0 +1,195 @@
+#submit-user {
+    /* border-radius: 0px 5px 5px 0px; */
+    padding: 8px;
+    border: #1d8384;
+    background: #1d8384;
+    color: white;
+    /* margin-left: -10px; */
+    cursor: pointer;
+    /* width: 110px; */
+    margin-left: 20%;
+    margin-top: 8%;
+    width: 60%;
+}
+
+#submit-user:hover {
+    background: #196d6e;
+    transition: all 0.30s;
+    border: #196d6e;
+}
+
+#continue-btn {
+    padding: 8px;
+    border: #1d8384;
+    background: #1d8384;
+    color: white;
+    cursor: pointer;
+    margin-left: 20%;
+    margin-top: 8%;
+    width: 30%;
+    
+}
+
+#continue-btn:hover {
+    background: #196d6e;
+    transition: all 0.30s;
+    border: #196d6e;
+}
+
+#back-btn {
+    padding: 8px;
+    border: 0.7px solid #1d8384;
+    background: white;
+    color: #1d8384;
+    cursor: pointer;
+    margin-left: 20%;
+    margin-top: 8%;
+    width: 30%;
+}
+
+#back-btn:hover {
+    background: #bed8d8;
+    transition: all 0.30s;
+    border: #196d6e;
+}
+
+#upload-btn {
+    
+    border: 0.7px solid #1d8384;
+    background: #bed8d8;
+    color: #1d8384;
+    cursor: pointer;
+    margin-left: 50%;
+    width: 30%;
+    font-size: 9px
+}
+
+#upload-btn:hover {
+    background: #bed8d8;
+    transition: all 0.30s;
+    border: #196d6e;
+}
+
+
+.green-color {
+    background: #1d8384;
+}
+
+.card-header {
+    height: 50px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    color: white
+}
+
+.text-size {
+    font-size: 12px;
+}
+
+input::placeholder {
+    color: light-grey;
+    font-size: 14px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    font-weight: 200
+}
+
+.input {
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: .5px solid black;
+    width: 60%;
+    vertical-align: middle;
+    margin-left: 20%;
+    line-height: 50px;
+}
+
+.input-box {
+    border-top: none;
+    /* border-right: none;
+    border-left: none; */
+    border: .5px solid black;
+    width: 60%;
+    vertical-align: middle;
+    margin-left: 20%;
+    font-weight: 300;
+    color: rgb(124, 124, 124);
+    font-size: 12px;
+    
+}
+
+.input-label-title {
+    font-weight: 200;
+    width: 60%;
+    vertical-align: middle;
+    margin-left: 20%;
+    color: grey;
+    font-size: 14px;
+    margin-top: 3%;
+    margin-bottom: 2%;
+}
+
+.input-label {
+    font-weight: 200;
+    width: 60%;
+    vertical-align: middle;
+    margin-left: 20%;
+    color: grey;
+    font-size: 14px;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.select {
+    font-weight: 200;
+    color: grey;
+    font-size: 14px;
+}
+
+.input-group-btn {
+    
+    width: 80%;
+    vertical-align: middle;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-bottom: 3%
+    
+}
+
+.card {
+    box-shadow: 0px 0px 7px #aaaaaa;
+}
+
+.txt-area::placeholder {
+    color: light-grey;
+    font-size: 14px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    font-weight: 200
+}
+
+.input-label-ty {
+    font-weight: 500;
+    width: 100%;
+   
+    
+    color: rgb(109, 108, 108);
+    font-size: 22px;
+    
+    margin-top: -10%;
+    text-align: center
+}
+
+.input-label-pg {
+    font-weight: 200;
+    width: 100%;
+    text-align: center;
+    
+    color: grey;
+    font-size: 20px;
+    margin-top: 1%;
+    margin-bottom: 10%;
+}

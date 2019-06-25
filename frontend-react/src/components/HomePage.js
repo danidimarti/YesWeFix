@@ -8,7 +8,6 @@ import piler from './pilers-gif.gif'
 
 
 class HomePage extends Component {
-   
 
   render() {
     return (
@@ -24,9 +23,7 @@ class HomePage extends Component {
               
               />
               <section id="phone" />
-             
-            {/* <img id='piler' src={piler} alt='piler'/> */}
-             
+                                   
             </div>
           </div>
         </div>

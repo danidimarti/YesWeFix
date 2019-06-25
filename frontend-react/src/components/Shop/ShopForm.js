@@ -10,24 +10,17 @@ class ShopForm extends Component {
   state = {
     step: 1,
 
-    businessname: "",
-    role: "",
-    firstname: "",
-    lastname: "",
-    email: "",
-    username: "",
-    password: "",
-
-    streetname: "",
-    postcode: "",
-    city: "",
-    state: "",
-    country: "",
-
-    phonenumber: "",
-    kvk: "",
-
-    repairtype: []
+    shopname: "",
+      streetname: "",
+      mobile: "",
+      vehiclesservices: [],
+      consumerservices: [],
+      homeservices: [],
+      description: "",
+      imageUrl: "",
+      email: "",
+      username: "",
+      password: "",
   };
 
   //Proceed to next step
@@ -61,34 +54,31 @@ class ShopForm extends Component {
   render() {
     const { step } = this.state;
     const {
-      businessname,
-      role,
-      firstname,
-      lastname,
+      shopname,
+      streetname,
+      mobile,
+      vehiclesservices,
+      consumerservices,
+      homeservices,
+      description,
+      imageUrl,
       email,
       username,
       password,
-      streetname,
-      postcode,
-      city,
-      state,
-      country,
-      phonenumber,
-      kvk,
-      repairtype
+      
     } = this.state;
     const values = {
-      businessname,
-      firstname,
-      lastname,
+      shopname,
+      streetname,
+      mobile,
+      vehiclesservices,
+      consumerservices,
+      homeservices,
+      description,
+      imageUrl,
       email,
       username,
       password,
-      streetname,
-      postcode,
-      phonenumber,
-      kvk,
-      repairtype
     };
 
     switch (step) {

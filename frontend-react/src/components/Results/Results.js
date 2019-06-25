@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { Route, Switch, Link } from "react-router-dom";
 import MapRender from "../../components/Map/MapRender";
 import ShopCards from "./ShopCards";
-//import Filter from "./Filter";
+import Filter from "./Filter";
 import shopData from "../Shop/shop-data/shoplist-data.js";
 import { Redirect } from "react-router-dom";
 
@@ -18,7 +18,8 @@ export class Results extends Component {
       shopResults: [],
       shopData: shopData,
       newShopData: false,
-      initialRender: true
+      initialRender: true,
+      filteredResults: []
     };
     this.getMapBounds = this.getMapBounds.bind(this);
   }
@@ -56,6 +57,10 @@ export class Results extends Component {
     this.setState({ shopResults: shopsInBound });
   }
 
+  componentDidMount() {
+this.props.isResults(true)
+  }
+
   render() {
     const activeShop = this.state.selectedShop ? this.state.selectedShop.id : "";
     if (!this.props.location) {
@@ -82,10 +87,10 @@ export class Results extends Component {
         </div>
         {/* <Filter 
         className="container" 
-        //style={{display: "inline-block", position: "relative"}}
+        style={{display: "inline-block", position: "relative"}}
         shopResults={this.state.shopResults} /> */}
       </div>
-      <pre>{JSON.stringify(this.state.selectedShop, "\t", 2)}</pre>
+      {/* <pre>{JSON.stringify(this.state.selectedShop, "\t", 2)}</pre> */}
       </div>
     );
   }

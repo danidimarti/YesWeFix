@@ -63,7 +63,7 @@ router.post("/user/request", (req, res, next) => {
 // border
 
 
-router.post("/user/signup", (req, res, next) => {
+router.post("/signup", (req, res, next) => {
   const shopname = req.body.shopname;
   const username = req.body.username;
   const password = req.body.password;

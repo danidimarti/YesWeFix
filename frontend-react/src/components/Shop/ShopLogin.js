@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import AuthService from "../../auth/AuthService";
 import { Redirect } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
-import "./User.css";
+import "bootstrap/dist/css/bootstrap.css";
+import "./Shop.css";
 import { Link } from "react-router-dom";
+
 
 export default class Login extends Component {
   state = {
@@ -106,7 +108,7 @@ export default class Login extends Component {
                   </div>
                   <p className="text-center text-black text-size">
                     Don't have an account yet?{" "}
-                    <Link className="text-info" to="/auth/signup">
+                    <Link className="text-info" to="/auth/signup/shop">
                       Signup
                     </Link>
                   </p>
@@ -119,3 +121,7 @@ export default class Login extends Component {
     );
   }
 }
+
+
+
+

@@ -33,7 +33,6 @@
 
   #submit{
        
-      /* border-radius: 0px 5px 5px 0px; */
       padding: 8px;
       border: #1d8384;
       background:  #1d8384;
@@ -42,6 +41,10 @@
       cursor: pointer;
       width: 110px;
 
+  }
+
+  .hideButton {
+      display: none;
   }
 
   #submit:hover {

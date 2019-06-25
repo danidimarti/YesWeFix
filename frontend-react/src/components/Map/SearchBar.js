@@ -3,14 +3,15 @@ import Script from "react-load-script";
 import "bootstrap/dist/css/bootstrap.css";
 import "./SearchBar.css";
 import MapRender from "./MapRender";
-import {withRouter} from 'react-router-dom'
+import { withRouter } from "react-router-dom";
 
 class SearchBar extends Component {
   state = {
     address: "",
     query: "",
     lat: null,
-    lng: null
+    lng: null,
+    hideButton: false
   };
 
   handleScriptLoad() {
@@ -46,15 +47,19 @@ class SearchBar extends Component {
         address: address.formatted_address,
         query: addressObject.formatted_address,
         lat: addressObject.geometry.location.lat(),
-        lng: addressObject.geometry.location.lng(),
-        
+        lng: addressObject.geometry.location.lng()
       });
       console.log(address);
+      //this.props.setLatLng(this.state.lat, this.state.lng)
     }
+    
   }
 
   handleSubmit(e) {
     console.log(e);
+    if(this.props.hideButton) {
+      return 
+    }
     e.preventDefault();
     let addressObject = this.autocomplete.getPlace();
     if (addressObject) {
@@ -63,10 +68,10 @@ class SearchBar extends Component {
       let lng = addressObject.geometry.location.lng();
       console.log(lat, lng);
       this.props.setLocation({ lat, lng });
-      this.props.history.push('/results')
-
+      this.props.history.push("/results");
     }
   }
+
 
   render() {
     return (
@@ -83,13 +88,14 @@ class SearchBar extends Component {
               id="address-input"
               name="address"
               placeholder="Enter address here..."
-
-              //style={{ width: `500px` }}
             />
-          <input
+            <input
               type="submit"
               id="submit"
-              className="input-group-btn"
+              className={
+        
+                this.props.hideButton ? "hideButton" : null
+              } 
               value="Find Shop"
               onClick={e => this.handleSubmit(e)}
             />

@@ -1,7 +1,7 @@
 .cardStyle {
     width: 13rem;
     border: .7px solid grey;
-    box-shadow: 0px 0px 8px #aaaaaa;
+    box-shadow: 0px 0px 6px #aaaaaa;
     width: 200px;
     height: 300px;
     margin: 10px;
@@ -25,5 +25,8 @@
     font-style: italic;
 }
 .active {
-    border: 5px solid red; 
+    /* border: 5px solid red;  */
+    transform: scale(1.1);
+    box-shadow: 5px 10px 20px rgba(0,0,0,0.2);
 }
+

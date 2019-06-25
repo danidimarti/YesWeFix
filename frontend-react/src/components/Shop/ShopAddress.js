@@ -7,7 +7,7 @@ class Shop extends Component {
     state = {  }
     render() { 
         return ( 
-            <ShopSignup />
+            <div>shop address</div>
          );
     }
 }

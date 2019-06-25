@@ -5,13 +5,15 @@ const shopSchema = new Schema(
   {
     repairtype: String,
     shopname: String,
-    user : {type : mongoose.SchemaTypes.ObjectId, ref: 'User'}
-    // streetname: String,
-    // postcode: String,
-    // city: String,
-    // state: String,
-    // country: String,
-    // kvk: Number
+    user : {type : mongoose.SchemaTypes.ObjectId, ref: 'User'},
+    streetname: String,
+    postcode: String,
+    city: String,
+    lat: Number,
+    lng: Number,
+    description: String,
+    email: String,
+    imageUrl: String
    
   },
   {

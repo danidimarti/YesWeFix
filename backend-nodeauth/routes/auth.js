@@ -21,7 +21,7 @@ const bcryptSalt = 10;
 //   res.render("auth/login", { "message": req.flash("error") });
 // });
 
-router.post('/user/login', (req, res, next) => {
+router.post('/login', (req, res, next) => {
   console.log(req.body)
   passport.authenticate('local', (err, theUser, info) => {
     if(err) {
@@ -230,7 +230,7 @@ router.post('/shop/login', (req, res, next) => {
 // Post route => to create new user
 
 
-router.post("/user/signup", (req, res, next) => {
+router.post("/signup", (req, res, next) => {
   const shopname = req.body.shopname;
   const username = req.body.username;
   const password = req.body.password;

@@ -6,13 +6,12 @@ export class ShopCards extends Component {
   render() {
     return (
       <div>
-        {/* <pre>{JSON.stringify(this.props.shopResults, "\t", 2)}</pre> */}
-
+        
         {this.props.shopResults.map((shop, index) => (
-          <div className={`containerStyle ${this.props.active === shop.id ? "active" : ""}`}>
+          <div className={`containerStyle `}>
           
-            <div className="card cardStyle"
-            // style={{ borderRadius: "0" }}
+            <div className={`card cardStyle ${this.props.active === shop.id ? "active" : ""}` }
+            style={{ borderRadius: "0" }}
             >
               <div className="card-image" style={{
                 backgroundImage: `url("${shop.imageUrl}")`,

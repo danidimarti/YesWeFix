@@ -1,9 +1,4 @@
 import React, { Component } from "react";
-import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
-import AppBar from "material-ui/AppBar";
-import { List, ListItem } from "material-ui/List";
-import RaisedButton from "material-ui/RaisedButton";
-import NativeSelect from "@material-ui/core/NativeSelect";
 
 //rce + tab (create class component)
 export class FormBusinessDetails extends Component {
@@ -19,61 +14,109 @@ export class FormBusinessDetails extends Component {
   render() {
     const {
       values: {
-        businessname,
-        firstname,
-        lastname,
-        email,
+        shopname,
         streetname,
-        postcode,
-        phonenumber,
-        kvk,
-        repaitype
+        mobile,
+        repairtype,
+        description,
+        imageUrl,
+        email,
+        username,
+        password
       }
     } = this.props;
     return (
-      <MuiThemeProvider>
-        <React.Fragment>
-          <AppBar title="Confirm Your Details" />
-          <List>
-            <ListItem
-              primaryText="Business Name"
-              secondaryText={businessname}
-            />
-            <ListItem
-              primaryText="Business Address"
-              secondaryText={streetname}
-            />
-            <ListItem primaryText="Postcode" secondaryText={postcode} />
-            <ListItem primaryText="Phone Number" secondaryText={phonenumber} />
-            <ListItem primaryText="KvK" secondaryText={kvk} />
-            <ListItem primaryText="Services" secondaryText={repaitype} />
-            <ListItem primaryText="First Name" secondaryText={firstname} />
-            <ListItem primaryText="Last Name" secondaryText={lastname} />
-            <ListItem primaryText="Email" secondaryText={email} />
-          </List>
-          <br />
-          <RaisedButton
-            label="Submit"
-            primary={false}
-            style={styles.button}
-            onClick={this.back}
-          />
-          <RaisedButton
-            label="Confirm & Continue"
-            primary={true}
-            style={styles.button}
-            onClick={this.continue}
-          />
-        </React.Fragment>
-      </MuiThemeProvider>
+      <div className="container" style={{ width: "70%" }}>
+        <div className=" row justify-content-center">
+          <div className="col-md-8" style={{ borderRadius: "0" }}>
+            <div
+              className="card"
+              style={{
+                borderRadius: "0",
+                borderColor: "black",
+                borderWidth: 0.5
+              }}
+            >
+              <div
+                className="card-header green-color white-text text-center"
+                style={{ borderRadius: "0", marginBottom: "0px" }}
+              >
+                Enter Personal Details
+              </div>
+              <form
+                className="form-horizontal"
+                onSubmit={e => this.handleSubmit(e)}
+              >
+                <div className="cols-sm-10">
+                  <div className="input-group">
+                    <span className="input-group-addon">
+                      <i className="fa fa-envelope fa" aria-hidden="true" />
+                    </span>
+
+                    <div className="input-group">
+                      <label className="input-label-title">Business Name</label>
+                      <p>{shopname}</p>
+                    </div>
+                    <div className="input-group">
+                      <label className="input-label-title">Address</label>
+                      <p>{streetname}</p>
+                    </div>
+                    <div className="input-group">
+                      <label className="input-label-title">Phone Number</label>
+                      <p>{mobile}</p>
+                    </div>
+                    <div className="input-group">
+                      <label className="input-label-title">Business Type</label>
+                      <p>{repairtype}</p>
+                    </div>
+                    <div className="input-group">
+                      <label className="input-label-title">Description</label>
+                      <p>{description}</p>
+                    </div>
+                    <div className="input-group">
+                      <label className="input-label-title">Image Preview</label>
+                      <p>{imageUrl}</p>
+                    </div>
+                    <div className="input-group">
+                      <label className="input-label-title">Email</label>
+                      <p>{email}</p>
+                    </div>
+                    <div className="input-group">
+                      <label className="input-label-title">Username</label>
+                      <p>{username}</p>
+                    </div>
+                    <div className="input-group">
+                      <label className="input-label-title">Password</label>
+                      <p>{password}</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="cols-sm-10">
+                  <div class="input-group-btn">
+                    <input
+                      id="back-btn"
+                      className="btn-form btn-info"
+                      type="submit"
+                      value="Back"
+                      onClick={this.back}
+                    />
+                    <input
+                      id="continue-btn"
+                      className="btn-form btn-info"
+                      type="submit"
+                      value="Register"
+                      onClick={this.continue}
+                    />
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     );
   }
 }
-
-const styles = {
-  button: {
-    margin: 15
-  }
-};
 
 export default FormBusinessDetails;

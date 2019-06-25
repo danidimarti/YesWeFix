@@ -8,7 +8,7 @@ class AuthService {
 
   signup = (username, password, email, mobile) => {
     return this.service
-      .post("/user/signup", {
+      .post("/signup", {
         username: username,
         password: password,
         mobile: mobile,
@@ -18,13 +18,13 @@ class AuthService {
 
   login = (username, password) => {
     return this.service
-      .post("/user/login", { username: username, password: password })
+      .post("/login", { username: username, password: password })
       .then(response => response.data);
   };
 
   currentUser = () => {
     return this.service
-      .get("/user/currentuser")
+      .get("/currentuser")
       .then(response => response.data);
   };
 }
