@@ -6,13 +6,14 @@ import RaisedButton from "material-ui/RaisedButton";
 
 
 //rce + tab (create class component)
-export class RequestForm extends Component {
+// export class RequestForm extends Component {
+class RequestForm extends Component {
  state = {
      repairid: '', //how to only retieve repair shop info and display here.
      subject: '',
      description: '',
      imageUrl: '',
-     status: '',
+     status: 'sent',
  } 
 
      changeHandler = e => {
@@ -74,11 +75,12 @@ export class RequestForm extends Component {
     );
   
 }
+     
 
-const styles = {
-  button: {
-    margin: 15
-  }
-};
+// const styles = {
+//   button: {
+//     margin: 15
+//   }
+// };
 
 export default RequestForm;

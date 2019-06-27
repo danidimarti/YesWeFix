@@ -2,13 +2,15 @@ const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
 
 const quoteSchema = new Schema({
-    requestid : [ { type : Schema.Types.ObjectId, ref: 'Request' } ],
-    repairid : [ { type : Schema.Types.ObjectId, ref: 'Repair' } ],  
-    price : Number,
+    requestId : [ { type : Schema.Types.ObjectId, ref: 'Request' } ],
+    userId : [ { type : Schema.Types.ObjectId, ref: 'User' } ],  
+    // requestId : String,
+    shopId : [ { type : Schema.Types.ObjectId, ref: 'Shop'}],
+    quote : Number,
     timetofix : String,
     status: {
       type: String,
-      enum: ["sent", "accepted", 'closed']
+      enum: ["sent", "sentback", "accepted", 'closed']
     },
 }, {
     timestamps: {
