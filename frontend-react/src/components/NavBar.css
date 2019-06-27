@@ -1,5 +1,8 @@
+.nav-height {
+    height: 100px;
+}
 .square-logo{
-    width: 5%;
+    width: 7%;
     padding: 4px;
     margin-left: 2%;
        
@@ -57,4 +60,24 @@
 
 .btn-drop {
     margin-right: 2%;
+}
+
+.partner-link{
+    
+    min-width: 200px;
+
+}
+.partner-link-a {
+    color: #196d6e;
+}
+
+.partner-link-a:hover {
+    color: black;
+    text-decoration: none;
+}
+
+.styleNav{
+    box-sizing: border-box;
+    width: 100pc
+    
 }

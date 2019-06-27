@@ -6,25 +6,50 @@ class AuthService {
     withCredentials: true
   });
 
-  signup = (username, password, email, mobile) => {
+  signup = (
+  shopname,
+  streetname,
+  mobile,
+  vehiclesservices,
+  consumerservices,
+  homeservices,
+  description,
+  imageUrl,
+  email,
+  username,
+  password,
+  lat,
+  lng
+  ) => {
+
+    debugger
     return this.service
-      .post("/user/signup", {
+      .post("/signup", {
+        shopname: shopname,
         username: username,
         password: password,
         mobile: mobile,
-        email: email})
+        email: email, 
+      repairtype:  homeservices.concat(vehiclesservices).concat(consumerservices).join(", "),
+      streetname: streetname,
+      lat: lat,
+      lng: lng,
+      description: description,
+      imageUrl: imageUrl
+      
+      })
       .then(response => response.data);
   };
 
   login = (username, password) => {
     return this.service
-      .post("/user/login", { username: username, password: password })
+      .post("/login", { username: username, password: password })
       .then(response => response.data);
   };
 
   currentUser = () => {
     return this.service
-      .get("/user/currentuser")
+      .get("/currentuser")
       .then(response => response.data);
   };
 }

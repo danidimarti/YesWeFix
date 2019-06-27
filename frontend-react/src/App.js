@@ -1,21 +1,18 @@
 import React, { Component } from "react";
 import "./App.css";
-import {Route, Switch, Link} from 'react-router-dom'
-//import MapRender from './components/MapRender';
-//import SearchBar from './components/SearchBar'
-//import Shop from '../src/components/Shop/Shop'
-import User from "./components/User/User";
-import Userlogin from "./components/User/Userlogin";
-import Userprofile from "./components/User/Userprofile";
-//import { Switch, Route } from "react-router-dom";
+import { Route, Switch, Link } from "react-router-dom";
 import AuthService from "../src/auth/AuthService";
-//import ShopForm from './components/Shop/ShopForm';
-import SearchBar from "./components/Map/SearchBar";
-//import SearchBar from './components/Map/SearchBar';
+
+import ShopLogin from "./components/Shop/ShopLogin";
+import UserProfile from "./components/User/Userprofile";
+import UserSignup from "./components/User/UserSignup";
+
 import NavBar from "./components/NavBar";
 import HomePage from "./components/HomePage";
-import Results from "./components/Results/Results"
+import Results from "./components/Results/Results";
 
+import ShopForm from "./components/Shop/ShopForm";
+import ShopSignup from "./components/Shop/ShopSignup";
 
 class App extends Component {
   constructor(props) {
@@ -23,12 +20,20 @@ class App extends Component {
     this.setLocation = this.setLocation.bind(this);
     this.state = {
       user: null,
-      location: null
+      location: null,
+      isHome: true,
+      isResults: true
     };
   }
 
   service = new AuthService();
+  isHome = isHome => {
+    this.setState({ isHome: isHome });
+  };
 
+  isResults = isResults => {
+    this.setState({ isResults: isResults });
+  };
   setUser = user => {
     this.setState({ user: user });
   };
@@ -41,6 +46,7 @@ class App extends Component {
           this.setState({ user: response });
         })
         .catch(err => {
+          console.log(err);
           this.setState({ user: null });
         });
     }
@@ -56,27 +62,66 @@ class App extends Component {
     });
   }
   render() {
-    const locationIsSet = this.state.location !== null
     return (
       <div>
-        
-        <NavBar />
+        <NavBar isHome={this.state.isHome} setLocation={this.setLocation} />
         <Switch>
-          <Route exact path='/'  render={props => <HomePage {...props} setLocation={this.setLocation}/>   }/>
-          <Route exact path="/results" render={props => <Results {...props}  location={this.state.location} /> } />
-          
-          
-          <Route exact path='/auth/user/signup' component={User}/>
-          <Route path='/auth/user/login' component={Userlogin}/>
-          <Route path='/auth/user/profile' component={Userprofile}/>
-        
-        </Switch>
-      
-        
-        
-        {/* {locationIsSet ? <Results /> : alert("Insert address dumbass")} */}
-      </div>
+          <Route
+            exact
+            path="/"
+            render={props => (
+              <HomePage
+                {...props}
+                setLocation={this.setLocation}
+                isHome={this.isHome}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/results"
+            render={props => (
+              <Results
+                {...props}
+                location={this.state.location}
+                isResults={this.isResults}
+              />
+            )}
+          />
+          {/* FIX SHOPFORM ROUTE */}
+          <Route
+            exact
+            path="/auth/signup/:isShop"
+            render={props =>
+              props.match.params.isShop === "shop" ? (
+                <ShopForm setUser={this.setUser}/>
+              ) : (
+                <UserSignup {...props} setUser={this.setUser} />
+              )
+            }
+          />
+          <Route
+            path="/auth/login/:isShop"
+            render={props =>
+              props.match.params.isShop === "shop" ? (
+                <ShopLogin />
+              ) : (
+                <UserSignup {...props} setUser={this.setUser} />
+              )
+            }
+          />
+          <Route
+            path="/auth/profile"
+            render={props => <UserProfile {...props} setUser={this.setUser} />}
+          />
+          <Route
+            path="/auth/signup"
+            render={props => <ShopForm {...props} setUser={this.setUser} />}
+          />
 
+          
+        </Switch>
+      </div>
     );
   }
 }

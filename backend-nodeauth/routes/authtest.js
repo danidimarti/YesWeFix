@@ -39,3 +39,95 @@ router.get('/user/deal', (req, res, next) => {
   }
 
 });
+
+
+
+// border
+
+
+router.post("/signup", (req, res, next) => {
+  const shopname = req.body.shopname;
+  const username = req.body.username;
+  const password = req.body.password;
+  const mobile = req.body.mobile;
+  const email = req.body.email;
+  const repairtype = req.body.repairtype;
+  console.log(repairtype)
+  debugger
+  if (username === "" || password === "") {
+    res.status(400).json({ message: "Username or password can't be empty" });
+    return;
+  }
+  User.findOne({ "email": email }).then((result) => {     
+    if(result){
+      console.log(result);
+      res.status(400).json({ message: "The email already exists" });
+    } else {
+      const salt = bcrypt.genSaltSync(bcryptSalt);
+        const hashPass = bcrypt.hashSync(password, salt);
+      if (repairtype !== undefined) {
+         console.log(repairtype);
+          const newShop = new Shop ({
+              repairtype,
+              shopname
+          })
+
+          debugger
+          newShop.save()
+          .then((shop)=> {
+              console.log(shop)
+            const newUser = new User ({
+                  shop: shop._id,
+                  username,
+                  password: hashPass,
+                  email,
+                  mobile
+
+              });
+              console.log(newUser)
+              return newUser.save()
+          })
+          .then(user => {
+            console.log(user)
+            return User.findById(user._id)
+              .populate('shop')
+          })
+          .then(userShop => {
+            res.status(200).json(userShop)
+          })
+          .catch(err => {
+            console.log(err)
+            res.status(500).json({ message: "Something went wrong" })
+          })
+      } else {
+          const newUser = new User ({
+              username,
+              password: hashPass,
+              email,
+              mobile
+
+          });
+          // console.log(newUser);
+          newUser.save()
+          .then(user => {
+            console.log(user);
+
+            res.status(200).json(user)
+            // return user;
+            // return User.find(user)
+          })
+          .catch(err => {
+            console.log(err)
+            res.status(500).json({message: "Something went wrong"})
+          })
+
+      }
+        
+        
+        
+      }
+    })
+
+});
+
+

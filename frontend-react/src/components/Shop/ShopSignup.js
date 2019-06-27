@@ -1,8 +1,17 @@
 import React, { Component } from "react";
-//import AuthService from "../auth/AuthService";
+import AuthService from "../../auth/AuthService";
 
 class ShopSignup extends Component {
-  state = {};
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+       
+    }
+  }
+  
+  authService = new AuthService()
+
   render() {
     return (
       <div>
