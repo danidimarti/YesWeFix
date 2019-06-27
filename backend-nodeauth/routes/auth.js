@@ -15,6 +15,8 @@ const Ride = require("../models/ridemodel");
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
+//test
+
 router.post("/login", (req, res, next) => {
   console.log(req.body);
   passport.authenticate("local", (err, theUser, info) => {
