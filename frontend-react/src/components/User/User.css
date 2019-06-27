@@ -1,0 +1,41 @@
+/* .input {
+    width: 400px;
+    padding: 7px;
+    border: .7px solid #1d8384;
+      
+} */
+
+#submit{
+       
+    /* border-radius: 0px 5px 5px 0px; */
+    /* padding: 8px; */
+    border: #1d8384;
+    background:  #1d8384;
+    color: white;
+    /* margin-left: -10px; */
+    cursor: pointer;
+    /* width: 110px; */
+
+}
+
+#submit:hover {
+    background: #196d6e;
+    transition: all 0.30s;
+    border: #196d6e;
+}
+
+.green-color {
+    background:  #1d8384;
+}
+
+.card-header {
+    height: 50px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    color: white
+
+}
+
+.text-size{
+    font-size: 12px;
+}

@@ -1,0 +1,17 @@
+.flex-container {
+    display: flex;
+}
+
+.map-wrapper {
+    width: 30%;
+}
+
+.map-wrapper h2 {
+font-size: 1.2em;   
+}
+
+.shop-list {
+    width: 69%;
+    margin-left: 3%;
+    padding-top: 2%
+}

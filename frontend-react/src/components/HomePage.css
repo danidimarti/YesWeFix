@@ -31,8 +31,11 @@
 
  #phone {
     background-color: #f8f8f8;
-    height: 400px;
-  
+  height: 400px;
+   margin-top: 100px;
+   margin-left: 0px;
+   margin-right: 0px;
+   
   }
   
   

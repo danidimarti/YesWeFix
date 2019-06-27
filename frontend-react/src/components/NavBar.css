@@ -15,7 +15,7 @@
     border: 0.7px solid #1d8384;
     background: white;
     color: #1d8384;
-    width: 100px;
+    width: 120px;
     cursor: pointer;
     
 }
@@ -24,4 +24,37 @@
     background: #bed8d8;
     transition: all 0.30s;
     border: #196d6e;
+}
+
+.dropdown-list{
+    position: absolute;
+    border: 0.7px solid #1d8384;
+    
+    height: 120px;
+    width: 120px;
+    display: flex;
+    align-items: center;
+    padding-top: 20px;
+   justify-content: left;
+    box-sizing: border-box
+}
+
+.list-item {
+    text-decoration:none;
+    color: #196d6e;
+}
+
+.list-item:hover {
+ 
+    cursor: pointer;
+}
+
+.menu{
+    list-style: none;
+    padding:0px;
+    margin-left: 35px;
+}
+
+.btn-drop {
+    margin-right: 2%;
 }
