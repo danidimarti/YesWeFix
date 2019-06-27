@@ -1,63 +1,45 @@
-// test
+// Get route => to get Deal info
 
-// Post route => to create new request
-
-router.post("/user/request", (req, res, next) => {
-
+router.get('/user/deal', (req, res, next) => {
+   
   if(req.isAuthenticated()) {
 
-  const username = req.user.username;
-  const shopname = req.body.shopname;
-  const subject = req.body.subject;
-  const description = req.body.description;
-  const imageUrl = req.body.imageUrl;
-  const status = "sent";
+    const id = req.user._id;
+    console.log(id);
 
+    Deal.find({'userId' : id}).then ((result) => {
+        console.log(result);
+        const id = result[0].quoteId;
+        console.log(id);
+        const idu = result[0].userId;
+    )}
+        .catch (err => {
+          res.status(500).json({ message: "Something went wrong"})
+        
+        })
+
+    Quote.find({'_id' : id}).then ((result) => {
+        res.send(result);
+      })
+      .catch (err => {
+        res.status(500).json({ message: "Something went wrong"})
+      
+      })
+      Request.find({'userid' : idu}).then((result) => {
+        res.send(result);
+      })
+      .catch (err => {
+        res.status(500).json({ message: "Something went wrong"})
+      
   
-
-  const newRequest = new Request ({
-    username,
-    shopname,
-    subject,
-    description,
-    imageUrl,
-    status
-  })
-    
-  console.log(newRequest);
-  newRequest.save()
-  .then(() => {
-    res.status(200).json(newRequest);
-  })
-  .catch(err => {
-    res.status(500).json({ message: "Something went wrong" })
-  })
-
-  } else {
+      })
+      
+    } else {
     res.json({message: "You are not logged in"})
   }
 
-  // const subject = req.body.subject;
-  // const description = req.body.description;
-  // const imageUrl = req.body.imageUrl;
-  // const status = "sent";
-
-  // const newRequest = new Request ({
-  //   username,
-  //   subject,
-  //   description,
-  //   imageUrl,
-  //   status
-  // })
-  // console.log(newRequest);
-  // newRequest.save()
-  // .then(() => {
-  //   res.status(200).json(newRequest);
-  // })
-  // .catch(err => {
-  //   res.status(500).json({ message: "Something went wrong" })
-  // })
 });
+
 
 
 // border
@@ -147,4 +129,5 @@ router.post("/signup", (req, res, next) => {
     })
 
 });
+
 
