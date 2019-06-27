@@ -94,7 +94,7 @@ class App extends Component {
             path="/auth/signup/:isShop"
             render={props =>
               props.match.params.isShop === "shop" ? (
-                <ShopForm />
+                <ShopForm setUser={this.setUser}/>
               ) : (
                 <UserSignup {...props} setUser={this.setUser} />
               )

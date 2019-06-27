@@ -31,20 +31,18 @@ class FormShopDetails extends Component {
   authService = new AuthService();
 
   changeHandler = e => {
+    e.preventDefault()
     const { name, value } = e.target;
     this.setState({
       [name]: value
     });
   };
 
- 
+ handleSubmit = e => {
+   e.preventDefault()
+ } 
 
-  setLatLng = (lat, lng) => {
-    this.setState({
-      lat: lat,
-      lng: lng
-    })
-  } 
+  
 
   render() {
     const { values, changeHandler } = this.props;
@@ -69,7 +67,7 @@ class FormShopDetails extends Component {
               </div>
               <form
                 className="form-horizontal"
-                
+                onSubmit={e => this.handleSubmit}
               >
                 <div className="form-group">
                   <div className="input-group">
@@ -79,8 +77,8 @@ class FormShopDetails extends Component {
                     <input
                       type="text"
                       name="shopname"
-                      value={this.state.shopname}
-                      onChange={e => this.changeHandler(e)}
+                      value={values.shopname}
+                      onChange={e => this.props.changeHandler(e)}
                       className="input"
                       placeholder="Business Name"
                     />
@@ -92,8 +90,13 @@ class FormShopDetails extends Component {
                         <i class="fa fa-user fa" aria-hidden="true" />
                       </span>
                       <SearchBar 
-                      setLatLng={this.setLatLng}
-                      hideButton={true} />
+                      setLatLng={this.props.setLatLng}
+                      hideButton={true}
+                      value={values.streetname}
+                      onChange={e => this.props.changeHandler(e)}
+                    
+                      />
+                      
                     </div>
 
                     <div class="cols-sm-10">
@@ -104,8 +107,8 @@ class FormShopDetails extends Component {
                         <input
                           type="text"
                           name="mobile"
-                          value={this.state.mobile}
-                          onChange={e => this.changeHandler(e)}
+                          value={values.mobile}
+                          onChange={e => this.props.changeHandler(e)}
                           className="input"
                           placeholder="Phone Number"
                         />

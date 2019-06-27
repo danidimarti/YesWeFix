@@ -8,7 +8,9 @@ import shopData from "../Shop/shop-data/shoplist-data.js";
 import { Redirect } from "react-router-dom";
 
 import checkIfInBounds from "../../lib/geolib";
-import "./Results.css"
+import "./Results.css";
+import axios from "axios";
+import { resolve } from "path";
 
 export class Results extends Component {
   constructor(props) {
@@ -16,7 +18,7 @@ export class Results extends Component {
     this.state = {
       bounds: null,
       shopResults: [],
-      shopData: shopData,
+      shopData: "",
       newShopData: false,
       initialRender: true,
       filteredResults: []
@@ -24,6 +26,20 @@ export class Results extends Component {
     this.getMapBounds = this.getMapBounds.bind(this);
   }
 
+  componentDidMount() {
+    axios.get("http://localhost:5001/auth/shops")
+    .then(response => {
+      this.setState({
+        shopData: response.data
+      });
+    console.log("result:", response)
+    debugger
+    }).catch(err => {
+      debugger
+    })
+    this.props.isResults(true);
+    debugger
+  }
   setInitialRender = cb => {
     this.setState({ initialRender: false }, cb);
   };
@@ -31,11 +47,11 @@ export class Results extends Component {
     this.setState({
       selectedShop: shop
     });
-  }
+  };
   initialRenderTrue = () => {
-    console.log("hit")
-    this.setState({ initialRender: true})
-  }
+    console.log("hit");
+    this.setState({ initialRender: true });
+  };
 
   getMapBounds(center) {
     let shopsInBound = [];
@@ -45,52 +61,51 @@ export class Results extends Component {
     };
     console.log(mapCenter);
 
-    this.state.shopData.map(shop => {
-      let shopLocation = {
-        lat: parseFloat(shop.lat),
-        lng: parseFloat(shop.lng)
-      };
-      if (checkIfInBounds(shopLocation, mapCenter)) {
-        shopsInBound.push(shop);
-      }
-    });
+    // this.state.shopData.map(shop => {
+    //   let shopLocation = {
+    //     lat: parseFloat(shop.lat),
+    //     lng: parseFloat(shop.lng)
+    //   };
+    //   if (checkIfInBounds(shopLocation, mapCenter)) {
+    //     shopsInBound.push(shop);
+    //   }
+    // });
     this.setState({ shopResults: shopsInBound });
   }
 
-  componentDidMount() {
-this.props.isResults(true)
-  }
-
   render() {
-    const activeShop = this.state.selectedShop ? this.state.selectedShop.id : "";
+    const activeShop = this.state.selectedShop
+      ? this.state.selectedShop.id
+      : "";
     if (!this.props.location) {
       return <Redirect to="/" />;
     }
     return (
       <div>
-      <div className="flex-container">
-        <div className="map-wrapper">
-        <h2>Repair Shops in Amsterdam</h2>
-        <MapRender
-          location={this.props.location}
-          getMapBounds={this.getMapBounds}
-          shopData={shopData}
-          initialRender={this.state.initialRender}
-          setInitialRender={this.setInitialRender}
-          setSelectedShop={this.setSelectedShop}
-        />
-        </div>
-        <div className="shop-list">
-        <ShopCards 
-        active={activeShop}
-        shopResults={this.state.shopResults} />
-        </div>
-        {/* <Filter 
+        <div className="flex-container">
+          <div className="map-wrapper">
+            <h2>Repair Shops in Amsterdam</h2>
+            <MapRender
+              location={this.props.location}
+              getMapBounds={this.getMapBounds}
+              shopData={shopData}
+              initialRender={this.state.initialRender}
+              setInitialRender={this.setInitialRender}
+              setSelectedShop={this.setSelectedShop}
+            />
+          </div>
+          <div className="shop-list">
+            <ShopCards
+              active={activeShop}
+              shopResults={this.state.shopResults}
+            />
+          </div>
+          {/* <Filter 
         className="container" 
         style={{display: "inline-block", position: "relative"}}
         shopResults={this.state.shopResults} /> */}
-      </div>
-      {/* <pre>{JSON.stringify(this.state.selectedShop, "\t", 2)}</pre> */}
+        </div>
+        {/* <pre>{JSON.stringify(this.state.selectedShop, "\t", 2)}</pre> */}
       </div>
     );
   }

@@ -31,29 +31,29 @@ class FormEmployeeDetails extends Component {
     this.props.prevStep();
   };
 
-  authService = new AuthService();
+ // authService = new AuthService();
 
-  handleSubmit = e => {
-    e.preventDefault();
+  // handleSubmit = e => {
+  //   e.preventDefault();
 
-    const email = this.state.email;
-    const username = this.state.username;
-    const password = this.state.password;
+  //   const email = this.state.email;
+  //   const username = this.state.username;
+  //   const password = this.state.password;
     
-    this.authService
-      .signup(email, username, password)
-      .then(response => {
-        console.log(response);
-        const settingUser = this.props.setUser(response);
-        this.setState({
-          redirect: true,
-          userState: settingUser
-        });
-      });
-  };
+  //   this.authService
+  //     .signup(email, username, password)
+  //     .then(response => {
+  //       console.log(response);
+  //       const settingUser = this.props.setUser(response);
+  //       this.setState({
+  //         redirect: true,
+  //         userState: settingUser
+  //       });
+  //     });
+  // };
 
   render() {
-    const { values, changeHandler } = this.props;
+    const { values } = this.props;
     return (
       <div className="container" style={{ width: "70%" }}>
         <div className=" row justify-content-center">
@@ -85,8 +85,8 @@ class FormEmployeeDetails extends Component {
                     <input
                       type="text"
                       name="email"
-                      value={this.state.email}
-                      onChange={e => this.changeHandler(e)}
+                      value={values.email}
+                      onChange={e => this.props.changeHandler(e)}
                       className="input"
                       placeholder="Email"
                     />
@@ -95,8 +95,8 @@ class FormEmployeeDetails extends Component {
                   <input
                     type="text"
                     name="username"
-                    value={this.state.username}
-                    onChange={e => this.changeHandler(e)}
+                    value={values.username}
+                    onChange={e => this.props.changeHandler(e)}
                     className="input"
                     placeholder="Username"
                   />
@@ -108,8 +108,8 @@ class FormEmployeeDetails extends Component {
                       <input
                         type="password"
                         name="password"
-                        value={this.state.password}
-                        onChange={e => this.changeHandler(e)}
+                        value={values.password}
+                        onChange={e => this.props.changeHandler(e)}
                         className="input"
                         placeholder="Password"
                       />

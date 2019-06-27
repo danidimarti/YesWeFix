@@ -4,7 +4,7 @@ import FormShopDetails from "./FormShopDetails";
 import FormEmployeeDetails from "./FormEmployeeDetails";
 import FormRepairTypeDetails from "./FormRepairTypeDetails";
 import Confirm from "./Confirm";
-import Success from "./Success";
+//import Success from "./Success";
 
 class ShopForm extends Component {
   state = {
@@ -51,6 +51,15 @@ class ShopForm extends Component {
 
   };
 
+  setLatLng = (lat, lng, address) => {
+    debugger
+    this.setState({
+      lat: lat,
+      lng: lng,
+      streetname: address
+    })
+  } 
+
   render() {
     const { step } = this.state;
     const {
@@ -65,6 +74,8 @@ class ShopForm extends Component {
       email,
       username,
       password,
+      lat,
+      lng
       
     } = this.state;
     const values = {
@@ -79,6 +90,8 @@ class ShopForm extends Component {
       email,
       username,
       password,
+      lat,
+      lng
     };
 
     switch (step) {
@@ -88,6 +101,7 @@ class ShopForm extends Component {
             nextStep={this.nextStep}
             changeHandler={this.changeHandler}
             values={values}
+            setLatLng={this.setLatLng}
           />
         );
       case 2:
@@ -97,6 +111,7 @@ class ShopForm extends Component {
             prevStep={this.prevStep}
             changeHandler={this.changeHandler}
             values={values}
+            
           />
         );
 
@@ -116,11 +131,12 @@ class ShopForm extends Component {
             nextStep={this.nextStep}
             prevStep={this.prevStep}
             values={values}
+            setUser={this.props.setUser}
           />
         );
 
-      case 5:
-        return <Success />;
+      // case 5:
+      //   return <Success />;
     }
   }
 }

@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const shopSchema = new Schema(
   {
-    repairtype: String,
+    repairtype: Array,
     shopname: String,
     user : {type : mongoose.SchemaTypes.ObjectId, ref: 'User'},
     streetname: String,

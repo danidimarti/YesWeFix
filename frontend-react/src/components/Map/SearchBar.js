@@ -11,7 +11,8 @@ class SearchBar extends Component {
     query: "",
     lat: null,
     lng: null,
-    hideButton: false
+    hideButton: false,
+    styleNav: false
   };
 
   handleScriptLoad() {
@@ -35,32 +36,37 @@ class SearchBar extends Component {
   }
 
   handlePlaceSelect() {
-    console.log(this.autocomplete.getPlace());
+    // console.log(this.autocomplete.getPlace());
     // Extract List of Places From Address Object
     let addressObject = this.autocomplete.getPlace();
     let address = addressObject.address_components;
-
+    
     // Check if address is valid
     if (address) {
       // Set State
       this.setState({
-        address: address.formatted_address,
+        address: addressObject.formatted_address,
         query: addressObject.formatted_address,
         lat: addressObject.geometry.location.lat(),
         lng: addressObject.geometry.location.lng()
       });
+      
+
+      if (this.props.hideButton) {
+        this.props.setLatLng(this.state.lat, this.state.lng, this.state.address);
+       }
+      
       console.log(address);
-      //this.props.setLatLng(this.state.lat, this.state.lng)
     }
-    
   }
 
   handleSubmit(e) {
     console.log(e);
-    if(this.props.hideButton) {
-      return 
+     e.preventDefault();
+    if (this.props.hideButton) {
+      return;
     }
-    e.preventDefault();
+   
     let addressObject = this.autocomplete.getPlace();
     if (addressObject) {
       // Geometry
@@ -69,11 +75,14 @@ class SearchBar extends Component {
       console.log(lat, lng);
       this.props.setLocation({ lat, lng });
       this.props.history.push("/results");
+     
     }
   }
 
-
   render() {
+    const hideButton = this.props.hideButton ? "hideButton" : "";
+    const styleNav = this.props.styleNav ? "styleNav" : "";
+
     return (
       <div>
         <Script
@@ -92,12 +101,10 @@ class SearchBar extends Component {
             <input
               type="submit"
               id="submit"
-              className={
-        
-                this.props.hideButton ? "hideButton" : null
-              } 
+              className={`${hideButton} ${styleNav}`}
               value="Find Shop"
               onClick={e => this.handleSubmit(e)}
+              
             />
           </div>
         </form>
@@ -105,4 +112,8 @@ class SearchBar extends Component {
     );
   }
 }
+
+
+
+
 export default withRouter(SearchBar);

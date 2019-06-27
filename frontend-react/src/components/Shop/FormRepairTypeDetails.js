@@ -35,26 +35,8 @@ class FormRepairTypeDetails extends Component {
     this.props.prevStep();
   };
 
-  //authService = new AuthService();
+ 
 
-  // handleSubmit = e => {
-  //   e.preventDefault();
-
-  //   const repairtype = this.state.repairtype;
-  //   const description = this.state.description;
-  //   const imageUrl = this.state.imageUrl;
-
-  //   this.authService
-  //     .signup(repairtype, description, imageUrl)
-  //     .then(response => {
-  //       console.log(response);
-  //       const settingUser = this.props.setUser(response);
-  //       this.setState({
-  //         redirect: true,
-  //         userState: settingUser
-  //       });
-  //     });
-  // };
 
   render() {
     const { values } = this.props;
@@ -248,7 +230,7 @@ class FormRepairTypeDetails extends Component {
                 <input
                   type="text"
                   name="imageUrl"
-                  value={this.state.imageUrl}
+                  value={values.imageUrl}
                   onChange={e => this.props.changeHandler(e)}
                   className="input"
                   placeholder="Upload an image"

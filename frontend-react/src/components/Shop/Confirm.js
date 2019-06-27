@@ -1,32 +1,103 @@
 import React, { Component } from "react";
+import AuthService from "../../auth/AuthService";
+import { Redirect } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.css";
+import "./Shop.css";
+//import { Link } from "react-router-dom";
+import Success from "./Success";
 
 //rce + tab (create class component)
 export class FormBusinessDetails extends Component {
-  continue = e => {
+  state = {
+    redirect: false,
+
+  }
+  
+  authService = new AuthService();
+
+  handleSubmit = e => {
     e.preventDefault();
-    //TODO: process form in here. create method that connects to backend
-    this.props.nextStep();
-  };
-  back = e => {
-    e.preventDefault();
-    this.props.prevStep();
-  };
-  render() {
+
+    // const shopname = this.props.shopname;
+    // const streetname = this.props.streetname;
+    // const mobile = this.props.mobile;
+    // const vehiclesservices = this.props.vehiclesservices;
+    // const consumerservices = this.props.consumerservices;
+    // const homeservices = this.props.homeservices;
+    // const description = this.props.description;
+    // const imageUrl = this.props.imageUrl;
+    // const email = this.props.email;
+    // const username = this.props.username;
+    // const password = this.props.password;
     const {
-      values: {
+      shopname,
+      streetname,
+      mobile,
+      vehiclesservices,
+      consumerservices,
+      homeservices,
+      description,
+      imageUrl,
+      email,
+      username,
+      password,
+      lat,
+      lng
+    } = this.props.values;
+    
+    this.authService
+      .signup(
         shopname,
         streetname,
         mobile,
-        repairtype,
+        vehiclesservices,
+        consumerservices,
+        homeservices,
         description,
         imageUrl,
         email,
         username,
-        password
-      }
-    } = this.props;
+        password,
+        lat,
+        lng
+      )
+      .then(response => {
+        console.log(response);
+        console.log("succesfull");
+         this.props.setUser(response);
+        this.setState({
+          redirect: true,
+          // userState: settingUser
+        });
+      });
+  };
+
+  back = e => {
+    e.preventDefault();
+    this.props.prevStep();
+  };
+
+  render() {
+    const {
+      shopname,
+      streetname,
+      mobile,
+      vehiclesservices,
+      consumerservices,
+      homeservices,
+      description,
+      imageUrl,
+      email,
+      username,
+      password
+    } = this.props.values;
+    const concatRepairtype = homeservices
+      .concat(vehiclesservices)
+      .concat(consumerservices);
+    const repairtype = concatRepairtype.join(", ");
     return (
       <div className="container" style={{ width: "70%" }}>
+      {this.state.redirect ? <Success /> : 
         <div className=" row justify-content-center">
           <div className="col-md-8" style={{ borderRadius: "0" }}>
             <div
@@ -41,7 +112,7 @@ export class FormBusinessDetails extends Component {
                 className="card-header green-color white-text text-center"
                 style={{ borderRadius: "0", marginBottom: "0px" }}
               >
-                Enter Personal Details
+                Confirm your details
               </div>
               <form
                 className="form-horizontal"
@@ -106,7 +177,7 @@ export class FormBusinessDetails extends Component {
                       className="btn-form btn-info"
                       type="submit"
                       value="Register"
-                      onClick={this.continue}
+                      onClick={this.handleSubmit}
                     />
                   </div>
                 </div>
@@ -114,6 +185,7 @@ export class FormBusinessDetails extends Component {
             </div>
           </div>
         </div>
+        }
       </div>
     );
   }

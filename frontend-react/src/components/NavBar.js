@@ -47,6 +47,7 @@ class NavbarPage extends Component {
         : 
         this.props.location.pathname === '/results' ?  
        <SearchBar 
+       styleNav={true}
        setLocation={this.props.setLocation}
        />
        :

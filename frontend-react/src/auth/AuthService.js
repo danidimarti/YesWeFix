@@ -6,13 +6,38 @@ class AuthService {
     withCredentials: true
   });
 
-  signup = (username, password, email, mobile) => {
+  signup = (
+  shopname,
+  streetname,
+  mobile,
+  vehiclesservices,
+  consumerservices,
+  homeservices,
+  description,
+  imageUrl,
+  email,
+  username,
+  password,
+  lat,
+  lng
+  ) => {
+
+    debugger
     return this.service
       .post("/signup", {
+        shopname: shopname,
         username: username,
         password: password,
         mobile: mobile,
-        email: email})
+        email: email, 
+      repairtype:  homeservices.concat(vehiclesservices).concat(consumerservices).join(", "),
+      streetname: streetname,
+      lat: lat,
+      lng: lng,
+      description: description,
+      imageUrl: imageUrl
+      
+      })
       .then(response => response.data);
   };
 
