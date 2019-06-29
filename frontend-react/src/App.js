@@ -38,11 +38,13 @@ class App extends Component {
     this.setState({ user: user });
   };
 
-  fetchUser = () => {
+  fetchUserOrShop = () => {
     if (this.state.user === null) {
       this.service
         .currentUser()
         .then(response => {
+          console.log("response", response);
+
           this.setState({ user: response });
         })
         .catch(err => {
@@ -53,7 +55,7 @@ class App extends Component {
   };
 
   componentDidMount() {
-    this.fetchUser();
+    this.fetchUserOrShop();
   }
   //Uplifting the location in the top level component
   setLocation(params) {
@@ -61,6 +63,7 @@ class App extends Component {
       location: params
     });
   }
+
   render() {
     return (
       <div>
@@ -92,13 +95,14 @@ class App extends Component {
           <Route
             exact
             path="/auth/signup/:isShop"
-            render={props =>
-              props.match.params.isShop === "shop" ? (
-                <ShopForm setUser={this.setUser}/>
-              ) : (
-                <UserSignup {...props} setUser={this.setUser} />
-              )
-            }
+            render={() => <ShopForm setUser={this.setUser} />}
+          />
+          <Route
+            exact
+            path="/auth/signup/:user"
+            render={props => {
+              return <UserSignup {...props} setUser={this.setUser} />;
+            }}
           />
           <Route
             path="/auth/login/:isShop"
@@ -114,12 +118,6 @@ class App extends Component {
             path="/auth/profile"
             render={props => <UserProfile {...props} setUser={this.setUser} />}
           />
-          <Route
-            path="/auth/signup"
-            render={props => <ShopForm {...props} setUser={this.setUser} />}
-          />
-
-          
         </Switch>
       </div>
     );

@@ -22,7 +22,6 @@ class AuthService {
   lng
   ) => {
 
-    debugger
     return this.service
       .post("/signup", {
         shopname: shopname,

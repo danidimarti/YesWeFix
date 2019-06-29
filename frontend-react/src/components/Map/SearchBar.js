@@ -35,6 +35,13 @@ class SearchBar extends Component {
     this.searbox = new google.maps.places.SearchBox(this.autocomplete);
   }
 
+  componentWillMount() {
+   if(this.props.style) {
+     return null;
+   }
+  
+  }
+
   handlePlaceSelect() {
     // console.log(this.autocomplete.getPlace());
     // Extract List of Places From Address Object
@@ -66,7 +73,7 @@ class SearchBar extends Component {
     if (this.props.hideButton) {
       return;
     }
-   
+     
     let addressObject = this.autocomplete.getPlace();
     if (addressObject) {
       // Geometry
@@ -78,6 +85,7 @@ class SearchBar extends Component {
      
     }
   }
+  
 
   render() {
     const hideButton = this.props.hideButton ? "hideButton" : "";
@@ -90,18 +98,19 @@ class SearchBar extends Component {
           onLoad={this.handleScriptLoad.bind(this)}
         />
 
-        <form style={{ paddingTop: "20px" }}>
-          <div style={{ display: "flex", alignItems: "center" }}>
+        <form  style={{ paddingTop: "20px" }}>
+          <div  className={`${styleNav}`} style={{ display: "flex", alignItems: "center" }}>
             <input
               type="text"
               id="address-input"
               name="address"
               placeholder="Enter address here..."
+              
             />
             <input
               type="submit"
               id="submit"
-              className={`${hideButton} ${styleNav}`}
+              className={`${hideButton}`}
               value="Find Shop"
               onClick={e => this.handleSubmit(e)}
               

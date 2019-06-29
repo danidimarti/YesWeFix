@@ -52,7 +52,7 @@ class ShopForm extends Component {
   };
 
   setLatLng = (lat, lng, address) => {
-    debugger
+  
     this.setState({
       lat: lat,
       lng: lng,

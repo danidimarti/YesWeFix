@@ -29,7 +29,7 @@ export class ShopCards extends Component {
                 className="card-title" 
                 
                 >
-                  {shop.businessname}
+                  {shop.shopname}
                 </h2>
                 <p
                 className="card-text"

@@ -18,7 +18,7 @@ export class Results extends Component {
     this.state = {
       bounds: null,
       shopResults: [],
-      shopData: "",
+      shopData: [],
       newShopData: false,
       initialRender: true,
       filteredResults: []
@@ -27,18 +27,17 @@ export class Results extends Component {
   }
 
   componentDidMount() {
-    axios.get("http://localhost:5001/auth/shops")
-    .then(response => {
-      this.setState({
-        shopData: response.data
-      });
-    console.log("result:", response)
-    debugger
-    }).catch(err => {
-      debugger
-    })
+    axios
+      .get("http://localhost:5001/auth/shops")
+      .then(response => {
+        console.log("fetch shops", response);
+        this.setState({
+          shopData: response.data
+        });
+        console.log("result:", response);
+      })
+      .catch(err => {});
     this.props.isResults(true);
-    debugger
   }
   setInitialRender = cb => {
     this.setState({ initialRender: false }, cb);
@@ -59,18 +58,18 @@ export class Results extends Component {
       lat: center.lat(),
       lng: center.lng()
     };
-    console.log(mapCenter);
 
-    // this.state.shopData.map(shop => {
-    //   let shopLocation = {
-    //     lat: parseFloat(shop.lat),
-    //     lng: parseFloat(shop.lng)
-    //   };
-    //   if (checkIfInBounds(shopLocation, mapCenter)) {
-    //     shopsInBound.push(shop);
-    //   }
-    // });
-    this.setState({ shopResults: shopsInBound });
+    this.state.shopData.map(shop => {
+      let shopLocation = {
+        lat: shop.lat,
+        lng: shop.lng
+      };
+
+      if (checkIfInBounds(shopLocation, mapCenter)) {
+        shopsInBound.push(shop);
+      }
+      return "";
+    });
   }
 
   render() {
@@ -80,6 +79,8 @@ export class Results extends Component {
     if (!this.props.location) {
       return <Redirect to="/" />;
     }
+    const { shopData } = this.state;
+    console.log("shopData", this.state.shopData);
     return (
       <div>
         <div className="flex-container">
