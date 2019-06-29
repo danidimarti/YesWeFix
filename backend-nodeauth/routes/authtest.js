@@ -53,7 +53,7 @@ router.post("/signup", (req, res, next) => {
   const email = req.body.email;
   const repairtype = req.body.repairtype;
   console.log(repairtype)
-  debugger
+  
   if (username === "" || password === "") {
     res.status(400).json({ message: "Username or password can't be empty" });
     return;
@@ -72,7 +72,6 @@ router.post("/signup", (req, res, next) => {
               shopname
           })
 
-          debugger
           newShop.save()
           .then((shop)=> {
               console.log(shop)

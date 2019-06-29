@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import { Route, Switch, Link } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import AuthService from "../src/auth/AuthService";
 
 import ShopLogin from "./components/Shop/ShopLogin";
@@ -12,11 +12,15 @@ import HomePage from "./components/HomePage";
 import Results from "./components/Results/Results";
 
 import ShopForm from "./components/Shop/ShopForm";
+
 import ShopSignup from "./components/Shop/ShopSignup";
 import RequestForm from "./components/RequestForm/Requestform1"
 import RequestList from "./components/RequestForm/Requestlist"
 import RequestUserList from "./components/RequestForm/Requestuserlist"
 import QuoteForm from "./components/QuoteForm/Quoteform"
+
+import ShopDescription from "./components/ShopProfile/ShopDescription";
+
 
 class App extends Component {
   constructor(props) {
@@ -42,11 +46,13 @@ class App extends Component {
     this.setState({ user: user });
   };
 
-  fetchUser = () => {
+  fetchUserOrShop = () => {
     if (this.state.user === null) {
       this.service
         .currentUser()
         .then(response => {
+          console.log("response", response);
+
           this.setState({ user: response });
         })
         .catch(err => {
@@ -57,7 +63,8 @@ class App extends Component {
   };
 
   componentDidMount() {
-    this.fetchUser();
+    this.fetchUserOrShop();
+    
   }
   //Uplifting the location in the top level component
   setLocation(params) {
@@ -65,6 +72,7 @@ class App extends Component {
       location: params
     });
   }
+
   render() {
     return (
       <div>
@@ -96,32 +104,36 @@ class App extends Component {
           <Route
             exact
             path="/auth/signup/:isShop"
-            render={props =>
-              props.match.params.isShop === "shop" ? (
-                <ShopForm setUser={this.setUser}/>
-              ) : (
-                <UserSignup {...props} setUser={this.setUser} />
-              )
-            }
+            render={() => <ShopForm setUser={this.setUser} />}
           />
           <Route
-            path="/auth/login/:isShop"
+            exact
+            path="/auth/signup/:isShop"
+            render={props => {
+              return <UserSignup {...props} setUser={this.setUser} />;
+            }}
+          />
+          {/* <Route
+            path="/auth/login/:shop"
             render={props =>
-              props.match.params.isShop === "shop" ? (
+              props.match.params.shop === "shop" ? (
                 <ShopLogin />
               ) : (
                 <UserSignup {...props} setUser={this.setUser} />
               )
             }
-          />
+          /> */}
           <Route
             path="/auth/profile"
             render={props => <UserProfile {...props} setUser={this.setUser} />}
           />
           <Route
-            path="/auth/signup"
-            render={props => <ShopForm {...props} setUser={this.setUser} />}
+            exact
+            path="/results/:id"
+            component={ShopDescription}
+            //render={props => <ShopDescription {...props} />}
           />
+
           <Route
            path="/auth/requestform"
            render={props => <RequestForm {...props} currentUser= {this.state.user} /> }
@@ -139,6 +151,7 @@ class App extends Component {
              render={props => <QuoteForm {...props} currentUser= {this.state.user} />}
              />
           
+
         </Switch>
       </div>
     );

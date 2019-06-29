@@ -70,20 +70,20 @@ class NavbarPage extends Component {
             <div className="dropdown-list">
               <ul className="menu" role="menu">
                 <li>
-                  <a className="list-item" href="#">
+                  <Link className="list-item" to="/auth/signup/user">
                     Signup
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a className="list-item" href="#">
+                  <Link className="list-item" to="/auth/login/user">
                     Log in
-                  </a>
+                  </Link>
                 </li>
                 <hr />
                 <li>
-                  <a className="list-item" href="#">
+                  <Link className="list-item" to="/auth/user/logout">
                     Log out
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>

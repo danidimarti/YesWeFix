@@ -36,7 +36,7 @@ router.post("/login", (req, res, next) => {
       }
       res.status(200).json(theUser);
     });
-  })(req, res, next);
+  })
 });
 
 
@@ -148,8 +148,8 @@ router.post("/user/request", (req, res, next) => {
   }
 
   
-});
-
+};
+})
 // Get route => to get Deal info
 
 router.get('/user/deal', (req, res, next) => {
@@ -253,8 +253,6 @@ router.get('/user/quote', (req, res, next) => {
    
     .catch (err => {
       res.status(500).json({ message: "Something went wrong"})
-    
-
     })
   
   }
@@ -270,22 +268,17 @@ router.get("/user/request", (req, res, next) => {
     // const id = req.user._id;
     const id = "5d126d83162e7011d17597a8"
     
-
-  
-  
     Request.find({'userid' : id}).then ((result) => {
       res.send(result);
     })
-
-    
     .catch (err => {
       res.status(500).json({ message: "Something went wrong"})
     })
-    
-   
+
   
-    // }
-  
+
+  }
+
 });
 
 
@@ -306,9 +299,9 @@ router.get("/shop/request", (req, res, next) => {
 
       
       
-        Request.find({'shop' : shopId})
-        .then ((result) => {
-          console.log(result)
+
+        Request.find({'shop' : shopId}).then (result => {
+
           res.send(result);
         })
 
@@ -316,23 +309,18 @@ router.get("/shop/request", (req, res, next) => {
         .catch (err => {
           res.status(500).json({ message: "Something went wrong"})
         })
-        
-       
-      
-        // } else {
-          // res.status().json({message: "You have to login"})
-        // }
+
+              
+        }
+
       
     });
     
 
     
 
-    // Request.find({ shop: shopId })
-    //   .then(result => {
-    //     res.send(result);
-    //   })
 
+   
 
 
 
@@ -467,12 +455,26 @@ router.post("/signup", (req, res, next) => {
   });
 });
 
-//Get all shops
-router.get("/shops", (req, res, next) => {
-  debugger
-  Shop.find({})
+//GET ALL SHOPS BELOW
+router.get("/results", (req, res, next) => {
+  
+  Shop.find()
     .then(result => {
       res.send(result);
+      console.log("results from b.e.", result)
+    })
+    .catch(err => {
+      res.status(500).json({ message: "Cannot Fetch Shops", err });
+    });
+});
+
+//GET ONE SHOP IN HERE
+router.get("/results/:shopId", (req, res, next) => {
+  
+  Shop.findById(req.params.shopId)
+    .then(result => {
+      res.send(result);
+      console.log("results from b.e.", result)
     })
     .catch(err => {
       res.status(500).json({ message: "Cannot Fetch Shops", err });
@@ -480,7 +482,7 @@ router.get("/shops", (req, res, next) => {
 });
 
 
-router.get("/user/currentuser", (req, res, next) => {
+router.get("/currentuser", (req, res, next) => {
   if (req.isAuthenticated()) {
     res.status(200).json(req.user);
     return;
@@ -493,4 +495,5 @@ router.get("/user/logout", (req, res) => {
   res.status(200).json({ message: "Logout successful" });
 });
 
-module.exports = router;
+module.exports = router
+

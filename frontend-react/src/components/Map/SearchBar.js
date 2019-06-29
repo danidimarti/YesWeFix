@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Script from "react-load-script";
 import "bootstrap/dist/css/bootstrap.css";
 import "./SearchBar.css";
-import MapRender from "./MapRender";
 import { withRouter } from "react-router-dom";
 
 class SearchBar extends Component {
@@ -35,12 +34,18 @@ class SearchBar extends Component {
     this.searbox = new google.maps.places.SearchBox(this.autocomplete);
   }
 
+  componentWillMount() {
+    if (this.props.style) {
+      return null;
+    }
+  }
+
   handlePlaceSelect() {
     // console.log(this.autocomplete.getPlace());
     // Extract List of Places From Address Object
     let addressObject = this.autocomplete.getPlace();
     let address = addressObject.address_components;
-    
+
     // Check if address is valid
     if (address) {
       // Set State
@@ -50,23 +55,26 @@ class SearchBar extends Component {
         lat: addressObject.geometry.location.lat(),
         lng: addressObject.geometry.location.lng()
       });
-      
 
       if (this.props.hideButton) {
-        this.props.setLatLng(this.state.lat, this.state.lng, this.state.address);
-       }
-      
+        this.props.setLatLng(
+          this.state.lat,
+          this.state.lng,
+          this.state.address
+        );
+      }
+
       console.log(address);
     }
   }
 
   handleSubmit(e) {
     console.log(e);
-     e.preventDefault();
+    e.preventDefault();
     if (this.props.hideButton) {
       return;
     }
-   
+
     let addressObject = this.autocomplete.getPlace();
     if (addressObject) {
       // Geometry
@@ -75,7 +83,6 @@ class SearchBar extends Component {
       console.log(lat, lng);
       this.props.setLocation({ lat, lng });
       this.props.history.push("/results");
-     
     }
   }
 
@@ -91,7 +98,10 @@ class SearchBar extends Component {
         />
 
         <form style={{ paddingTop: "20px" }}>
-          <div style={{ display: "flex", alignItems: "center" }}>
+          <div
+            className={`${styleNav}`}
+            style={{ display: "flex", alignItems: "center" }}
+          >
             <input
               type="text"
               id="address-input"
@@ -101,10 +111,9 @@ class SearchBar extends Component {
             <input
               type="submit"
               id="submit"
-              className={`${hideButton} ${styleNav}`}
+              className={`${hideButton}`}
               value="Find Shop"
               onClick={e => this.handleSubmit(e)}
-              
             />
           </div>
         </form>
@@ -112,8 +121,5 @@ class SearchBar extends Component {
     );
   }
 }
-
-
-
 
 export default withRouter(SearchBar);
