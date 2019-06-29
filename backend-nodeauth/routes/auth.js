@@ -1,6 +1,7 @@
 const express = require("express");
 const passport = require("passport");
 const router = express.Router();
+const mongoose = require('mongoose');
 
 const User = require("../models/usermodel.js");
 const Shop = require("../models/shopmodel.js");
@@ -45,8 +46,8 @@ router.post("/login", (req, res, next) => {
 router.post("/shop/quote", (req, res, next) => {
   console.log(req.user);
 
-  if(req.isAuthenticated()) {
-    const shopId = req.user.shop;
+  // if(req.isAuthenticated()) {
+    const shopId = req.body.shopId;
     const requestId = req.body.requestId;
     const userId = req.body.userId;
     const quote = req.body.quote;
@@ -72,9 +73,9 @@ router.post("/shop/quote", (req, res, next) => {
     res.status(500).json({ message: "Something went wrong" })
   })
 
-  } else {
-    res.json({message: "You are not logged in"})
-  }
+  // } else {
+  //   res.json({message: "You are not logged in"})
+  // }
 
   })
 
@@ -83,22 +84,22 @@ router.post("/shop/quote", (req, res, next) => {
 // Post route => to create new request
 
 router.post("/user/request", (req, res, next) => {
-  if (req.isAuthenticated()) {
-    const username = req.user.username;
-    const shop = req.body.shop;
-    const subject = req.body.subject;
-    const description = req.body.description;
-    const imageUrl = req.body.imageUrl;
-    const status = "sent";
+  // if (req.isAuthenticated()) {
+  //   const username = req.user.username;
+  //   const shop = req.body.shop;
+  //   const subject = req.body.subject;
+  //   const description = req.body.description;
+  //   const imageUrl = req.body.imageUrl;
+  //   const status = "sent";
 
-    const newRequest = new Request({
-      username,
-      shop,
-      subject,
-      description,
-      imageUrl,
-      status
-    });
+  //   const newRequest = new Request({
+  //     username,
+  //     shop,
+  //     subject,
+  //     description,
+  //     imageUrl,
+  //     status
+  //   });
 
 
 //     console.log(newRequest);
@@ -116,7 +117,7 @@ router.post("/user/request", (req, res, next) => {
 
   const username = req.user.username;
   const userid = req.user._id
-  const shop = req.body.shop;
+  const shop = req.body.shopId;
   const subject = req.body.subject;
   const description = req.body.description;
   const imageUrl = req.body.imageUrl;
@@ -264,9 +265,10 @@ router.get('/user/quote', (req, res, next) => {
 router.get("/user/request", (req, res, next) => {
   console.log(req.user);
 
-  if(req.isAuthenticated()) {
+  // if(req.isAuthenticated()) {
 
-    const id = req.user._id;
+    // const id = req.user._id;
+    const id = "5d126d83162e7011d17597a8"
     
 
   
@@ -282,7 +284,7 @@ router.get("/user/request", (req, res, next) => {
     
    
   
-    }
+    // }
   
 });
 
@@ -296,15 +298,17 @@ router.get("/shop/request", (req, res, next) => {
   console.log(req.user);
   
 
-       if(req.isAuthenticated()) {
+      //  if(req.isAuthenticated()) {
 
-        const id = req.user._id;
-        const shopId = req.user.shop
+        const shopId = "5d126c03a66c9111670b9075";
+        // const shopId = req.user.shop
         console.log(shopId);
 
       
       
-        Request.find({'shop' : shopId}).then ((result) => {
+        Request.find({'shop' : shopId})
+        .then ((result) => {
+          console.log(result)
           res.send(result);
         })
 
@@ -315,17 +319,19 @@ router.get("/shop/request", (req, res, next) => {
         
        
       
-        }
+        // } else {
+          // res.status().json({message: "You have to login"})
+        // }
       
     });
     
 
     
 
-    Request.find({ shop: shopId })
-      .then(result => {
-        res.send(result);
-      })
+    // Request.find({ shop: shopId })
+    //   .then(result => {
+    //     res.send(result);
+    //   })
 
 
 

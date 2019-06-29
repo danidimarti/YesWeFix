@@ -13,6 +13,10 @@ import Results from "./components/Results/Results";
 
 import ShopForm from "./components/Shop/ShopForm";
 import ShopSignup from "./components/Shop/ShopSignup";
+import RequestForm from "./components/RequestForm/Requestform1"
+import RequestList from "./components/RequestForm/Requestlist"
+import RequestUserList from "./components/RequestForm/Requestuserlist"
+import QuoteForm from "./components/QuoteForm/Quoteform"
 
 class App extends Component {
   constructor(props) {
@@ -118,7 +122,22 @@ class App extends Component {
             path="/auth/signup"
             render={props => <ShopForm {...props} setUser={this.setUser} />}
           />
-
+          <Route
+           path="/auth/requestform"
+           render={props => <RequestForm {...props} currentUser= {this.state.user} /> }
+          />
+          <Route
+           path="/auth/requestlist"
+           render={props => <RequestList {...props} currentUser= {this.state.user} />}
+           />
+           <Route
+            path="/auth/requestuserlist"
+            render={props => <RequestUserList {...props} currentUser= {this.state.user} />}
+            />
+            <Route
+             path="/auth/quoteform"
+             render={props => <QuoteForm {...props} currentUser= {this.state.user} />}
+             />
           
         </Switch>
       </div>

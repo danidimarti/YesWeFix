@@ -2,12 +2,12 @@ const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
 
 const requestSchema = new Schema({
-    userid : [ { type : Schema.Types.ObjectId, ref: 'User' } ],
+    userid : { type : Schema.Types.ObjectId, ref: 'User' },
     username: String,
     subject: String,
     description : String,
     shop : String,
-    // shop : [ { type : Schema.Types.ObjectId, ref: 'Shop'} ],
+    // shop : { type : Schema.Types.ObjectId, ref: 'Shop'} ,
     imageUrl: { type: String, required: true },  
     status: {
       type: String,
