@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import { Route, Switch, Link } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import AuthService from "../src/auth/AuthService";
 
 import ShopLogin from "./components/Shop/ShopLogin";
@@ -12,7 +12,6 @@ import HomePage from "./components/HomePage";
 import Results from "./components/Results/Results";
 
 import ShopForm from "./components/Shop/ShopForm";
-import ShopSignup from "./components/Shop/ShopSignup";
 
 class App extends Component {
   constructor(props) {

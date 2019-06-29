@@ -1,16 +1,12 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
 import React, { Component } from "react";
-import { Route, Switch, Link } from "react-router-dom";
 import MapRender from "../../components/Map/MapRender";
 import ShopCards from "./ShopCards";
-import Filter from "./Filter";
-import shopData from "../Shop/shop-data/shoplist-data.js";
 import { Redirect } from "react-router-dom";
 
 import checkIfInBounds from "../../lib/geolib";
 import "./Results.css";
 import axios from "axios";
-import { resolve } from "path";
 
 export class Results extends Component {
   constructor(props) {
@@ -34,10 +30,9 @@ export class Results extends Component {
         this.setState({
           shopData: response.data
         });
-        console.log("result:", response);
+        this.props.isResults(true);
       })
       .catch(err => {});
-    this.props.isResults(true);
   }
   setInitialRender = cb => {
     this.setState({ initialRender: false }, cb);
@@ -53,23 +48,24 @@ export class Results extends Component {
   };
 
   getMapBounds(center) {
-    let shopsInBound = [];
     let mapCenter = {
       lat: center.lat(),
       lng: center.lng()
     };
 
-    this.state.shopData.map(shop => {
+    this.state.shopData.reduce((shopsInBound, shop) => {
       let shopLocation = {
-        lat: shop.lat,
-        lng: shop.lng
+        lng: shop.lng,
+        lat: shop.lat
       };
 
       if (checkIfInBounds(shopLocation, mapCenter)) {
         shopsInBound.push(shop);
       }
-      return "";
-    });
+
+      this.setState({ shopResults: shopsInBound });
+      return shopsInBound;
+    }, []);
   }
 
   render() {
@@ -79,8 +75,8 @@ export class Results extends Component {
     if (!this.props.location) {
       return <Redirect to="/" />;
     }
-    const { shopData } = this.state;
-    console.log("shopData", this.state.shopData);
+    const { shopResults } = this.state;
+    console.log(shopResults, "shop results in Results");
     return (
       <div>
         <div className="flex-container">
@@ -89,7 +85,7 @@ export class Results extends Component {
             <MapRender
               location={this.props.location}
               getMapBounds={this.getMapBounds}
-              shopData={shopData}
+              shopResults={shopResults}
               initialRender={this.state.initialRender}
               setInitialRender={this.setInitialRender}
               setSelectedShop={this.setSelectedShop}
