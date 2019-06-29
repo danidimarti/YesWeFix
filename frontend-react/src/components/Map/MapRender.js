@@ -30,13 +30,13 @@ class MapRender extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    console.log(this.props.shopResults, "Shop Results");
+   // console.log(this.props.shopResults, "Shop Results");
     console.log("this is the props loc", this.props.location);
-    console.log(nextProps.location);
-    console.log(this.props.initialRender);
+   // console.log(nextProps.location);
+   
     if (this.props.initialRender) {
-      debugger;
-      console.log("initial render");
+      
+      //console.log("initial render");
       this.props.setInitialRender();
       return true;
     }

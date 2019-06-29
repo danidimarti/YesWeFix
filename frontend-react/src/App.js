@@ -12,6 +12,7 @@ import HomePage from "./components/HomePage";
 import Results from "./components/Results/Results";
 
 import ShopForm from "./components/Shop/ShopForm";
+import ShopDescription from "./components/ShopProfile/ShopDescription";
 
 class App extends Component {
   constructor(props) {
@@ -55,6 +56,7 @@ class App extends Component {
 
   componentDidMount() {
     this.fetchUserOrShop();
+    
   }
   //Uplifting the location in the top level component
   setLocation(params) {
@@ -98,24 +100,30 @@ class App extends Component {
           />
           <Route
             exact
-            path="/auth/signup/:user"
+            path="/auth/signup/:isShop"
             render={props => {
               return <UserSignup {...props} setUser={this.setUser} />;
             }}
           />
-          <Route
-            path="/auth/login/:isShop"
+          {/* <Route
+            path="/auth/login/:shop"
             render={props =>
-              props.match.params.isShop === "shop" ? (
+              props.match.params.shop === "shop" ? (
                 <ShopLogin />
               ) : (
                 <UserSignup {...props} setUser={this.setUser} />
               )
             }
-          />
+          /> */}
           <Route
             path="/auth/profile"
             render={props => <UserProfile {...props} setUser={this.setUser} />}
+          />
+          <Route
+            exact
+            path="/results/:id"
+            component={ShopDescription}
+            //render={props => <ShopDescription {...props} />}
           />
         </Switch>
       </div>

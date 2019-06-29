@@ -24,7 +24,7 @@ export class Results extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:5001/auth/shops")
+      .get("http://localhost:5001/auth/results")
       .then(response => {
         console.log("fetch shops", response);
         this.setState({

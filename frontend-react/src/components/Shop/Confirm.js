@@ -18,17 +18,6 @@ export class FormBusinessDetails extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    // const shopname = this.props.shopname;
-    // const streetname = this.props.streetname;
-    // const mobile = this.props.mobile;
-    // const vehiclesservices = this.props.vehiclesservices;
-    // const consumerservices = this.props.consumerservices;
-    // const homeservices = this.props.homeservices;
-    // const description = this.props.description;
-    // const imageUrl = this.props.imageUrl;
-    // const email = this.props.email;
-    // const username = this.props.username;
-    // const password = this.props.password;
     const {
       shopname,
       streetname,

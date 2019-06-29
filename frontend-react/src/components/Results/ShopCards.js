@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {Link} from "react-router-dom"
 import "bootstrap/dist/css/bootstrap.css";
 import "./ShopCards.css";
 
@@ -7,10 +8,12 @@ export class ShopCards extends Component {
     const { shopResults } = this.props;
 
     console.log(shopResults, "Cards");
+    
     return (
       <div>
         {shopResults.map((shop, index) => (
-          <div className={`containerStyle `}>
+          <div key={shop._id} className={`containerStyle `}>
+            
             <div
               className={`card cardStyle ${
                 this.props.active === shop.id ? "active" : ""
@@ -35,6 +38,15 @@ export class ShopCards extends Component {
                 <h2 className="card-title">{shop.shopname}</h2>
                 <p className="card-text">{shop.repairtype}</p>
               </div>
+              <Link to={`/results/${shop._id}`}>
+              <input
+                      id="see shop-btn"
+                      className="btn-form btn-info"
+                      type="submit"
+                      value="See Shop"
+                      // onClick={this.handleSubmit}
+                    />
+                  </Link>
             </div>
           </div>
         ))}

@@ -452,13 +452,26 @@ router.post("/signup", (req, res, next) => {
   });
 });
 
-//Get all shops
-router.get("/shops", (req, res, next) => {
+//GET ALL SHOPS BELOW
+router.get("/results", (req, res, next) => {
   
-  Shop.find({})
+  Shop.find()
     .then(result => {
       res.send(result);
-      console.log(result)
+      console.log("results from b.e.", result)
+    })
+    .catch(err => {
+      res.status(500).json({ message: "Cannot Fetch Shops", err });
+    });
+});
+
+//GET ONE SHOP IN HERE
+router.get("/results/:shopId", (req, res, next) => {
+  
+  Shop.findById(req.params.shopId)
+    .then(result => {
+      res.send(result);
+      console.log("results from b.e.", result)
     })
     .catch(err => {
       res.status(500).json({ message: "Cannot Fetch Shops", err });
