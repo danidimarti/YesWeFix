@@ -26,9 +26,10 @@ handleFormSubmit = (event) => {
     const subject = this.state.subject;
     const description = this.state.description;
     const imageUrl = this.state.imageUrl;
-    axios.post("username/request", { shop, subject, description, imageUrl })
-    .then( () => {
-        this.props.getData();
+    axios.post("http://localhost:5001/auth/user/request", { shop, subject, description, imageUrl })
+    .then( (data) => {
+        //this.props.getData();
+        console.log(data);
         this.setState({shop: "",subject: "", description: "", imageUrl:""});
     })
     .catch( error => console.log(error) )
@@ -53,7 +54,7 @@ handleFormSubmit = (event) => {
 
   
             <label>imageUrl:</label>
-            <input type="text" name="imageUrl" checked={this.state.imageUrl} onChange={(e) => this.handleChange(e)} />
+            <input type="text" name="imageUrl" value={this.state.imageUrl} onChange={(e) => this.handleChange(e)} />
 
             
             <input type="submit" value="Submit" />

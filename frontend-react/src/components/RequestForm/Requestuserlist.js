@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 
 
-class RequestList extends Component {
+class RequestUserList extends Component {
     constructor(props){
         super(props);
         this.state = { 
@@ -15,7 +15,7 @@ class RequestList extends Component {
 
 
     getAllRequests = () => {
-        axios.get("http://localhost:5001/auth/shop/request")
+        axios.get("http://localhost:5001/auth/user/request")
         .then(responseFromApi => {
           console.log(responseFromApi)
           this.setState({listOfRequests: responseFromApi.data})
@@ -36,22 +36,10 @@ class RequestList extends Component {
               { this.state.listOfRequests.map( request => {
                 return (
                   <div key={request._id}>
-
-                    <Link to={{
-                      pathname:`/auth/quoteform`,
-                      state: {
-                        requestId: request._id,
-                        shopId: request.shop,
-                        userId: request.userid,
-                      }
-                    }}>
                     
-                    <h5>{request.description} {request.status}</h5>
-                    </Link>
-                    
-                    {/* <Link to={`/requests/${request.description}`}>
+                    <Link to={`/requests/${request.description}`}>
                       <h5>{request.description} {request.status}</h5>
-                    </Link> */}
+                    </Link>
                      
                     {/* <p style={{maxWidth: '400px'}} >{project.description} </p> */}
                   </div>
@@ -65,4 +53,4 @@ class RequestList extends Component {
 
 }
 
-export default RequestList;
+export default RequestUserList;
