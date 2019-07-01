@@ -42,23 +42,23 @@ class AuthService {
   };
 
   //USER LOGIN!!!! NEW 01/07
-  signup = (
-    mobile,
-    email,
-    username,
-    password,
+  // signup = (
+  //   mobile,
+  //   email,
+  //   username,
+  //   password,
     
-  ) => {
-    return this.service
-      .post("/signup/user", {
-         username: username,
-        password: password,
-        mobile: mobile,
-        email: email,
+  // ) => {
+  //   return this.service
+  //     .post("/signup/user", {
+  //        username: username,
+  //       password: password,
+  //       mobile: mobile,
+  //       email: email,
         
-      })
-      .then(response => response.data);
-  };
+  //     })
+  //     .then(response => response.data);
+  // };
 
 
 
