@@ -41,7 +41,7 @@ export default class Login extends Component {
         <div className="container" style={{ width: "60%" }}>
           <div className=" row justify-content-center">
             <div className="col-md-8" style={{ borderRadius: "0" }}>
-              {this.state.redirect ? <Redirect to="/auth/profile" /> : ""}
+              {this.state.redirect ? <Redirect to="/auth/currentuser/user" /> : ""}
               <div
                 className="card"
                 style={{

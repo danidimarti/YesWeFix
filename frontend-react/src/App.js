@@ -6,6 +6,7 @@ import AuthService from "../src/auth/AuthService";
 import ShopLogin from "./components/Shop/ShopLogin";
 import UserProfile from "./components/User/Userprofile";
 import UserSignup from "./components/User/UserSignup";
+import UserLogin from "./components/User/UserLogin";
 
 import NavBar from "./components/NavBar";
 import HomePage from "./components/HomePage";
@@ -13,25 +14,25 @@ import Results from "./components/Results/Results";
 
 import ShopForm from "./components/Shop/ShopForm";
 
-import ShopSignup from "./components/Shop/ShopSignup";
-import RequestForm from "./components/RequestForm/Requestform1"
-import RequestList from "./components/RequestForm/Requestlist"
-import RequestUserList from "./components/RequestForm/Requestuserlist"
-import QuoteForm from "./components/QuoteForm/Quoteform"
+import RequestForm from "./components/RequestForm/Requestform1";
+import RequestList from "./components/RequestForm/Requestlist";
+import RequestUserList from "./components/RequestForm/Requestuserlist";
+import QuoteForm from "./components/QuoteForm/Quoteform";
 
-import ShopDescription from "./components/ShopProfile/ShopDescription";
-
+import ShopProfile from "./components/ShopProfile/ShopProfile";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.setLocation = this.setLocation.bind(this);
+
     this.state = {
       user: null,
       location: null,
       isHome: true,
       isResults: true
     };
+    this.logout = this.logout.bind(this);
   }
 
   service = new AuthService();
@@ -42,6 +43,7 @@ class App extends Component {
   isResults = isResults => {
     this.setState({ isResults: isResults });
   };
+  
   setUser = user => {
     this.setState({ user: user });
   };
@@ -62,9 +64,9 @@ class App extends Component {
     }
   };
 
+  
   componentDidMount() {
     this.fetchUserOrShop();
-    
   }
   //Uplifting the location in the top level component
   setLocation(params) {
@@ -73,10 +75,21 @@ class App extends Component {
     });
   }
 
+  logout() {
+    this.service.logout();
+    debugger;
+    console.log("logout trigger");
+    this.setState({ user: null });
+  }
+
   render() {
     return (
       <div>
-        <NavBar isHome={this.state.isHome} setLocation={this.setLocation} />
+        <NavBar
+          isHome={this.state.isHome}
+          setLocation={this.setLocation}
+          logout={this.logout}
+        />
         <Switch>
           <Route
             exact
@@ -103,55 +116,63 @@ class App extends Component {
           {/* FIX SHOPFORM ROUTE */}
           <Route
             exact
-            path="/auth/signup/:isShop"
+            path="/auth/signup/shop"
             render={() => <ShopForm setUser={this.setUser} />}
           />
           <Route
             exact
-            path="/auth/signup/:isShop"
+            path="/auth/signup/user"
             render={props => {
               return <UserSignup {...props} setUser={this.setUser} />;
             }}
           />
-          {/* <Route
-            path="/auth/login/:shop"
-            render={props =>
-              props.match.params.shop === "shop" ? (
-                <ShopLogin />
-              ) : (
-                <UserSignup {...props} setUser={this.setUser} />
-              )
-            }
-          /> */}
           <Route
-            path="/auth/profile"
-            render={props => <UserProfile {...props} setUser={this.setUser} />}
+            path="/auth/login/shop"
+            render={props => {
+              return <ShopLogin />;
+            }}
+          />
+          <Route
+            path="/auth/login/user"
+            render={props => {
+              return <UserLogin {...props} setUser={this.setUser} />;
+            }}
+          />
+          <Route
+            path="/auth/currentuser/user"
+            render={props => <UserProfile {...props} user={this.state.user} />}
           />
           <Route
             exact
             path="/results/:id"
-            component={ShopDescription}
+            component={ShopProfile}
             //render={props => <ShopDescription {...props} />}
           />
 
           <Route
-           path="/auth/requestform"
-           render={props => <RequestForm {...props} currentUser= {this.state.user} /> }
+            path="/auth/requestform"
+            render={props => (
+              <RequestForm {...props} currentUser={this.state.user} />
+            )}
           />
           <Route
-           path="/auth/requestlist"
-           render={props => <RequestList {...props} currentUser= {this.state.user} />}
-           />
-           <Route
+            path="/auth/requestlist"
+            render={props => (
+              <RequestList {...props} currentUser={this.state.user} />
+            )}
+          />
+          <Route
             path="/auth/requestuserlist"
-            render={props => <RequestUserList {...props} currentUser= {this.state.user} />}
-            />
-            <Route
-             path="/auth/quoteform"
-             render={props => <QuoteForm {...props} currentUser= {this.state.user} />}
-             />
-          
-
+            render={props => (
+              <RequestUserList {...props} currentUser={this.state.user} />
+            )}
+          />
+          <Route
+            path="/auth/quoteform"
+            render={props => (
+              <QuoteForm {...props} currentUser={this.state.user} />
+            )}
+          />
         </Switch>
       </div>
     );

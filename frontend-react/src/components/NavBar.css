@@ -2,7 +2,7 @@
     height: 100px;
 }
 .square-logo{
-    width: 7%;
+    width: 5%;
     padding: 4px;
     margin-left: 2%;
        
@@ -10,6 +10,8 @@
 .navbar{
     padding-left: 15px;
     padding-right: 15px; 
+    display: flex;
+    justify-content: space-between;
 }
 
 #btn-user{

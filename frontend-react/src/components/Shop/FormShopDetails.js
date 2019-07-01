@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import SearchBar from "../Map/SearchBar";
 import AuthService from "../../auth/AuthService";
 import { Redirect } from "react-router-dom";
@@ -45,7 +44,7 @@ class FormShopDetails extends Component {
   
 
   render() {
-    const { values, changeHandler } = this.props;
+    const { values } = this.props;
     return (
       <div className="container" style={{ width: "70%" }}>
         <div className=" row justify-content-center">

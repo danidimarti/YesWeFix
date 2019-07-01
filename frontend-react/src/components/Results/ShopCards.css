@@ -11,7 +11,7 @@
     display: inline-block;
 }
 .card-image{
-    height: 150px;
+    height: 170px;
     background-size: cover;
 }
 .card-title{
@@ -30,3 +30,26 @@
     box-shadow: 5px 10px 20px rgba(0,0,0,0.2);
 }
 
+#see-btn{
+       
+    
+    border: #1d8384;
+    background:  #1d8384;
+    color: white;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    width: 100px;
+    text-align: center;
+    height: 30px;
+
+}
+
+#see-btn:hover {
+    background: #196d6e;
+    transition: all 0.30s;
+    border: #196d6e;
+}
+
+.chacked {
+    color: orange}

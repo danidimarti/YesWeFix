@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import logo from "./logo-bg.png";
-import Dropdown from "react-bootstrap/DropdownButton";
-import DropdownButton from "react-bootstrap/DropdownButton";
 import "./NavBar.css";
 import { Link, withRouter } from "react-router-dom";
 import SearchBar from "../components/Map/SearchBar"
@@ -32,10 +30,10 @@ class NavbarPage extends Component {
 
   render() {
     return (
-      <nav className="mb-1 navbar navbar-expand-lg navbar-dark orange lighten-1 nav-height">
-        <a className="navbar-brand" href="#">
+      <nav className="mb-1 navbar navbar-expand-lg lighten-1 nav-height">
+        <Link className="navbar" to="/">
           <img src={logo} className="square-logo" alt="logo" />
-        </a>
+        </Link>
        {this.props.location.pathname === '/' ? 
        <ul class="navbar-nav navbar-right partner-link">
        <li>
@@ -80,10 +78,13 @@ class NavbarPage extends Component {
                   </Link>
                 </li>
                 <hr />
-                <li>
-                  <Link className="list-item" to="/auth/user/logout">
+                <li >
+                  <button onClick={this.props.logout}> 
+                     {/* <a onClick={this.props.logout} className="list-item">            
                     Log out
-                  </Link>
+                    </a>  */}
+                    Logout
+                    </button>
                 </li>
               </ul>
             </div>

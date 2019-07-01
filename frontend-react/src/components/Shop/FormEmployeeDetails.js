@@ -1,11 +1,8 @@
 import React, { Component } from "react";
-import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
-import SearchBar from "../Map/SearchBar";
-import AuthService from "../../auth/AuthService";
 import { Redirect } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 import "./Shop.css";
-import { Link } from "react-router-dom";
+
 
 //rce + tab (create class component)
 class FormEmployeeDetails extends Component {

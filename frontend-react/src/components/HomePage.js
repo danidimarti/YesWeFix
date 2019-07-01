@@ -2,9 +2,8 @@ import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "./HomePage.css";
 import SearchBar from './Map/SearchBar';
-import logo from './logo-bg.png'
 import "./HomePage.css";
-import piler from './pilers-gif.gif'
+
 
 
 class HomePage extends Component {

@@ -1,66 +1,135 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React, { Component } from "react";
+import axios from "axios";
+//import ShopProfile from "../ShopProfile/ShopProfile"
+import "./Request.css";
+import Calendar from "./Calendar"
+
 
 class RequestForm extends Component {
+  constructor(props) {
+    super(props);
 
-  constructor(props){
-      super(props);
-
-    this.state = { 
-     username: '', 
-     userid:'',
-     shop:'',
-     subject: '',
-     description: '',
-     imageUrl: '',
-     status: 'sent'
-      }
+    this.state = {
+      username: "",
+      userid: "",
+      shop: "",
+      subject: "",
+      description: "",
+      imageUrl: "",
+      status: "sent"
+    };
   }
 
-  
-
-
-handleFormSubmit = (event) => {
+  handleFormSubmit = event => {
     event.preventDefault();
     const shop = this.state.shop;
     const subject = this.state.subject;
     const description = this.state.description;
     const imageUrl = this.state.imageUrl;
-    axios.post("http://localhost:5001/auth/user/request", { shop, subject, description, imageUrl })
-    .then( (data) => {
+    axios
+      .post("http://localhost:5001/auth/user/request", {
+        shop,
+        subject,
+        description,
+        imageUrl
+      })
+      .then(data => {
         //this.props.getData();
         console.log(data);
-        this.setState({shop: "",subject: "", description: "", imageUrl:""});
-    })
-    .catch( error => console.log(error) )
-  }
+        this.setState({ shop: "", subject: "", description: "", imageUrl: "" });
+      })
+      .catch(error => console.log(error));
+  };
 
-  handleChange = (event) => {  
-      const {name, value} = event.target;
-      this.setState({[name]: value});
-  }
+  handleChange = event => {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+  };
 
-  
-  render(){
+  render() {
     return (
+      <div className="page">
+        <div className="input-form-req">
+          <form onSubmit={this.handleFormSubmit}>
+            <label className="input-label-title-req">Subject:*</label>
 
-      <div>
-        <form onSubmit={this.handleFormSubmit}>
-            <label>Subject:</label>
-            <input type="text" name="subject" value={this.state.subject} onChange={(e) => this.handleChange(e)} />
-  
-            <label>Description:</label>
-            <input type="text" name="description" value={this.state.description} onChange={(e) => this.handleChange(e)} />
+            <div className="form-group-req">
+              <div className="input-group-req">
+                <span className="input-group-addon">
+                  <i class="fa fa-user fa" aria-hidden="true" />
+                </span>
 
-  
-            <label>imageUrl:</label>
-            <input type="text" name="imageUrl" value={this.state.imageUrl} onChange={(e) => this.handleChange(e)} />
+                <input
+                  type="text"
+                  name="subject"
+                  value={this.state.subject}
+                  onChange={e => this.handleChange(e)}
+                  className="input-req"
+                  // placeholder="Business Name"
+                />
+              </div>
+            </div>
 
-            
-            <input type="submit" value="Submit" />
-        </form>
+            <div className="cols-sm-10">
+              <div className="input-group">
+                <span className="input-group-addon">
+                  <i className="fa fa-envelope fa" aria-hidden="true" />
+                </span>
+
+                <div className="input-group">
+                  <label className="input-label-title-req">Description:*</label>
+                  <textarea
+                    class="input-box txt-area-req"
+                    // id="exampleFormControlTextarea1"
+                    rows="5"
+                    type="text"
+                    name="description"
+                    value={this.state.description}
+                    onChange={e => this.handleChange(e)}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="cols-sm-10">
+              <div className="input-group-req">
+                <span className="input-group-addon">
+                  <i className="fa fa-envelope fa" aria-hidden="true" />
+                </span>
+
+                <div className="input-group-req img-field-req">
+                  <input
+                    type="text"
+                    name="imageUrl"
+                    value={this.state.imageUrl}
+                    onChange={e => this.handleChange(e)}
+                    className="input-req"
+                    placeholder="Upload an image (optional)"
+                  />
+                  
+                </div>
+              </div>
+              <div class="input-group-btn-sm">
+                    <input
+                      id="upload-btn-req"
+                      className="btn-form btn-info"
+                      type="submit"
+                      value="Upload..."
+                      // onClick={this.upload}
+                    />
+                  </div>
+            </div>
+            <input
+              id="send-btn"
+              className="btn-info-req"
+              type="submit"
+              value="Send"
+            />
+          </form>
+        </div>
+        <Calendar />
       </div>
-    )
+    );
   }
 }
 

@@ -55,6 +55,8 @@
 
   .styleNav{
     box-sizing: border-box;
-    width: 100px;
+    width: 500px;
+    height: 30px;
+    margin-right: 400px;
     
 }
