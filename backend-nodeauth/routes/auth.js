@@ -79,14 +79,14 @@ router.post("/shop/quote", (req, res, next) => {
 
 // Post route => to create new request
 
-router.post("/request//:userId/:shopId", (req, res, next) => {
+router.post("/request/:shopId/:userId", (req, res, next) => {
+    Shop.findById(req.params.shopId).then(result => {
+    res.send(result);
+    console.log("Found Shop Id", result);
+  });
   User.findById(req.params.userId).then(result => {
     res.send(result);
     console.log("Found User Id", result);
-  });
-  Shop.findById(req.params.shopId).then(result => {
-    res.send(result);
-    console.log("Found Shop Id", result);
   });
   if (req.isAuthenticated()) {
     const userid = req.params.userId;

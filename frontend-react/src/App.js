@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import { Route, Switch } from "react-router-dom";
 import AuthService from "../src/auth/AuthService";
+import axios from "axios"
 
 import ShopLogin from "./components/Shop/ShopLogin";
 import UserProfile from "./components/User/Userprofile";
@@ -48,7 +49,7 @@ class App extends Component {
     this.setState({ user: user });
   };
 
-  fetchUserOrShop = () => {
+  fetchUser = () => {
     if (this.state.user === null) {
       this.service
         .currentUser()
@@ -64,9 +65,12 @@ class App extends Component {
     }
   };
 
-  
+  checkLoginStatus() {
+axios.get()
+  }
+
   componentDidMount() {
-    this.fetchUserOrShop();
+    this.fetchUser();
   }
   //Uplifting the location in the top level component
   setLocation(params) {
@@ -77,7 +81,7 @@ class App extends Component {
 
   logout() {
     this.service.logout();
-    debugger;
+    
     console.log("logout trigger");
     this.setState({ user: null });
   }
@@ -146,18 +150,18 @@ class App extends Component {
             exact
             path="/results/:id"
             component={ShopProfile}
-            //render={props => <ShopDescription {...props} />}
+            
           />
 
           <Route
-            path="/auth/requestform"
+            path="auth/request/:shopId/:userId"
             render={props => (
               <RequestForm {...props} currentUser={this.state.user} />
             )}
           />
           <Route
             path="/auth/requestlist"
-            fetchUserOrShop={this.fetchUserOrShop}
+            fetchUser={this.fetchUser}
             render={props => (
               <RequestList {...props} currentUser={this.state.user} />
             )}

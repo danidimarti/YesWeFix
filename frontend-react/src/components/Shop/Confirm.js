@@ -16,7 +16,7 @@ export class FormBusinessDetails extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-debugger
+
     const {
       shopname,
       streetname,
@@ -32,7 +32,7 @@ debugger
       lat,
       lng
     } = this.props.values;
-    debugger
+    
     this.authService
     
       .signup(
