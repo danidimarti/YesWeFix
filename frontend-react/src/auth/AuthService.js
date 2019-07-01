@@ -28,10 +28,10 @@ class AuthService {
         password: password,
         mobile: mobile,
         email: email,
-        repairtype: homeservices
-          .concat(vehiclesservices)
-          .concat(consumerservices)
-          .join(", "),
+        // repairtype: homeservices
+        //   .concat(vehiclesservices)
+        //   .concat(consumerservices)
+        //   .join(", "),
         streetname: streetname,
         lat: lat,
         lng: lng,

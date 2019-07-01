@@ -108,7 +108,7 @@ export class ShopProfile extends Component {
             <FontAwesomeIcon style={{color: "orange"}} icon={faStarHalfAlt} />
             </div>
             
-            <ShopButton />
+            <ShopButton getSingleShop={this.getSingleShop}/>
           </div>
         </div>
       </div>

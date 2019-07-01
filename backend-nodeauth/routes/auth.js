@@ -79,7 +79,8 @@ router.post("/shop/quote", (req, res, next) => {
 
 // Post route => to create new request
 
-router.post("/user/request", (req, res, next) => {
+
+//router.post("/user/request", (req, res, next) => {
   // if (req.isAuthenticated()) {
   //   const username = req.user.username;
   //   const shop = req.body.shop;
@@ -107,12 +108,26 @@ router.post("/user/request", (req, res, next) => {
   //         res.status(500).json({ message: "Something went wrong" });
   //       });
 
-  if (req.isAuthenticated()) {
-    console.log(req.user);
+//   if (req.isAuthenticated()) {
+//     console.log(req.user);
 
-    const username = req.user.username;
-    const userid = req.user._id;
-    const shop = req.body.shopId;
+//     const username = req.user.username;
+//     const userid = req.user._id;
+//     const shop = req.body.shopId;
+
+router.post("/request//:userId/:shopId", (req, res, next) => {
+  User.findById(req.params.userId).then(result => {
+    res.send(result);
+    console.log("Found User Id", result);
+  });
+  Shop.findById(req.params.shopId).then(result => {
+    res.send(result);
+    console.log("Found Shop Id", result);
+  });
+  if (req.isAuthenticated()) {
+    const userid = req.params.userId;
+    const shopid = req.params.shopId;
+
     const subject = req.body.subject;
     const description = req.body.description;
     const imageUrl = req.body.imageUrl;
@@ -121,20 +136,18 @@ router.post("/user/request", (req, res, next) => {
     const newRequest = new Request({
       username,
       userid,
-      shop,
+      shopid,
       subject,
       description,
       imageUrl,
       status
     });
-
     console.log(newRequest);
     newRequest
       .save()
       .then(() => {
         res.status(200).json(newRequest);
       })
-
       .catch(err => {
         res.status(500).json({ message: "Something went wrong" });
       });
@@ -199,6 +212,7 @@ router.post("/user/accept", (req, res, next) => {
 
     Quote.findOneAndUpdate({ _id: quoteId }, { status: "accepted" })
 
+
       .then(newDeal => {
         res.status(200).json(newDeal);
         console.log(newDeal);
@@ -255,12 +269,12 @@ router.get("/user/request", (req, res, next) => {
 
 router.get("/shop/request", (req, res, next) => {
   console.log(req.user);
-
   //  if(req.isAuthenticated()) {
 
   const shopId = "5d126c03a66c9111670b9075";
   // const shopId = req.user.shop
   console.log(shopId);
+
 
   Request.find({ shop: shopId })
     .then(result => {
@@ -293,7 +307,7 @@ router.post("/shop/login", (req, res, next) => {
   })(req, res, next);
 });
 
-// Post route => to create new user
+// SHOP LOGIN!!!
 
 router.post("/signup", (req, res, next) => {
   const shopname = req.body.shopname;
@@ -324,8 +338,11 @@ router.post("/signup", (req, res, next) => {
         const newShop = new Shop({
           shopname,
           streetname,
-          //mobile,
           repairtype,
+          mobile,
+          vehiclesservices,
+          consumerservices,
+          homeservices,
           description,
           imageUrl,
           //email,
@@ -367,6 +384,7 @@ router.post("/signup", (req, res, next) => {
           mobile
         });
         console.log(newUser);
+
         newUser
           .save()
           .then(user => {
@@ -381,6 +399,42 @@ router.post("/signup", (req, res, next) => {
     }
   });
 });
+
+//USER LOGIN!!!! NEW 01/07
+// router.post("/signup/user", (req, res, next) => {
+//   const username = req.body.username;
+//   const password = req.body.password;
+//   const mobile = req.body.mobile;
+//   const email = req.body.email;
+//   if (username === "" || password === "") {
+//     res.status(400).json({ message: "Username or password can't be empty" });
+//     return;
+//   }
+//   User.findOne({ email: email }).then(result => {
+//     if (result) {
+//       console.log(result);
+//       res.status(400).json({ message: "The email already exists" });
+//     } else {
+//       const salt = bcrypt.genSaltSync(bcryptSalt);
+//       const hashPass = bcrypt.hashSync(password, salt)
+//         .then(user => {
+//           console.log(user);
+//           const newUser = new User({
+//             username: username,
+//             password: hashPass,
+//             email: email,
+//             mobile: mobile
+//           });
+//           console.log(newUser);
+//           return newUser.save();
+//         })
+//         .catch(err => {
+//           console.log(err);
+//           res.status(500).json({ message: "Something went wrong" });
+//         });
+//     }
+//   });
+// });
 
 //GET ALL SHOPS BELOW
 router.get("/results", (req, res, next) => {
@@ -414,7 +468,7 @@ router.get("/currentuser", (req, res, next) => {
   res.status(403).json({ message: "unauthorized" });
 });
 
-router.get("/user/logout", (req, res) => {
+router.get("/logout", (req, res) => {
   req.logout();
   res.status(200).json({ message: "Logout successful" });
 });

@@ -157,6 +157,7 @@ class App extends Component {
           />
           <Route
             path="/auth/requestlist"
+            fetchUserOrShop={this.fetchUserOrShop}
             render={props => (
               <RequestList {...props} currentUser={this.state.user} />
             )}
