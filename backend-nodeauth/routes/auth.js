@@ -79,6 +79,42 @@ router.post("/shop/quote", (req, res, next) => {
 
 // Post route => to create new request
 
+
+//router.post("/user/request", (req, res, next) => {
+  // if (req.isAuthenticated()) {
+  //   const username = req.user.username;
+  //   const shop = req.body.shop;
+  //   const subject = req.body.subject;
+  //   const description = req.body.description;
+  //   const imageUrl = req.body.imageUrl;
+  //   const status = "sent";
+
+  //   const newRequest = new Request({
+  //     username,
+  //     shop,
+  //     subject,
+  //     description,
+  //     imageUrl,
+  //     status
+  //   });
+
+  //     console.log(newRequest);
+  //     newRequest
+  //       .save()
+  //       .then(() => {
+  //         res.status(200).json(newRequest);
+  //       })
+  //       .catch(err => {
+  //         res.status(500).json({ message: "Something went wrong" });
+  //       });
+
+//   if (req.isAuthenticated()) {
+//     console.log(req.user);
+
+//     const username = req.user.username;
+//     const userid = req.user._id;
+//     const shop = req.body.shopId;
+
 router.post("/request//:userId/:shopId", (req, res, next) => {
   User.findById(req.params.userId).then(result => {
     res.send(result);
@@ -91,6 +127,7 @@ router.post("/request//:userId/:shopId", (req, res, next) => {
   if (req.isAuthenticated()) {
     const userid = req.params.userId;
     const shopid = req.params.shopId;
+
     const subject = req.body.subject;
     const description = req.body.description;
     const imageUrl = req.body.imageUrl;
@@ -175,6 +212,7 @@ router.post("/user/accept", (req, res, next) => {
 
     Quote.findOneAndUpdate({ _id: quoteId }, { status: "accepted" })
 
+
       .then(newDeal => {
         res.status(200).json(newDeal);
         console.log(newDeal);
@@ -231,9 +269,12 @@ router.get("/user/request", (req, res, next) => {
 
 router.get("/shop/request", (req, res, next) => {
   console.log(req.user);
+  //  if(req.isAuthenticated()) {
+
   const shopId = "5d126c03a66c9111670b9075";
   // const shopId = req.user.shop
   console.log(shopId);
+
 
   Request.find({ shop: shopId })
     .then(result => {
@@ -297,23 +338,23 @@ router.post("/signup", (req, res, next) => {
         const newShop = new Shop({
           shopname,
           streetname,
+          repairtype,
           mobile,
           vehiclesservices,
           consumerservices,
           homeservices,
           description,
           imageUrl,
-          email,
-          username,
+          //email,
+          //username,
           password,
           lat,
           lng
         });
-
         newShop
           .save()
           .then(shop => {
-            console.log(shop);
+            console.log("shop console log", shop);
             const newUser = new User({
               shop: shop._id,
               username,
@@ -321,7 +362,7 @@ router.post("/signup", (req, res, next) => {
               email,
               mobile
             });
-            console.log(newUser);
+            console.log("new user console log", newUser);
             return newUser.save();
           })
           .then(user => {
@@ -342,6 +383,8 @@ router.post("/signup", (req, res, next) => {
           email,
           mobile
         });
+        console.log(newUser);
+
         newUser
           .save()
           .then(user => {
