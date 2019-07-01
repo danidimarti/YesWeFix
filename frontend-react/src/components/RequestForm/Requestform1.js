@@ -23,12 +23,14 @@ class RequestForm extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     const shop = this.state.shop;
+    const user = this.state.user
     const subject = this.state.subject;
     const description = this.state.description;
     const imageUrl = this.state.imageUrl;
     axios
       .post("http://localhost:5001/auth/user/request", {
         shop,
+        user,
         subject,
         description,
         imageUrl

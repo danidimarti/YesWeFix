@@ -38,7 +38,7 @@ export class Success extends Component {
               </div>
 
               <p className="text-center text-black text-size">
-                <Link className="text-info" to="/auth/login">
+                <Link className="text-info" to="/auth/login/shop">
                 Click here to login
                 </Link>
               </p>
