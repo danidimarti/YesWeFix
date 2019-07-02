@@ -19,7 +19,7 @@ const bcryptSalt = 10;
 //test
 
 router.post("/login", (req, res, next) => {
-  console.log(req.body);
+  console.log("test", req.body);
   passport.authenticate("local", (err, theUser, info) => {
     if (err) {
       res.status(500).json({ message: err });
@@ -298,9 +298,7 @@ router.post("/signup", (req, res, next) => {
           shopname,
           streetname,
           mobile,
-          vehiclesservices,
-          consumerservices,
-          homeservices,
+          repairtype,
           description,
           imageUrl,
           email,
@@ -313,7 +311,7 @@ router.post("/signup", (req, res, next) => {
         newShop
           .save()
           .then(shop => {
-            console.log(shop);
+            console.log("new shop registered", shop);
             const newUser = new User({
               shop: shop._id,
               username,
@@ -321,7 +319,7 @@ router.post("/signup", (req, res, next) => {
               email,
               mobile
             });
-            console.log(newUser);
+            console.log("New User-Shop Registered:", newUser);
             return newUser.save();
           })
           .then(user => {
@@ -345,7 +343,7 @@ router.post("/signup", (req, res, next) => {
         newUser
           .save()
           .then(user => {
-            console.log(user);
+            console.log("New User-Consumer Registered", user);
             res.status(200).json(user);
           })
           .catch(err => {
@@ -431,3 +429,4 @@ router.get("/logout", (req, res) => {
 });
 
 module.exports = router;
+
