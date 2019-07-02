@@ -87,7 +87,7 @@ class NavbarPage extends Component {
                   </Link>
                 </li>
                 <li>
-                  <Link className="list-item" to="/auth/login/user">
+                  <Link className="list-item" to="/auth/login-user">
                     Log in
                   </Link>
                 </li>

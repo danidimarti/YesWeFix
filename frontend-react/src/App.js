@@ -78,7 +78,7 @@ class App extends Component {
     this.service.logout();
     console.log("logout trigger");
     this.setState({ user: null });
-    this.props.history.push('/')
+    this.props.history.push("/");
   }
 
   render() {

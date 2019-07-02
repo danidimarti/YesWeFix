@@ -66,11 +66,11 @@ export default class Login extends Component {
               ) : (
                 ""
               )}
-              {/* {this.state.redirect ? (
+              {this.state.redirect ? (
                 <Redirect to="/auth/currentuser/user" />
               ) : (
                 ""
-              )} */}
+              )}
 
               <div
                 className="card"
