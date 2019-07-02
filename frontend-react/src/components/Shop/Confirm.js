@@ -153,8 +153,8 @@ export class FormBusinessDetails extends Component {
                   </div>
                 </div>
 
-                <div class="cols-sm-10">
-                  <div class="input-group-btn">
+                <div className="cols-sm-10">
+                  <div className="input-group-btn">
                     <input
                       id="back-btn"
                       className="btn-form btn-info"

@@ -11,34 +11,35 @@ class RequestForm extends Component {
 
     this.state = {
       username: "",
-      userid: "",
-      shop: "",
+      user: null,
+      shop: null,
       subject: "",
       description: "",
       imageUrl: "",
       status: "sent"
     };
+    
   }
 
   handleFormSubmit = event => {
     event.preventDefault();
-    const shop = this.state.shop;
-    const user = this.state.user
+    //const user = this.props.user;
+    const shop = this.params.shop;
     const subject = this.state.subject;
     const description = this.state.description;
     const imageUrl = this.state.imageUrl;
     axios
-      .post("http://localhost:5001/auth/user/request", {
-        shop,
-        user,
-        subject,
+      .post("http://localhost:5001/auth/request", {
+      //user,
+      shop,  
+      subject,
         description,
         imageUrl
       })
       .then(data => {
-        //this.props.getData();
+        this.props.getData();
         console.log(data);
-        this.setState({ shop: "", subject: "", description: "", imageUrl: "" });
+        this.setState({ subject: "", description: "", imageUrl: "" });
       })
       .catch(error => console.log(error));
   };
@@ -48,9 +49,12 @@ class RequestForm extends Component {
     this.setState({ [name]: value });
   };
 
+   
+
   render() {
     return (
       <div className="page">
+        <div>Send an message to {this.params.shopId.shopname}</div>
         <div className="input-form-req">
           <form onSubmit={this.handleFormSubmit}>
             <label className="input-label-title-req">Subject:*</label>
@@ -58,7 +62,7 @@ class RequestForm extends Component {
             <div className="form-group-req">
               <div className="input-group-req">
                 <span className="input-group-addon">
-                  <i class="fa fa-user fa" aria-hidden="true" />
+                  <i className="fa fa-user fa" aria-hidden="true" />
                 </span>
 
                 <input
@@ -81,7 +85,7 @@ class RequestForm extends Component {
                 <div className="input-group">
                   <label className="input-label-title-req">Description:*</label>
                   <textarea
-                    class="input-box txt-area-req"
+                    className="input-box txt-area-req"
                     // id="exampleFormControlTextarea1"
                     rows="5"
                     type="text"
@@ -111,7 +115,7 @@ class RequestForm extends Component {
                   
                 </div>
               </div>
-              <div class="input-group-btn-sm">
+              <div className="input-group-btn-sm">
                     <input
                       id="upload-btn-req"
                       className="btn-form btn-info"

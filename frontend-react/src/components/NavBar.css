@@ -78,3 +78,16 @@
     text-decoration: none;
 }
 
+.list-item-btn{
+    
+    border: none;
+    background: none;
+    color: #196d6e;
+    margin-left: -10px;
+}
+
+.list-item-btn:hover{
+    
+    border-bottom: 1px solid #196d6e
+}
+

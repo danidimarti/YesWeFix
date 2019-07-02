@@ -28,27 +28,7 @@ class FormEmployeeDetails extends Component {
     this.props.prevStep();
   };
 
- // authService = new AuthService();
-
-  // handleSubmit = e => {
-  //   e.preventDefault();
-
-  //   const email = this.state.email;
-  //   const username = this.state.username;
-  //   const password = this.state.password;
-    
-  //   this.authService
-  //     .signup(email, username, password)
-  //     .then(response => {
-  //       console.log(response);
-  //       const settingUser = this.props.setUser(response);
-  //       this.setState({
-  //         redirect: true,
-  //         userState: settingUser
-  //       });
-  //     });
-  // };
-
+ 
   render() {
     const { values } = this.props;
     return (
@@ -77,7 +57,7 @@ class FormEmployeeDetails extends Component {
                 <div className="form-group">
                   <div className="input-group">
                     <span className="input-group-addon">
-                      <i class="fa fa-user fa" aria-hidden="true" />
+                      <i className="fa fa-user fa" aria-hidden="true" />
                     </span>
                     <input
                       type="text"
@@ -97,10 +77,10 @@ class FormEmployeeDetails extends Component {
                     className="input"
                     placeholder="Username"
                   />
-                  <div class="cols-sm-10">
-                    <div class="input-group">
-                      <span class="input-group-addon">
-                        <i class="fa fa-envelope fa" aria-hidden="true" />
+                  <div className="cols-sm-10">
+                    <div className="input-group">
+                      <span className="input-group-addon">
+                        <i className="fa fa-envelope fa" aria-hidden="true" />
                       </span>
                       <input
                         type="password"
@@ -113,8 +93,8 @@ class FormEmployeeDetails extends Component {
                     </div>
                   </div>
 
-                  <div class="cols-sm-10">
-                    <div class="input-group-btn">
+                  <div className="cols-sm-10">
+                    <div className="input-group-btn">
                       <input
                         id="back-btn"
                         className="btn-form btn-info"

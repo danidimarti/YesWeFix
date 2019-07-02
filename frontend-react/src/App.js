@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import { Route, Switch } from "react-router-dom";
 import AuthService from "../src/auth/AuthService";
-import axios from "axios"
+//import axios from "axios"
 
 import ShopLogin from "./components/Shop/ShopLogin";
 import UserProfile from "./components/User/Userprofile";
@@ -31,7 +31,8 @@ class App extends Component {
       user: null,
       location: null,
       isHome: true,
-      isResults: true
+      isResults: true,
+      
     };
     this.logout = this.logout.bind(this);
   }
@@ -44,7 +45,8 @@ class App extends Component {
   isResults = isResults => {
     this.setState({ isResults: isResults });
   };
-  
+
+    
   setUser = user => {
     this.setState({ user: user });
   };
@@ -65,12 +67,11 @@ class App extends Component {
     }
   };
 
-  checkLoginStatus() {
-axios.get()
-  }
-
+ 
+  
   componentDidMount() {
-    this.fetchUser();
+    
+    this.fetchUserOrShop();
   }
   //Uplifting the location in the top level component
   setLocation(params) {
@@ -81,11 +82,12 @@ axios.get()
 
   logout() {
     this.service.logout();
-    
+    debugger;
     console.log("logout trigger");
     this.setState({ user: null });
   }
 
+ 
   render() {
     return (
       <div>
@@ -113,7 +115,7 @@ axios.get()
               <Results
                 {...props}
                 location={this.state.location}
-                isResults={this.isResults}
+                isResults={this.state.isResults}
               />
             )}
           />
@@ -131,9 +133,9 @@ axios.get()
             }}
           />
           <Route
-            path="/auth/login/shop"
+            path="/auth/login"
             render={props => {
-              return <ShopLogin />;
+              return <ShopLogin setUser={this.setUser}/>;
             }}
           />
           <Route
@@ -150,11 +152,13 @@ axios.get()
             exact
             path="/results/:id"
             component={ShopProfile}
-            
+            getSingleShop={this.getSingleShop}
+            fetchUserOrShop={this.fetchUserOrShop} 
+            //render={props => <ShopDescription {...props} />}
           />
 
           <Route
-            path="auth/request/:shopId/:userId"
+            path="/auth/request/:shopId"
             render={props => (
               <RequestForm {...props} currentUser={this.state.user} />
             )}
