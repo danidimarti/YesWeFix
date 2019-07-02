@@ -105,8 +105,8 @@ class SearchBar extends Component {
           >
             <input
               type="text"
-              //id=""
-              className={`address-input ${styleForm}`}
+              id="address-input"
+              className={`address ${styleForm}`}
               name="address"
               placeholder="Enter address here..."
               //style={{borderTop:"none", borderLeft: "none", borderRight:"none",}}

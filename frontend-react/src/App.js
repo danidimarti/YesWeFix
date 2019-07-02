@@ -152,7 +152,8 @@ class App extends Component {
             exact
             path="/results/:id"
             component={ShopProfile}
-            getSingleShop={() => this.getSingleShop()}
+            getSingleShop={this.getSingleShop}
+            fetchUserOrShop={this.fetchUserOrShop} 
             //render={props => <ShopDescription {...props} />}
           />
 

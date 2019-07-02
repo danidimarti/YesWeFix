@@ -78,7 +78,10 @@ export class ShopProfile extends Component {
             <FontAwesomeIcon style={{color: "orange"}} icon={faStarHalfAlt} />
             </div>
             
-            <ShopButton/>
+            <ShopButton
+            getSingleShop={this.props.getSingleShop}
+            fetchUserOrShop={() => this.props.fetchUserOrShop()} 
+            />
           </div>
         </div>
       </div>
