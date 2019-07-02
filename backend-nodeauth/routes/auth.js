@@ -1,5 +1,6 @@
 const express = require("express");
 const passport = require("passport");
+
 const router = express.Router();
 const mongoose = require("mongoose");
 
@@ -16,28 +17,58 @@ const Ride = require("../models/ridemodel");
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
-//test
+//test new post login
 
-router.post("/login", (req, res, next) => {
-  console.log(req.body);
-  passport.authenticate("local", (err, theUser, info) => {
-    if (err) {
-      res.status(500).json({ message: err });
-      return;
+router.post('/login', (req, res, next) => {
+  console.log(req.body)
+
+  passport.authenticate('local', (err, theUser, info) => {
+    console.log(info);
+    console.log(theUser);
+    console.log(err);
+  
+    if(err) {
+      res.status(500).json({message: err})
+      return
     }
-    if (!theUser) {
-      res.status(401).json(info);
-      return;
+  if(!theUser) {
+    res.status(401).json(info)
+    return
+  }
+  req.login(theUser, err => {
+    if(err){
+      res.status(500).json({message: err})
+      return
     }
-    req.login(theUser, err => {
-      if (err) {
-        res.status(500).json({ message: err });
-        return;
-      }
-      res.status(200).json(theUser);
-    });
-  });
-});
+    res.status(200).json(theUser)
+  })
+
+  })(req, res, next)
+})
+
+
+// post login
+
+// router.post("/login", (req, res, next) => {
+//   console.log(req.body);
+//   passport.authenticate("local", (err, theUser, info) => {
+//     if (err) {
+//       res.status(500).json({ message: err });
+//       return;
+//     }
+//     if (!theUser) {
+//       res.status(401).json(info);
+//       return;
+//     }
+//     req.login(theUser, err => {
+//       if (err) {
+//         res.status(500).json({ message: err });
+//         return;
+//       }
+//       res.status(200).json(theUser);
+//     });
+//   });
+// });
 
 // Post route => create quote
 
