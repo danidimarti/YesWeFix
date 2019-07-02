@@ -12,6 +12,13 @@ export default class Login extends Component {
     redirect: false
   };
 
+  componentDidMount() {
+    if (this.props.location.state) {
+      this.setState({
+        origin: this.props.location.state.origin
+      });
+    }
+  }
   service = new AuthService();
 
   changeHandler = e => {
@@ -32,7 +39,7 @@ export default class Login extends Component {
       this.setState({
         redirect: true
       });
-      this.props.setUser(response)
+      this.props.setUser(response);
     });
   };
   render() {
@@ -41,7 +48,30 @@ export default class Login extends Component {
         <div className="container" style={{ width: "60%" }}>
           <div className=" row justify-content-center">
             <div className="col-md-8" style={{ borderRadius: "0" }}>
-              {this.state.redirect ? <Redirect to="/auth/currentuser/user" /> : ""}
+              {/* {() => {
+                if (
+                  this.state.redirect &&
+                  this.state.origin === "requestForm"
+                ) {
+                  return <Redirect to="/auth/request" />;
+                } else if (this.state.redirect) {
+                  return <Redirect to="/auth/currentuser/user" />;
+                } else {
+                  return "";
+                }
+              }} */}
+
+              {this.state.redirect && this.state.origin != null ? (
+                <Redirect to={this.state.origin} />
+              ) : (
+                ""
+              )}
+              {/* {this.state.redirect ? (
+                <Redirect to="/auth/currentuser/user" />
+              ) : (
+                ""
+              )} */}
+
               <div
                 className="card"
                 style={{
@@ -114,6 +144,7 @@ export default class Login extends Component {
               </div>
             </div>
           </div>
+          <pre>{JSON.stringify(this.state, "\t", 2)}</pre>
         </div>
       </div>
     );

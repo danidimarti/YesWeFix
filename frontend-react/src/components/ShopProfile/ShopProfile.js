@@ -16,7 +16,6 @@ export class ShopProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-   
   }
 
   componentDidMount() {
@@ -81,6 +80,7 @@ export class ShopProfile extends Component {
           }}
         />
         <div className="page">
+          {/* <pre>{JSON.stringify(this.state, "\t", 2)}</pre> */}
           <div className="description">
             <h1>{this.state.shopname}</h1>
             <br />
@@ -101,15 +101,22 @@ export class ShopProfile extends Component {
             <h3>{this.state.shopname}</h3>
 
             <p>{this.state.streetname}</p>
-          <div className="star">
-          <FontAwesomeIcon style={{color: "orange"}} icon={faStar} />
-            <FontAwesomeIcon style={{color: "orange"}} icon={faStar} />
-            <FontAwesomeIcon style={{color: "orange"}} icon={faStar} />
-            <FontAwesomeIcon style={{color: "orange"}} icon={faStar} />
-            <FontAwesomeIcon style={{color: "orange"}} icon={faStarHalfAlt} />
+            <div className="star">
+              <FontAwesomeIcon style={{ color: "orange" }} icon={faStar} />
+              <FontAwesomeIcon style={{ color: "orange" }} icon={faStar} />
+              <FontAwesomeIcon style={{ color: "orange" }} icon={faStar} />
+              <FontAwesomeIcon style={{ color: "orange" }} icon={faStar} />
+              <FontAwesomeIcon
+                style={{ color: "orange" }}
+                icon={faStarHalfAlt}
+              />
             </div>
-            
-            <ShopButton getSingleShop={this.getSingleShop}/>
+
+            <ShopButton
+              setUser={this.props.setUser}
+              user={this.props.user}
+              shopData={this.state}
+            />
           </div>
         </div>
       </div>

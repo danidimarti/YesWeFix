@@ -1,25 +1,27 @@
-const mongoose = require('mongoose');
-const Schema   = mongoose.Schema;
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-const requestSchema = new Schema({
-    userid : { type : Schema.Types.ObjectId, ref: 'User' },
+const requestSchema = new Schema(
+  {
+    userid: { type: Schema.Types.ObjectId, ref: "User" },
     username: String,
     subject: String,
-    description : String,
-    shop : String,
-    // shop : { type : Schema.Types.ObjectId, ref: 'Shop'} ,
-    imageUrl: { type: String, required: true },  
+    description: String,
+    //shop : String,
+    shopId: { type: Schema.Types.ObjectId, ref: "Shop" },
+    imageUrl: { type: String, required: true },
     status: {
       type: String,
-      enum: ["sent", "accepted", 'closed']
-    },
-}, 
-{
+      enum: ["sent", "accepted", "closed"]
+    }
+  },
+  {
     timestamps: {
       createdAt: "createdAt",
       updatedAt: "updatedAt"
     }
-  });
-  
-  const Request = mongoose.model('Request', requestSchema);
-  module.exports = Request;
+  }
+);
+
+const Request = mongoose.model("Request", requestSchema);
+module.exports = Request;

@@ -54,7 +54,7 @@ export default class Login extends Component {
     }
     return (
       <div>
-        <div className="container" style={{ width: "60%" }}>
+        {/* <div className="container" style={{ width: "60%" }}>
           <div className=" row justify-content-center">
             <div className="col-md-8" style={{ borderRadius: "0" }}>
               <div
@@ -129,7 +129,7 @@ export default class Login extends Component {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     );
   }

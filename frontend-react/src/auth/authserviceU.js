@@ -1,32 +1,18 @@
 import axios from "axios";
 
-   
-
 class AuthService {
   service = axios.create({
     baseURL: "http://localhost:5001/auth",
     withCredentials: true
   });
 
-  
-
-  signup = (
-    
-    mobile,
-    email,
-    username,
-    password,
-    
-  ) => {
-    
+  signup = (mobile, email, username, password) => {
     return this.service
       .post("/signup", {
-     
         username: username,
         password: password,
         mobile: mobile,
-        email: email,
-        
+        email: email
       })
       .then(response => response.data);
   };
@@ -34,7 +20,10 @@ class AuthService {
   login = (username, password) => {
     return this.service
       .post("/login", { username: username, password: password })
-      .then(response => response.data);
+      .then(response => {
+        localStorage.setItem("loggedIn", true);
+        return response.data;
+      });
   };
 
   currentUser = () => {
@@ -44,19 +33,23 @@ class AuthService {
   logout = () => {
     return this.service.get("/logout").then(response => {
       console.log(response);
+      localStorage.removeItem("loggedIn");
       return response.message;
     });
   };
 
-//REQUESTS
-request = (user, shop, subject, description, imageUrl) => {
-  return this.service
-    .post("/request", { user: user, shop: shop, subject: subject, description: description, imageUrl: imageUrl})
-    .then(response => response.data);
-};
-
+  //REQUESTS
+  request = (user, shop, subject, description, imageUrl) => {
+    return this.service
+      .post("/request", {
+        user: user,
+        shop: shop,
+        subject: subject,
+        description: description,
+        imageUrl: imageUrl
+      })
+      .then(response => response.data);
+  };
 }
-
-
 
 export default AuthService;
