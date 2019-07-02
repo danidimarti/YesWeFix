@@ -11,9 +11,13 @@ passport.use(new LocalStrategy({
     emailField: 'email'
   }, 
   (username, password, done) => {
+    console.log("username", username);
+    console.log("password", password);
 
     User.findOne({ username })
     .then(foundUser => {
+      console.log(foundUser);
+      
       if (!foundUser) {
         done(null, false, { message: 'Incorrect username' });
         return;
@@ -23,8 +27,9 @@ passport.use(new LocalStrategy({
         done(null, false, { message: 'Incorrect password' });
         return;
       }
-
       done(null, foundUser);
+      console.log("test")
+      console.log(foundUser);
     })
     .catch(err => done(err));
   }

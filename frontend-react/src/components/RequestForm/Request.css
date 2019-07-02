@@ -15,7 +15,7 @@
     border: #196d6e;
 }
 
-#upload-btn {
+#upload-btn-req {
     border: 0.7px solid #1d8384;
     background: #bed8d8;
     color: #1d8384;
@@ -26,7 +26,7 @@
     height: 10%;
 }
 
-#upload-btn:hover {
+#upload-btn-req:hover {
     background: #bed8d8;
     transition: all 0.30s;
     border: #196d6e;

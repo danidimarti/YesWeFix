@@ -16,7 +16,7 @@ export class FormBusinessDetails extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-debugger
+
     const {
       shopname,
       streetname,
@@ -32,7 +32,7 @@ debugger
       lat,
       lng
     } = this.props.values;
-    debugger
+    
     this.authService
     
       .signup(
@@ -153,8 +153,8 @@ debugger
                   </div>
                 </div>
 
-                <div class="cols-sm-10">
-                  <div class="input-group-btn">
+                <div className="cols-sm-10">
+                  <div className="input-group-btn">
                     <input
                       id="back-btn"
                       className="btn-form btn-info"

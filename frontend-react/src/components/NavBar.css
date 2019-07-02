@@ -34,7 +34,7 @@
 .dropdown-list{
     position: absolute;
     border: 0.7px solid #1d8384;
-    
+    background-color: white;
     height: 120px;
     width: 120px;
     display: flex;
@@ -76,5 +76,18 @@
 .partner-link-a:hover {
     color: black;
     text-decoration: none;
+}
+
+.list-item-btn{
+    
+    border: none;
+    background: none;
+    color: #196d6e;
+    margin-left: -10px;
+}
+
+.list-item-btn:hover{
+    
+    border-bottom: 1px solid #196d6e
 }
 
