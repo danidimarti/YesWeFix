@@ -51,7 +51,6 @@ class AuthService {
     
     return this.service
       .post("/signup", {
-     
         username: username,
         password: password,
         mobile: mobile,
