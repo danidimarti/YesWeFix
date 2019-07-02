@@ -24,7 +24,7 @@
       
   }
 
-  #address-input {
+  .address-input {
       width: 400px;
       padding: 7px;
       border: .7px solid #1d8384;
@@ -45,6 +45,19 @@
 
   .hideButton {
       display: none;
+  }
+
+  .styleForm{
+         
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: .5px solid black;
+   padding: 0px;
+    vertical-align: middle;
+    margin-left: 25%;
+    width: 550px;
+   
   }
 
   #submit:hover {

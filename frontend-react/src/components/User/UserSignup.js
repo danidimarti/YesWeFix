@@ -74,7 +74,7 @@ class Usersignup extends Component {
                 <div className="form-group">
                   <div className="input-group">
                     <span className="input-group-addon">
-                      <i class="fa fa-user fa" aria-hidden="true" />
+                      <i className="fa fa-user fa" aria-hidden="true" />
                     </span>
                     <input
                       type="text"
@@ -86,10 +86,10 @@ class Usersignup extends Component {
                     />
                   </div>
 
-                  <div class="cols-sm-10">
-                    <div class="input-group">
-                      <span class="input-group-addon">
-                        <i class="fa fa-envelope fa" aria-hidden="true" />
+                  <div className="cols-sm-10">
+                    <div className="input-group">
+                      <span className="input-group-addon">
+                        <i className="fa fa-envelope fa" aria-hidden="true" />
                       </span>
                       <input
                         type="text"
@@ -109,10 +109,10 @@ class Usersignup extends Component {
                     className="input"
                     placeholder="Username"
                   />
-                  <div class="cols-sm-10">
-                    <div class="input-group">
-                      <span class="input-group-addon">
-                        <i class="fa fa-envelope fa" aria-hidden="true" />
+                  <div className="cols-sm-10">
+                    <div className="input-group">
+                      <span className="input-group-addon">
+                        <i className="fa fa-envelope fa" aria-hidden="true" />
                       </span>
                       <input
                         type="password"
@@ -125,8 +125,8 @@ class Usersignup extends Component {
                     </div>
                   </div>
                   
-                  <div class="cols-sm-10">
-                    <div class="input-group">
+                  <div className="cols-sm-10">
+                    <div className="input-group">
                       <input id="submit-user" className="btn-form btn-info" type="submit" value="Submit" />
                     </div>
                   </div>
@@ -148,67 +148,4 @@ class Usersignup extends Component {
 
 export default Usersignup;
 
-// <!-- Material form register -->
-// <div class="card">
 
-//     <h5 class="card-header info-color white-text text-center py-4">
-//         <strong>Sign up</strong>
-//     </h5>
-
-//     <!--Card content-->
-//     <div class="card-body px-lg-5 pt-0">
-
-//         <!-- Form -->
-//         <form class="text-center" style="color: #757575;">
-
-//             <!-- E-mail -->
-//             <div class="md-form mt-0">
-//                 <input type="email" id="materialRegisterFormEmail" class="form-control">
-//                 <label for="materialRegisterFormEmail">E-mail</label>
-//             </div>
-
-//           <!-- Phone number -->
-//             <div class="md-form">
-//                 <input type="password" id="materialRegisterFormPhone" class="form-control" aria-describedby="materialRegisterFormPhoneHelpBlock">
-//                 <label for="materialRegisterFormPhone">Phone number</label>
-//                             </div>
-
-//           <!-- E-mail -->
-//             <div class="md-form mt-0">
-//                 <input type="text" id="materialRegisterFormUsername" class="form-control">
-//                 <label for="materialRegisterFormEmail">Username</label>
-//             </div>
-//             <!-- Password -->
-//             <div class="md-form">
-//                 <input type="password" id="materialRegisterFormPassword" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock">
-//                 <label for="materialRegisterFormPassword">Password</label>
-//                 <small id="materialRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
-//                     At least 8 characters and 1 digit
-//                 </small>
-//             </div>
-
-//             <!-- Newsletter -->
-//             <div class="form-check">
-//                 <input type="checkbox" class="form-check-input" id="materialRegisterFormNewsletter">
-//                 <label class="form-check-label" for="materialRegisterFormNewsletter">Subscribe to our newsletter to receive coupons and special discounts</label>
-//             </div>
-
-//             <!-- Sign up button -->
-//             <button class="btn btn-outline-info btn-block my-4 waves-effect z-depth-0" type="submit">Sign in</button>
-
-//             <!-- Social register -->
-
-//             <hr>
-
-//             <!-- Terms of service -->
-//             <p>By clicking
-//                 <em>Sign up</em> you agree to our
-//                 <a href="" target="_blank">terms of service</a>
-
-//         </form>
-//         <!-- Form -->
-
-//     </div>
-
-// </div>
-// <!-- Material form register --></div>

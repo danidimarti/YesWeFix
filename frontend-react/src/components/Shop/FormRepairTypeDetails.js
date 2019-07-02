@@ -104,7 +104,7 @@ class FormRepairTypeDetails extends Component {
                 <div className="form-group">
                   <div className="input-group">
                     <span className="input-group-addon">
-                      <i class="fa fa-user fa" aria-hidden="true" />
+                      <i className="fa fa-user fa" aria-hidden="true" />
                     </span>
                     <label className="input-label-title">
                       Please select the type of services you provide
@@ -141,7 +141,7 @@ class FormRepairTypeDetails extends Component {
                 <div className="form-group">
                   <div className="input-group">
                     <span className="input-group-addon">
-                      <i class="fa fa-user fa" aria-hidden="true" />
+                      <i className="fa fa-user fa" aria-hidden="true" />
                     </span>
 
                     <InputLabel
@@ -175,7 +175,7 @@ class FormRepairTypeDetails extends Component {
                 <div className="form-group">
                   <div className="input-group">
                     <span className="input-group-addon">
-                      <i class="fa fa-user fa" aria-hidden="true" />
+                      <i className="fa fa-user fa" aria-hidden="true" />
                     </span>
 
                     <InputLabel
@@ -216,7 +216,7 @@ class FormRepairTypeDetails extends Component {
                     <div className="input-group">
                       <label className="input-label-title">Description</label>
                       <textarea
-                        class="input-box txt-area"
+                        className="input-box txt-area"
                         id="exampleFormControlTextarea1"
                         rows="4"
                       />
@@ -232,7 +232,7 @@ class FormRepairTypeDetails extends Component {
                   className="input"
                   placeholder="Upload an image"
                 />
-                <div class="input-group-btn-sm">
+                <div className="input-group-btn-sm">
                   <input
                     id="upload-btn"
                     className="btn-form btn-info"
@@ -241,8 +241,8 @@ class FormRepairTypeDetails extends Component {
                     // onClick={this.upload}
                   />
                 </div>
-                <div class="cols-sm-10">
-                  <div class="input-group-btn">
+                <div className="cols-sm-10">
+                  <div className="input-group-btn">
                     <input
                       id="back-btn"
                       className="btn-form btn-info"

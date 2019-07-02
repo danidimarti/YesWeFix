@@ -79,27 +79,27 @@ router.post("/shop/quote", (req, res, next) => {
 
 // Post route => to create new request
 
-router.post("/request//:userId/:shopId", (req, res, next) => {
-  User.findById(req.params.userId).then(result => {
-    res.send(result);
-    console.log("Found User Id", result);
-  });
-  Shop.findById(req.params.shopId).then(result => {
-    res.send(result);
-    console.log("Found Shop Id", result);
-  });
+router.post("/request", (req, res, next) => {
+  // User.findById(req.params.userId).then(result => {
+  //   res.send(result);
+  //   console.log("Found User Id", result);
+  // });
+  // Shop.findById(req.params.shopId).then(result => {
+  //   res.send(result);
+  //   console.log("Found Shop Id", result);
+  // });
   if (req.isAuthenticated()) {
-    const userid = req.params.userId;
-    const shopid = req.params.shopId;
+    //const userid = req.params.userId;
+    //const shopid = req.params.shopId;
     const subject = req.body.subject;
     const description = req.body.description;
     const imageUrl = req.body.imageUrl;
     const status = "sent";
 
     const newRequest = new Request({
-      username,
-      userid,
-      shopid,
+      //username,
+      //userid,
+      //shopid,
       subject,
       description,
       imageUrl,
@@ -245,28 +245,6 @@ router.get("/shop/request", (req, res, next) => {
     });
 });
 
-router.post("/shop/login", (req, res, next) => {
-  console.log(req.body);
-  passport.authenticate("local", (err, theUser, info) => {
-    if (err) {
-      res.status(500).json({ message: err });
-      return;
-    }
-    if (!theUser) {
-      res.status(401).json(info);
-      return;
-    }
-    req.login(theUser, err => {
-      if (err) {
-        res.status(500).json({ message: err });
-        return;
-      }
-      res.status(200).json(theUser);
-    });
-  })(req, res, next);
-});
-
-// SHOP LOGIN!!!
 
 router.post("/signup", (req, res, next) => {
   const shopname = req.body.shopname;
@@ -298,9 +276,7 @@ router.post("/signup", (req, res, next) => {
           shopname,
           streetname,
           mobile,
-          vehiclesservices,
-          consumerservices,
-          homeservices,
+          repairtype,
           description,
           imageUrl,
           email,
@@ -309,11 +285,10 @@ router.post("/signup", (req, res, next) => {
           lat,
           lng
         });
-
-        newShop
-          .save()
+        console.log("new shop is HERE", newShop);
+        newShop.save()
           .then(shop => {
-            console.log(shop);
+            console.log("new shop registered", shop);
             const newUser = new User({
               shop: shop._id,
               username,
@@ -321,7 +296,6 @@ router.post("/signup", (req, res, next) => {
               email,
               mobile
             });
-            console.log(newUser);
             return newUser.save();
           })
           .then(user => {
@@ -329,6 +303,7 @@ router.post("/signup", (req, res, next) => {
             return User.findById(user._id).populate("shop");
           })
           .then(userShop => {
+            console.log("usershop", userShop);
             res.status(200).json(userShop);
           })
           .catch(err => {
@@ -345,7 +320,7 @@ router.post("/signup", (req, res, next) => {
         newUser
           .save()
           .then(user => {
-            console.log(user);
+            console.log("New User-Consumer Registered", user);
             res.status(200).json(user);
           })
           .catch(err => {
@@ -357,41 +332,10 @@ router.post("/signup", (req, res, next) => {
   });
 });
 
-//USER LOGIN!!!! NEW 01/07
-// router.post("/signup/user", (req, res, next) => {
-//   const username = req.body.username;
-//   const password = req.body.password;
-//   const mobile = req.body.mobile;
-//   const email = req.body.email;
-//   if (username === "" || password === "") {
-//     res.status(400).json({ message: "Username or password can't be empty" });
-//     return;
-//   }
-//   User.findOne({ email: email }).then(result => {
-//     if (result) {
-//       console.log(result);
-//       res.status(400).json({ message: "The email already exists" });
-//     } else {
-//       const salt = bcrypt.genSaltSync(bcryptSalt);
-//       const hashPass = bcrypt.hashSync(password, salt)
-//         .then(user => {
-//           console.log(user);
-//           const newUser = new User({
-//             username: username,
-//             password: hashPass,
-//             email: email,
-//             mobile: mobile
-//           });
-//           console.log(newUser);
-//           return newUser.save();
-//         })
-//         .catch(err => {
-//           console.log(err);
-//           res.status(500).json({ message: "Something went wrong" });
-//         });
-//     }
-//   });
-// });
+router.get("/login", (req, res, next) => {
+  res.render("auth/login", { "message": req.flash("error") });
+});
+
 
 //GET ALL SHOPS BELOW
 router.get("/results", (req, res, next) => {
@@ -417,6 +361,7 @@ router.get("/results/:shopId", (req, res, next) => {
     });
 });
 
+//GET PROFILE HERE
 router.get("/currentuser", (req, res, next) => {
   if (req.isAuthenticated()) {
     res.status(200).json(req.user);

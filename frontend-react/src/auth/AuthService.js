@@ -28,10 +28,10 @@ class AuthService {
         password: password,
         mobile: mobile,
         email: email,
-        // repairtype: homeservices
-        //   .concat(vehiclesservices)
-        //   .concat(consumerservices)
-        //   .join(", "),
+        repairtype: homeservices
+          .concat(vehiclesservices)
+          .concat(consumerservices)
+          .join(", "),
         streetname: streetname,
         lat: lat,
         lng: lng,
@@ -40,27 +40,6 @@ class AuthService {
       })
       .then(response => response.data);
   };
-
-  //USER LOGIN!!!! NEW 01/07
-  // signup = (
-  //   mobile,
-  //   email,
-  //   username,
-  //   password,
-    
-  // ) => {
-  //   return this.service
-  //     .post("/signup/user", {
-  //        username: username,
-  //       password: password,
-  //       mobile: mobile,
-  //       email: email,
-        
-  //     })
-  //     .then(response => response.data);
-  // };
-
-
 
   login = (username, password) => {
     return this.service
@@ -74,10 +53,20 @@ class AuthService {
 
   logout = () => {
     return this.service.get("/logout").then(response => {
-      console.log(response)
+      console.log(response);
       return response.message;
     });
   };
+
+//REQUESTS
+request = (user, shop, subject, description, imageUrl) => {
+  return this.service
+    .post("/request", { user: user, shop: shop, subject: subject, description: description, imageUrl: imageUrl})
+    .then(response => response.data);
+};
+
 }
+
+
 
 export default AuthService;

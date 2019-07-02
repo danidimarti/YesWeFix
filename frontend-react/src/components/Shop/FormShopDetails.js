@@ -71,7 +71,7 @@ class FormShopDetails extends Component {
                 <div className="form-group">
                   <div className="input-group">
                     <span className="input-group-addon">
-                      <i class="fa fa-user fa" aria-hidden="true" />
+                      <i className="fa fa-user fa" aria-hidden="true" />
                     </span>
                     <input
                       type="text"
@@ -86,22 +86,22 @@ class FormShopDetails extends Component {
                   <div className="form-group">
                     <div className="input-group">
                       <span className="input-group-addon">
-                        <i class="fa fa-user fa" aria-hidden="true" />
+                        <i className="fa fa-user fa" aria-hidden="true" />
                       </span>
                       <SearchBar 
                       setLatLng={this.props.setLatLng}
                       hideButton={true}
                       value={values.streetname}
                       onChange={e => this.props.changeHandler(e)}
-                    
+                      styleForm={true}
                       />
                       
                     </div>
 
-                    <div class="cols-sm-10">
-                      <div class="input-group">
-                        <span class="input-group-addon">
-                          <i class="fa fa-envelope fa" aria-hidden="true" />
+                    <div className="cols-sm-10">
+                      <div className="input-group">
+                        <span className="input-group-addon">
+                          <i className="fa fa-envelope fa" aria-hidden="true" />
                         </span>
                         <input
                           type="text"
@@ -114,8 +114,8 @@ class FormShopDetails extends Component {
                       </div>
                     </div>
                     
-                    <div class="cols-sm-10">
-                      <div class="input-group">
+                    <div className="cols-sm-10">
+                      <div className="input-group">
                         <input
                           id="submit-user"
                           className="btn-form btn-info"
@@ -128,7 +128,7 @@ class FormShopDetails extends Component {
                   </div>
                   <p className="text-center text-black text-size">
                     Already have an account?{" "}
-                    <Link className="text-info" to="/auth/login/shop">
+                    <Link className="text-info" to="/auth/login">
                       Login in
                     </Link>
                   </p>

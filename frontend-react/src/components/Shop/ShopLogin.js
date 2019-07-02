@@ -6,15 +6,17 @@ import "bootstrap/dist/css/bootstrap.css";
 import "./Shop.css";
 import { Link } from "react-router-dom";
 
-
 export default class Login extends Component {
-  state = {
-    username: "",
-    password: "",
-    redirect: false
-  };
+  constructor() {
+    super();
+    this.state = {
+      username: "",
+      password: "",
+      fireRedirect: false
+    };
+  }
 
-  service = new AuthService();
+  authService = new AuthService();
 
   changeHandler = e => {
     const { name, value } = e.target;
@@ -25,25 +27,36 @@ export default class Login extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-
+    debugger;
     const username = this.state.username;
     const password = this.state.password;
+    debugger;
 
-    this.service.login(username, password).then(response => {
-      console.log(response);
-      this.setState({
-        redirect: true
+    this.authService
+
+      .login(username, password)
+
+      .then(response => {
+       
+        this.props.setUser(response);
+        
+        this.setState({
+          fireRedirect: true
+        });
+        
       });
-      // this.props.setUser(response)
-    });
   };
   render() {
+    // const { from } = this.props.location.state
+    const { fireRedirect } = this.state;
+    if (fireRedirect) {
+      return <Redirect to={"/auth/currentuser"} />;
+    }
     return (
       <div>
         <div className="container" style={{ width: "60%" }}>
           <div className=" row justify-content-center">
             <div className="col-md-8" style={{ borderRadius: "0" }}>
-              {this.state.redirect ? <Redirect to="/auth/profile" /> : ""}
               <div
                 className="card"
                 style={{
@@ -63,10 +76,10 @@ export default class Login extends Component {
                   onSubmit={e => this.handleSubmit(e)}
                 >
                   <div className="form-group">
-                    <div class="cols-sm-10">
-                      <div class="input-group">
-                        <span class="input-group-addon">
-                          <i class="fa fa-envelope fa" aria-hidden="true" />
+                    <div className="cols-sm-10">
+                      <div className="input-group">
+                        <span className="input-group-addon">
+                          <i className="fa fa-envelope fa" aria-hidden="true" />
                         </span>
                         <input
                           type="text"
@@ -79,10 +92,10 @@ export default class Login extends Component {
                       </div>
                     </div>
 
-                    <div class="cols-sm-10">
-                      <div class="input-group">
-                        <span class="input-group-addon">
-                          <i class="fa fa-envelope fa" aria-hidden="true" />
+                    <div className="cols-sm-10">
+                      <div className="input-group">
+                        <span className="input-group-addon">
+                          <i className="fa fa-envelope fa" aria-hidden="true" />
                         </span>
                         <input
                           type="password"
@@ -95,8 +108,8 @@ export default class Login extends Component {
                       </div>
                     </div>
 
-                    <div class="cols-sm-10">
-                      <div class="input-group">
+                    <div className="cols-sm-10">
+                      <div className="input-group">
                         <input
                           id="submit-user"
                           className="btn-form btn-info"
@@ -121,7 +134,3 @@ export default class Login extends Component {
     );
   }
 }
-
-
-
-
