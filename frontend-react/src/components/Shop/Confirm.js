@@ -35,7 +35,7 @@ export class FormBusinessDetails extends Component {
     
     this.authService
     
-      .signup(
+      .shopSignup(
         shopname,
         streetname,
         mobile,

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, withRouter } from "react-router-dom";
 import AuthService from "../src/auth/AuthService";
 //import axios from "axios"
 
@@ -78,7 +78,7 @@ class App extends Component {
     this.service.logout();
     console.log("logout trigger");
     this.setState({ user: null });
-    //this.history.push("/");
+    this.props.history.push('/')
   }
 
   render() {
@@ -181,4 +181,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);

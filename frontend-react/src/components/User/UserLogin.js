@@ -34,7 +34,7 @@ export default class Login extends Component {
     const username = this.state.username;
     const password = this.state.password;
 
-    this.service.login(username, password).then(response => {
+    this.service.userLogin(username, password).then(response => {
       console.log(response);
       this.setState({
         redirect: true

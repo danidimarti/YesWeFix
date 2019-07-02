@@ -6,7 +6,7 @@ class AuthService {
     withCredentials: true
   });
 
-  signup = (
+  shopSignup = (
     shopname,
     streetname,
     mobile,
@@ -41,7 +41,33 @@ class AuthService {
       .then(response => response.data);
   };
 
-  login = (username, password) => {
+  userSignup = (
+    mobile,
+    email,
+    username,
+    password,
+    
+  ) => {
+    
+    return this.service
+      .post("/signup", {
+     
+        username: username,
+        password: password,
+        mobile: mobile,
+        email: email,
+        
+      })
+      .then(response => response.data);
+  };
+
+  shopLogin = (username, password) => {
+    return this.service
+      .post("/login", { username: username, password: password })
+      .then(response => response.data);
+  };
+
+  userLogin = (username, password) => {
     return this.service
       .post("/login", { username: username, password: password })
       .then(response => {

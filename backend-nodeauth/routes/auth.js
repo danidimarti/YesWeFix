@@ -20,8 +20,8 @@ const bcryptSalt = 10;
 //test new post login
 
 router.post("/login", (req, res, next) => {
-  console.log(req.body);
 
+  console.log(req.body);
   passport.authenticate("local", (err, theUser, info) => {
     console.log(info);
     console.log(theUser);
@@ -326,6 +326,7 @@ router.post("/signup", (req, res, next) => {
               email,
               mobile
             });
+            console.log("New User-Shop Registered:", newUser);
             return newUser.save();
           })
           .then(user => {
@@ -405,3 +406,4 @@ router.get("/logout", (req, res) => {
 });
 
 module.exports = router;
+

@@ -34,7 +34,7 @@ export default class Login extends Component {
 
     this.authService
 
-      .login(username, password)
+      .shopLogin(username, password)
 
       .then(response => {
        

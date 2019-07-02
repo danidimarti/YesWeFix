@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-// import AuthService from "../../auth/AuthService";
-import AuthService from "../../auth/authserviceU";
+import AuthService from "../../auth/AuthService";
 import { Redirect } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 import "./User.css";
@@ -19,8 +18,6 @@ class Usersignup extends Component {
       redirect: false
     }
   }
-  
- 
 
  
   authService = new AuthService();
@@ -41,7 +38,7 @@ class Usersignup extends Component {
     const mobile = this.state.mobile;
 
     this.authService
-      .signup(username, password, email, mobile)
+      .userSignup(username, password, email, mobile)
       .then(response => {
         console.log(response);
         const settingUser = this.props.setUser(response)
