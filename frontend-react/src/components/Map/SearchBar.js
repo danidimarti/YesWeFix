@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+  import React, { Component } from "react";
 import Script from "react-load-script";
 import "bootstrap/dist/css/bootstrap.css";
 import "./SearchBar.css";
@@ -11,7 +11,8 @@ class SearchBar extends Component {
     lat: null,
     lng: null,
     hideButton: false,
-    styleNav: false
+    styleNav: false,
+    styleForm: false
   };
 
   handleScriptLoad() {
@@ -89,7 +90,7 @@ class SearchBar extends Component {
   render() {
     const hideButton = this.props.hideButton ? "hideButton" : "";
     const styleNav = this.props.styleNav ? "styleNav" : "";
-
+    const styleForm = this.props.styleForm ? "styleForm" : ""
     return (
       <div>
         <Script
@@ -105,8 +106,10 @@ class SearchBar extends Component {
             <input
               type="text"
               id="address-input"
+              className={`address ${styleForm}`}
               name="address"
               placeholder="Enter address here..."
+              //style={{borderTop:"none", borderLeft: "none", borderRight:"none",}}
             />
             <input
               type="submit"

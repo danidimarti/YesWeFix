@@ -26,7 +26,7 @@ export class Success extends Component {
               <div className="form-group">
                 <div className="input-group">
                   <span className="input-group-addon">
-                    <i class="fa fa-user fa" aria-hidden="true" />
+                    <i className="fa fa-user fa" aria-hidden="true" />
                   </span>
                   <h1 className="input-label-ty">
                     Thank you for your registration!

@@ -37,37 +37,7 @@ export class ShopProfile extends Component {
       });
   };
 
-  readMore = () => {
-    document.getElementsByClassName("text").each(function() {
-      let pTag = this.find("p");
-      if (pTag.text().length > 50) {
-        let shortText = pTag.text().substring(0, 200);
-        pTag.addClass("full-text").hide();
-        shortText += '<a href="#" class="read-more-link">Show more text ></a>"';
-        pTag.append(
-          '<a href="#" class="read-less-link">&lt; Show less text</a>'
-        );
-        this.append('<p class="preview">' + shortText + "</p>");
-      }
-    });
-    document
-      .getElementsByClassName("read-more-link")
-      .addEventListener("click", function() {
-        this.parent()
-          .hide()
-          .prev()
-          .show();
-      });
 
-    document
-      .getElementsByClassName("read-less-link")
-      .addEventListener("click", function() {
-        this.parent()
-          .hide()
-          .prev()
-          .show();
-      });
-  };
 
   render() {
     return (
@@ -108,7 +78,10 @@ export class ShopProfile extends Component {
             <FontAwesomeIcon style={{color: "orange"}} icon={faStarHalfAlt} />
             </div>
             
-            <ShopButton getSingleShop={this.getSingleShop}/>
+            <ShopButton
+            getSingleShop={this.props.getSingleShop}
+            fetchUserOrShop={() => this.props.fetchUserOrShop()} 
+            />
           </div>
         </div>
       </div>

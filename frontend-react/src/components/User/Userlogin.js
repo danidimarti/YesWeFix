@@ -32,7 +32,7 @@ export default class Login extends Component {
       this.setState({
         redirect: true
       });
-      // this.props.setUser(response)
+      this.props.setUser(response)
     });
   };
   render() {
@@ -61,10 +61,10 @@ export default class Login extends Component {
                   onSubmit={e => this.handleSubmit(e)}
                 >
                   <div className="form-group">
-                    <div class="cols-sm-10">
-                      <div class="input-group">
-                        <span class="input-group-addon">
-                          <i class="fa fa-envelope fa" aria-hidden="true" />
+                    <div className="cols-sm-10">
+                      <div className="input-group">
+                        <span className="input-group-addon">
+                          <i className="fa fa-envelope fa" aria-hidden="true" />
                         </span>
                         <input
                           type="text"
@@ -77,10 +77,10 @@ export default class Login extends Component {
                       </div>
                     </div>
 
-                    <div class="cols-sm-10">
-                      <div class="input-group">
-                        <span class="input-group-addon">
-                          <i class="fa fa-envelope fa" aria-hidden="true" />
+                    <div className="cols-sm-10">
+                      <div className="input-group">
+                        <span className="input-group-addon">
+                          <i className="fa fa-envelope fa" aria-hidden="true" />
                         </span>
                         <input
                           type="password"
@@ -93,8 +93,8 @@ export default class Login extends Component {
                       </div>
                     </div>
 
-                    <div class="cols-sm-10">
-                      <div class="input-group">
+                    <div className="cols-sm-10">
+                      <div className="input-group">
                         <input
                           id="submit-user"
                           className="btn-form btn-info"
@@ -106,7 +106,7 @@ export default class Login extends Component {
                   </div>
                   <p className="text-center text-black text-size">
                     Don't have an account yet?{" "}
-                    <Link className="text-info" to="/auth/signup">
+                    <Link className="text-info" to="/auth/signup/user">
                       Signup
                     </Link>
                   </p>
