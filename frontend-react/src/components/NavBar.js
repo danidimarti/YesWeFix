@@ -4,7 +4,9 @@ import logo from "./logo-bg.png";
 import "./NavBar.css";
 import { Link, withRouter } from "react-router-dom";
 import SearchBar from "../components/Map/SearchBar"
-import axios from 'axios';
+
+
+
 
 class NavbarPage extends Component {
   constructor(props) {
@@ -17,6 +19,15 @@ class NavbarPage extends Component {
     this.closeMenu = this.closeMenu.bind(this);
   }
 
+  // logout = () => {
+  //   return this.service.get("http://5001/auth/logout").then(response => {
+  //     console.log(response);
+  //     return response.message;
+  //   });
+  // };
+
+
+
   showMenu(e) {
     e.preventDefault();
     this.setState({ isMenuOpen: true });
@@ -28,6 +39,8 @@ class NavbarPage extends Component {
       document.removeEventListener("click", this.closeMenu);
     });
   }
+
+  
 
   render() {
     return (
@@ -80,7 +93,10 @@ class NavbarPage extends Component {
                 </li>
                 <hr />
                 <li >
-                  <button className="list-item-btn" onClick={this.props.logout} > 
+                  {/* <button className="list-item-btn" onClick={this.props.logout}>  */}
+                  <button className="list-item-btn" onClick={this.props.logout}> 
+                  {/* <button className="list-item-btn" onClick={e => this.handleSubmit(e)}>  */}
+                 
                      {/* <a onClick={this.props.logout} className="list-item">            
                     Log out
                     </a>  */}
