@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import AuthService from "../../auth/AuthService";
+// import AuthService from "../../auth/AuthService";
+import AuthService from "../../auth/authserviceU";
 import { Redirect } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 import "./User.css";

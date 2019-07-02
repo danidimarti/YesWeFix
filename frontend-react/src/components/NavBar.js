@@ -4,6 +4,7 @@ import logo from "./logo-bg.png";
 import "./NavBar.css";
 import { Link, withRouter } from "react-router-dom";
 import SearchBar from "../components/Map/SearchBar"
+import axios from 'axios';
 
 class NavbarPage extends Component {
   constructor(props) {
@@ -79,7 +80,7 @@ class NavbarPage extends Component {
                 </li>
                 <hr />
                 <li >
-                  <button className="list-item-btn" onClick={this.props.logout}> 
+                  <button className="list-item-btn" onClick={this.props.logout} > 
                      {/* <a onClick={this.props.logout} className="list-item">            
                     Log out
                     </a>  */}
