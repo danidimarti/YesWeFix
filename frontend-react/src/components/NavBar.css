@@ -34,7 +34,7 @@
 .dropdown-list{
     position: absolute;
     border: 0.7px solid #1d8384;
-    
+    background-color: white;
     height: 120px;
     width: 120px;
     display: flex;

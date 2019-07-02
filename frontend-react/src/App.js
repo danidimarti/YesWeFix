@@ -31,8 +31,7 @@ class App extends Component {
       user: null,
       location: null,
       isHome: true,
-      isResults: true,
-      
+      isResults: true
     };
     this.logout = this.logout.bind(this);
   }
@@ -50,13 +49,12 @@ class App extends Component {
     this.setState({ user: user });
   };
 
-  fetchUserOrShop = () => {
+  fetchUser = () => {
     if (this.state.user === null) {
       this.service
         .currentUser()
         .then(response => {
           console.log("response", response);
-
           this.setState({ user: response });
         })
         .catch(err => {
@@ -66,11 +64,8 @@ class App extends Component {
     }
   };
 
- 
-  
   componentDidMount() {
-    
-    this.fetchUserOrShop();
+    this.fetchUser();
   }
   //Uplifting the location in the top level component
   setLocation(params) {
@@ -86,7 +81,6 @@ class App extends Component {
     this.props.history.push('/')
   }
 
- 
   render() {
     return (
       <div>
@@ -134,11 +128,11 @@ class App extends Component {
           <Route
             path="/auth/login"
             render={props => {
-              return <ShopLogin setUser={this.setUser}/>;
+              return <ShopLogin setUser={this.setUser} />;
             }}
           />
           <Route
-            path="/auth/login/user"
+            path="/auth/login-user"
             render={props => {
               return <UserLogin {...props} setUser={this.setUser} />;
             }}
@@ -151,20 +145,20 @@ class App extends Component {
             exact
             path="/results/:id"
             component={ShopProfile}
-            getSingleShop={this.getSingleShop}
-            fetchUserOrShop={this.fetchUserOrShop} 
+            setUser={this.setUser}
+            user={this.state.user}
             //render={props => <ShopDescription {...props} />}
           />
 
           <Route
-            path="/auth/request/:shopId"
+            path="/auth/request"
             render={props => (
               <RequestForm {...props} currentUser={this.state.user} />
             )}
           />
           <Route
             path="/auth/requestlist"
-            fetchUserOrShop={this.fetchUserOrShop}
+            fetchUser={this.fetchUser}
             render={props => (
               <RequestList {...props} currentUser={this.state.user} />
             )}

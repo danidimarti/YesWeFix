@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 //import ShopProfile from "../ShopProfile/ShopProfile"
 import "./Request.css";
-import Calendar from "./Calendar"
-
+import Calendar from "./Calendar";
 
 class RequestForm extends Component {
   constructor(props) {
@@ -18,28 +17,28 @@ class RequestForm extends Component {
       imageUrl: "",
       status: "sent"
     };
-    
   }
 
   handleFormSubmit = event => {
     event.preventDefault();
-    //const user = this.props.user;
-    const shop = this.params.shop;
+    const userId = "5d1b73edf4a4ac365889b6a5";
     const subject = this.state.subject;
     const description = this.state.description;
     const imageUrl = this.state.imageUrl;
+    const shopId = this.props.location.state.shopId;
     axios
       .post("http://localhost:5001/auth/request", {
-      //user,
-      shop,  
-      subject,
+        userId,
+        shopId,
+        subject,
         description,
         imageUrl
       })
-      .then(data => {
-        this.props.getData();
-        console.log(data);
-        this.setState({ subject: "", description: "", imageUrl: "" });
+      .then(response => {
+        // this.props.getData();
+        console.log(response);
+        
+         this.setState({requestForm: response, redirect: true});
       })
       .catch(error => console.log(error));
   };
@@ -49,12 +48,10 @@ class RequestForm extends Component {
     this.setState({ [name]: value });
   };
 
-   
-
   render() {
     return (
       <div className="page">
-        <div>Send an message to {this.params.shopId.shopname}</div>
+        <div>Send an message to {this.props.location.state.shopName}</div>
         <div className="input-form-req">
           <form onSubmit={this.handleFormSubmit}>
             <label className="input-label-title-req">Subject:*</label>
@@ -112,18 +109,17 @@ class RequestForm extends Component {
                     className="input-req"
                     placeholder="Upload an image (optional)"
                   />
-                  
                 </div>
               </div>
               <div className="input-group-btn-sm">
-                    <input
-                      id="upload-btn-req"
-                      className="btn-form btn-info"
-                      type="submit"
-                      value="Upload..."
-                      // onClick={this.upload}
-                    />
-                  </div>
+                <input
+                  id="upload-btn-req"
+                  className="btn-form btn-info"
+                  type="submit"
+                  value="Upload..."
+                  // onClick={this.upload}
+                />
+              </div>
             </div>
             <input
               id="send-btn"

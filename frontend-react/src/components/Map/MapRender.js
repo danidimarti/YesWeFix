@@ -41,6 +41,8 @@ class MapRender extends Component {
       return true;
     }
     console.log(this.props.initialRender, "initialRender");
+
+
     if (
       this.props.location.lat === nextProps.location.lat &&
       this.props.location.lng === nextProps.location.lng
@@ -48,6 +50,7 @@ class MapRender extends Component {
       console.log("should not render");
       return false;
     } else {
+      console.log("should render")
       return true;
     }
   }

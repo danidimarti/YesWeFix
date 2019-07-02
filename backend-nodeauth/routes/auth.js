@@ -19,33 +19,31 @@ const bcryptSalt = 10;
 
 //test new post login
 
-router.post('/login', (req, res, next) => {
-  console.log(req.body)
+router.post("/login", (req, res, next) => {
 
-  passport.authenticate('local', (err, theUser, info) => {
+  console.log(req.body);
+  passport.authenticate("local", (err, theUser, info) => {
     console.log(info);
     console.log(theUser);
     console.log(err);
-  
-    if(err) {
-      res.status(500).json({message: err})
-      return
-    }
-  if(!theUser) {
-    res.status(401).json(info)
-    return
-  }
-  req.login(theUser, err => {
-    if(err){
-      res.status(500).json({message: err})
-      return
-    }
-    res.status(200).json(theUser)
-  })
 
-  })(req, res, next)
-})
-
+    if (err) {
+      res.status(500).json({ message: err });
+      return;
+    }
+    if (!theUser) {
+      res.status(401).json(info);
+      return;
+    }
+    req.login(theUser, err => {
+      if (err) {
+        res.status(500).json({ message: err });
+        return;
+      }
+      res.status(200).json(theUser);
+    });
+  })(req, res, next);
+});
 
 // post login
 
@@ -111,43 +109,44 @@ router.post("/shop/quote", (req, res, next) => {
 // Post route => to create new request
 
 router.post("/request", (req, res, next) => {
-  // User.findById(req.params.userId).then(result => {
-  //   res.send(result);
-  //   console.log("Found User Id", result);
-  // });
-  // Shop.findById(req.params.shopId).then(result => {
-  //   res.send(result);
-  //   console.log("Found Shop Id", result);
-  // });
-  if (req.isAuthenticated()) {
-    //const userid = req.params.userId;
-    //const shopid = req.params.shopId;
-    const subject = req.body.subject;
-    const description = req.body.description;
-    const imageUrl = req.body.imageUrl;
-    const status = "sent";
+  Shop.findById(req.body.shopId).then(result => {
+    res.send(result);
+    console.log("Found Shop Id", result);
+  });
+  User.findById(req.body.userId).then(result => {
+    res.send(result);
+    console.log("Found User Id", result);
+  });
 
-    const newRequest = new Request({
-      //username,
-      //userid,
-      //shopid,
-      subject,
-      description,
-      imageUrl,
-      status
+  const userid = req.body.userId;
+  const shopid = req.body.shopId;
+
+  const subject = req.body.subject;
+  const description = req.body.description;
+  const imageUrl = req.body.imageUrl;
+  const status = "sent";
+
+  const newRequest = new Request({
+    //username,
+    userid,
+    shopid,
+    subject,
+    description,
+    imageUrl,
+    status
+  });
+  console.log(newRequest);
+  newRequest
+    .save()
+    .then(() => {
+      res.status(200).json(newRequest);
+    })
+    .catch(err => {
+      res.status(500).json({ message: "Something went wrong" });
     });
-    console.log(newRequest);
-    newRequest
-      .save()
-      .then(() => {
-        res.status(200).json(newRequest);
-      })
-      .catch(err => {
-        res.status(500).json({ message: "Something went wrong" });
-      });
-  } else {
-    res.json({ message: "You are not logged in" });
-  }
+  // } else {
+  //   res.json({ message: "You are not logged in" });
+  // }
 });
 
 // Get route => to get Deal info
@@ -276,7 +275,6 @@ router.get("/shop/request", (req, res, next) => {
     });
 });
 
-
 router.post("/signup", (req, res, next) => {
   const shopname = req.body.shopname;
   const username = req.body.username;
@@ -317,7 +315,8 @@ router.post("/signup", (req, res, next) => {
           lng
         });
         console.log("new shop is HERE", newShop);
-        newShop.save()
+        newShop
+          .save()
           .then(shop => {
             console.log("new shop registered", shop);
             const newUser = new User({
@@ -327,6 +326,7 @@ router.post("/signup", (req, res, next) => {
               email,
               mobile
             });
+            console.log("New User-Shop Registered:", newUser);
             return newUser.save();
           })
           .then(user => {
@@ -364,9 +364,8 @@ router.post("/signup", (req, res, next) => {
 });
 
 router.get("/login", (req, res, next) => {
-  res.render("auth/login", { "message": req.flash("error") });
+  res.render("auth/login", { message: req.flash("error") });
 });
-
 
 //GET ALL SHOPS BELOW
 router.get("/results", (req, res, next) => {
@@ -407,3 +406,4 @@ router.get("/logout", (req, res) => {
 });
 
 module.exports = router;
+
