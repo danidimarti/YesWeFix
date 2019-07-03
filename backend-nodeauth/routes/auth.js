@@ -394,6 +394,7 @@ router.get("/results/:shopId", (req, res, next) => {
 //GET PROFILE HERE
 router.get("/currentuser", (req, res, next) => {
   if (req.isAuthenticated()) {
+    
     res.status(200).json(req.user);
     return;
   }

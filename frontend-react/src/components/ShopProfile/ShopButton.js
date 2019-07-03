@@ -51,7 +51,8 @@ export class ShopButton extends Component {
               pathname: "/auth/request",
               state: {
                 shopId: this.props.shopData._id,
-                shopName: this.props.shopData.shopname
+                shopName: this.props.shopData.shopname,
+                currentUser: this.props.currentUser,
               }
             }}
           />

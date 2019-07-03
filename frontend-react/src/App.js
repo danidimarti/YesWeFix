@@ -8,6 +8,7 @@ import ShopLogin from "./components/Shop/ShopLogin";
 import UserProfile from "./components/User/Userprofile";
 import UserSignup from "./components/User/UserSignup";
 import UserLogin from "./components/User/UserLogin";
+import ShopUser from "./components/ShopUser/ShopUser"
 
 import NavBar from "./components/NavBar";
 import HomePage from "./components/HomePage";
@@ -31,7 +32,8 @@ class App extends Component {
       user: null,
       location: null,
       isHome: true,
-      isResults: true
+      isResults: true,
+      // request: null
     };
     this.logout = this.logout.bind(this);
   }
@@ -48,6 +50,13 @@ class App extends Component {
   setUser = user => {
     this.setState({ user: user });
   };
+
+  // setRequest = request => {
+  //   this.setState({ request: request });
+  // } 
+
+  
+  
 
   fetchUser = () => {
     if (this.state.user === null) {
@@ -140,6 +149,10 @@ class App extends Component {
           <Route
             path="/auth/currentuser/user"
             render={props => <UserProfile {...props} user={this.state.user} />}
+          />
+          <Route
+            path="/auth/currentuser/shop"
+            render={props => <ShopUser {...props} user={this.state.user} />}
           />
           <Route
             exact

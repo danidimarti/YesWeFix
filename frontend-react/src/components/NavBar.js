@@ -62,8 +62,15 @@ class NavbarPage extends Component {
        styleNav={true}
        setLocation={this.props.setLocation}
        />
+       : 
+        this.props.location.pathname === '/results' ?  
+       <SearchBar 
+       styleNav={true}
+       setLocation={this.props.setLocation}
+       />
        :
         null
+
        
       } 
         
@@ -81,6 +88,12 @@ class NavbarPage extends Component {
           {this.state.isMenuOpen ? (
             <div className="dropdown-list">
               <ul className="menu" role="menu">
+              <li>
+                  <Link className="list-item" to="auth/currentuser/user">
+                    Requests
+                  </Link>
+                </li>
+       
                 <li>
                   <Link className="list-item" to="/auth/signup/user">
                     Signup
