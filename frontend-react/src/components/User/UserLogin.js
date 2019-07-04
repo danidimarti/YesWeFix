@@ -9,11 +9,13 @@ export default class Login extends Component {
   state = {
     username: "",
     password: "",
-    redirect: false
+    redirect: false,
+    directTo: ""
   };
 
   componentDidMount() {
     if (this.props.location.state) {
+      console.log("LOCATION STATE:", this.props.location.state)
       this.setState({
         origin: this.props.location.state.origin
       });
@@ -63,10 +65,8 @@ export default class Login extends Component {
 
               {this.state.redirect && this.state.origin != null ? (
                 <Redirect to={this.state.origin} />
-              ) : (
-                ""
-              )}
-              {this.state.redirect ? (
+              ) : 
+              this.state.redirect ? (
                 <Redirect to="/auth/currentuser/user" />
               ) : (
                 ""
@@ -144,7 +144,7 @@ export default class Login extends Component {
               </div>
             </div>
           </div>
-          <pre>{JSON.stringify(this.state, "\t", 2)}</pre>
+          {/* <pre>{JSON.stringify(this.state, "\t", 2)}</pre> */}
         </div>
       </div>
     );

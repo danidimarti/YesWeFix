@@ -19,12 +19,6 @@ class NavbarPage extends Component {
     this.closeMenu = this.closeMenu.bind(this);
   }
 
-  // logout = () => {
-  //   return this.service.get("http://5001/auth/logout").then(response => {
-  //     console.log(response);
-  //     return response.message;
-  //   });
-  // };
 
 
 

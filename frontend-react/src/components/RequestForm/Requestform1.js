@@ -3,37 +3,40 @@ import axios from "axios";
 //import ShopProfile from "../ShopProfile/ShopProfile"
 import "./Request.css";
 import Calendar from "./Calendar";
-import ThankYou from "./ThankYou"
+import {Redirect} from "react-router-dom"
 
 export class RequestForm extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      username: "",
-      user: null,
-      shop: null,
+      
+      user: this.props.currentUser,
+      shop: this.props.location.state.shopId,
       subject: "",
       description: "",
       imageUrl: "",
       status: "sent",
-      sentMsg: false
+      redirect: false
     };
   }
 
-  showMsg = () => {
+  // showMsg = () => {
     
-    this.setState({sentMsg : true})
-  }
-
+  //   this.setState({redirect : true})
+  // }
+  
   handleFormSubmit = event => {
+    
     event.preventDefault();
-    const userId = this.props.currentUser;
+    const userId = this.state.user;
+    const shopId = this.state.shop;
     const subject = this.state.subject;
     const description = this.state.description;
     const imageUrl = this.state.imageUrl;
-    const shopId = this.props.location.state.shopId;
-    axios
+    
+    
+     axios
       .post("http://localhost:5001/auth/request", {
         userId,
         shopId,
@@ -42,11 +45,13 @@ export class RequestForm extends Component {
         imageUrl
       })
       .then(response => {
-        // this.props.getData();
+        
         console.log(response);
-
-        this.setState({ requestForm: response, redirect: true });
+        
+        this.props.history.push("/auth/currentuser/user")
+        // this.setState({ requestForm: response, redirect: true });
       })
+      
       .catch(error => console.log(error));
   };
 
@@ -55,14 +60,18 @@ export class RequestForm extends Component {
     this.setState({ [name]: value });
   };
 
+
+
   render() {
     return (
       <div>
         <h3 className="title">Send an message to {this.props.location.state.shopName}</h3>
         <div className="page">
-         {this.state.redirect ? <ThankYou /> : ""}
+         
+         {
+           this.state.redirect ? <Redirect to="auth/currentuser/user"/>: ""}
           <div className="input-form-req">
-            <form onSubmit={this.handleFormSubmit}>
+            <form onSubmit={(e) => this.handleFormSubmit(e)}>
               <label className="input-label-title-req">Subject:*</label>
 
               <div className="form-group-req">
@@ -137,11 +146,11 @@ export class RequestForm extends Component {
                 className="btn-info-req"
                 type="submit"
                 value="Send"
-                onClick={this.state.showMsg}
+                //onClick={this.state.showMsg}
               />
             </form>
             <div>
-          {this.state.showMsg ? <div>Your message was sent! Click here to see all requests.</div> : ""}
+          {/* {this.state.showMsg ? <div>Your message was sent! Click here to see all requests.</div> : ""} */}
           </div>
           </div>
           <Calendar />

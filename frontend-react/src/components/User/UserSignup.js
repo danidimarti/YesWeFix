@@ -57,7 +57,7 @@ class Usersignup extends Component {
       <div className="container" style={{ width: "60%" }}>
         <div className=" row justify-content-center">
           <div className="col-md-8" style={{ borderRadius: "0" }}>
-            {this.state.redirect ? <Redirect to="/auth/login" /> : ""}
+            {this.state.redirect ? <Redirect to="/auth/login-user" /> : ""}
             <div className="card" style={{ borderRadius: "0", borderColor: "black", borderWidth: 0.5 }}>
               <div
                 className="card-header green-color white-text text-center"
@@ -131,7 +131,7 @@ class Usersignup extends Component {
                 </div>
                 <p className="text-center text-black text-size">
                   Already have an account?{" "}
-                  <Link className="text-info" to="/auth/login">
+                  <Link className="text-info" to="/auth/login-user">
                     Login in
                   </Link>
                 </p>

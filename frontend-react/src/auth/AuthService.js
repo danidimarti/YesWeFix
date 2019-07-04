@@ -89,11 +89,11 @@ class AuthService {
   };
 
   //REQUESTS
-  request = (user, shop, subject, description, imageUrl) => {
+  request = (userId, shopId, subject, description, imageUrl) => {
     return this.service
       .post("/request", {
-        user: user,
-        shop: shop,
+        userId: userId,
+        shopId: shopId,
         subject: subject,
         description: description,
         imageUrl: imageUrl

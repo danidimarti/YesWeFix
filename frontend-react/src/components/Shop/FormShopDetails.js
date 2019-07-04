@@ -7,7 +7,7 @@ import "./Shop.css";
 import { Link } from "react-router-dom";
 
 //rce + tab (create class component)
-class FormShopDetails extends Component {
+export class FormShopDetails extends Component {
   //rconst shortcut
   constructor(props) {
     super(props);
@@ -128,7 +128,7 @@ class FormShopDetails extends Component {
                   </div>
                   <p className="text-center text-black text-size">
                     Already have an account?{" "}
-                    <Link className="text-info" to="/auth/login">
+                    <Link className="text-info" to="/auth/login-shop">
                       Login in
                     </Link>
                   </p>

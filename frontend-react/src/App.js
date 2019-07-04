@@ -48,6 +48,7 @@ class App extends Component {
   };
 
   setUser = user => {
+    
     this.setState({ user: user });
   };
 
@@ -63,10 +64,12 @@ class App extends Component {
       this.service
         .currentUser()
         .then(response => {
+          
           console.log("response", response);
           this.setState({ user: response });
         })
         .catch(err => {
+          
           console.log(err);
           this.setState({ user: null });
         });
@@ -84,6 +87,7 @@ class App extends Component {
   }
 
   logout() {
+    
     this.service.logout();
     console.log("logout trigger");
     this.setState({ user: null });
@@ -135,7 +139,7 @@ class App extends Component {
             }}
           />
           <Route
-            path="/auth/login"
+            path="/auth/login-shop"
             render={props => {
               return <ShopLogin setUser={this.setUser} />;
             }}
@@ -147,7 +151,7 @@ class App extends Component {
             }}
           />
           <Route
-            path="/auth/currentuser/user"
+            exact path="/auth/currentuser/user"
             render={props => <UserProfile {...props} user={this.state.user} />}
           />
           <Route
