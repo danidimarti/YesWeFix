@@ -1,0 +1,141 @@
+#send-btn {
+    padding: 8px;
+    border: #1d8384;
+    background: #1d8384;
+    color: white;
+    cursor: pointer;
+    margin-left: 60%;
+    margin-top: 5%;
+    width: 20%;
+}
+
+#send-btn:hover {
+    background: #196d6e;
+    transition: all 0.30s;
+    border: #196d6e;
+}
+
+#upload-btn-req {
+    border: 0.7px solid #1d8384;
+    background: #bed8d8;
+    color: #1d8384;
+    cursor: pointer;
+    margin-left: 70%;
+    width: 10%;
+    font-size: 14px;
+    height: 10%;
+}
+
+#upload-btn-req:hover {
+    background: #bed8d8;
+    transition: all 0.30s;
+    border: #196d6e;
+}
+
+input-req::placeholder {
+    color: dark-grey;
+    font-size: 14px;
+    padding-left: 2%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    font-weight: 350
+}
+
+.input-req {
+    border: .5px solid black;
+    width: 60%;
+    vertical-align: middle;
+    margin-left: 20%;
+    line-height: 30px;
+    background-color: #f7f7f8
+}
+
+.input-form-req {
+    /* border-top: none; */
+    width: 70%;
+    /* margin-left: 5%;  */
+    font-weight: 350;
+    color: rgb(124, 124, 124);
+    font-size: 1.1em;
+}
+
+.input-label-title-req {
+    font-weight: 350;
+    width: 60%;
+    vertical-align: middle;
+    margin-left: 20%;
+    color: black;
+    font-size: 1.2em;
+}
+
+.txt-area-req {
+    color: black;
+    font-size: 1.2em;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    font-weight: 200;
+    background-color: #f7f7f8
+}
+
+.img-field-req {
+    margin-top: 3%;
+}
+
+.page {
+    display: flex;
+}
+
+.date {
+    width: 200px;
+    height: 200px;
+    background-color: rgb(242, 242, 242);
+    margin-top: 5%;
+    /* box-shadow: .5px .5px 10px rgba(0, 0, 0, .3); */
+}
+
+.day {
+    font-size: 5em;
+    color: black;
+    text-align: center;
+    margin: 0px;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+    font-weight: 800;
+    line-height: 1.375em;
+    /* color: #484848; */
+}
+
+.month {
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    font-size: 3em;
+    font-weight: 400;
+  
+    margin-top: 20px;
+    color: black;
+    text-align: center;
+}
+
+.icon{
+    margin-top: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 350;
+    width: 300px;
+    color: black;
+    font-size: 1.2em;
+    margin-left: -12%;
+}
+
+.icon p{
+   text-align: center;
+   margin-left: 2%;
+   margin-bottom: 0px
+
+}
+
+.calendar-content{
+    width: 400px;
+    
+}

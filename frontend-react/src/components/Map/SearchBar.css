@@ -1,0 +1,75 @@
+.home-intro {
+    background-image: url("/frontend-react/src/components/bg.jpg");
+    background-size: cover;
+    height: 100%;
+    color: white;
+    text-align: center;
+    /* padding: 0px;
+    margin: 0px; */
+  }
+  body, html{
+    height: 100%;
+
+  }
+
+  .home-intro{
+      padding-bottom: 100px;
+  }
+
+  h1{
+      color: black;
+      text-align: left;
+      width: 400px;
+      padding-top: 100px;
+      
+  }
+
+  .address {
+      width: 400px;
+      padding: 7px;
+      border: .7px solid #1d8384;
+        
+  }
+
+  #submit{
+       
+      padding: 8px;
+      border: #1d8384;
+      background:  #1d8384;
+      color: white;
+      margin-left: -10px;
+      cursor: pointer;
+      width: 110px;
+
+  }
+
+  .hideButton {
+      display: none;
+  }
+
+  .styleForm{
+         
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: .5px solid black;
+   padding: 0px;
+    vertical-align: middle;
+    margin-left: 25%;
+    width: 550px;
+   
+  }
+
+  #submit:hover {
+      background: #196d6e;
+      transition: all 0.30s;
+      border: #196d6e;
+  }
+
+  .styleNav{
+    box-sizing: border-box;
+    width: 500px;
+    height: 30px;
+    margin-right: 400px;
+    
+}

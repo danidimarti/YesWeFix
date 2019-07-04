@@ -1,0 +1,55 @@
+.cardStyle {
+    width: 13rem;
+    border: .7px solid grey;
+    box-shadow: 0px 0px 6px #aaaaaa;
+    width: 200px;
+    height: 300px;
+    margin: 10px;
+}
+
+.containerStyle{
+    display: inline-block;
+}
+.card-image{
+    height: 170px;
+    background-size: cover;
+}
+.card-title{
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.card-text{
+    font-size: 14px;
+    font-weight: 400;
+    font-style: italic;
+}
+.active {
+    /* border: 5px solid red;  */
+    transform: scale(1.1);
+    box-shadow: 5px 10px 20px rgba(0,0,0,0.2);
+}
+
+#see-btn{
+       
+    
+    border: #1d8384;
+    background:  #1d8384;
+    color: white;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    width: 100px;
+    text-align: center;
+    height: 30px;
+
+}
+
+#see-btn:hover {
+    background: #196d6e;
+    transition: all 0.30s;
+    border: #196d6e;
+}
+
+.chacked {
+    color: orange}
