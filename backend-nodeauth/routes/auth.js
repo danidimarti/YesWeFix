@@ -106,20 +106,12 @@ router.post("/shop/quote", (req, res, next) => {
   // }
 });
 
-// Post route => to create new request
+//THIS IS WHERE WE ARE REGISTERING THE REQUEST DO NOT DELETE  
 
 router.post("/request", (req, res, next) => {
-  Shop.findById(req.body.shopId).then(result => {
-    res.send(result);
-    console.log("Found Shop Id", result);
-  });
-  User.findById(req.body.userId).then(result => {
-    res.send(result);
-    console.log("Found User Id", result);
-  });
-
+ 
   const userid = req.body.userId;
-  const shopid = req.body.shopId;
+  const shopId = req.body.shopId;
 
   const subject = req.body.subject;
   const description = req.body.description;
@@ -129,25 +121,40 @@ router.post("/request", (req, res, next) => {
   const newRequest = new Request({
     //username,
     userid,
-    shopid,
+    shopId,
     subject,
     description,
     imageUrl,
     status
   });
+  
   console.log(newRequest);
   newRequest
     .save()
-    .then(() => {
-      res.status(200).json(newRequest);
+    .then(request => {
+      
+      res.status(200).json(request);
     })
     .catch(err => {
+      
       res.status(500).json({ message: "Something went wrong" });
     });
-  // } else {
-  //   res.json({ message: "You are not logged in" });
-  // }
+  
 });
+
+//GET REQUEST PER USER 
+router.get("/request/:userId", (req, res) => {
+
+  Request.find({userid: req.params.userId})
+  .populate('shopId')
+  .then(response => {
+    res.send(response)
+    console.log(response)
+  })
+  .catch(err => {
+    console.log(err)
+  })
+})
 
 // Get route => to get Deal info
 

@@ -8,6 +8,7 @@ export default class UserProfile extends Component {
     this.state = {
       isOpen: false,
       requests: [],
+      request: null,
       user: this.props.user
     };
   }
@@ -15,42 +16,41 @@ export default class UserProfile extends Component {
   toggle() {
     this.setState({
       open: !this.state.open,
-      requests: this.props.request
+      request: this.props.request
     });
   }
 
   componentDidMount() {
-    debugger;
+    
     axios
       .get(`http://localhost:5001/auth/request/${this.state.user._id}`)
       .then(requests => {
-        this.setState({ requests: requests });
+        console.log(requests)
+        //debugger;
+        this.setState({ requests: requests.data });
       });
   }
 
-  getRequestCard(requests, index) {
+  getRequestCard(request, index) {
     return (
       <div key={index}>
         <button
           className="btn btn-block btn-toggle"
           onClick={this.toggle.bind(this)}
         >
-          Request to {this.props.shopName} about this.props.repairtype
+          Request to {request.shopId.shopname} about {request.shopId.repairtype}
         </button>
         <div className={"collapse" + (this.state.open ? " in" : "")}>
           <div className="grey">
-            <h4>This is the subject line</h4>
-            <p>Resquest sent on: 07/040 2019 @ 14h00 </p>
+            <h4>{request.subject}</h4>
+            <p>Resquest sent on: {request.createdAt} </p>
             <p>
               {" "}
-              This is the description Anim pariatur cliche reprehenderit, enim
-              eiusmod high life accusamus terry richardson ad squid. Nihil anim
-              keffiyeh helvetica, craft beer labore wes anderson cred nesciunt
-              sapiente ea proident.
+              {request.description}
             </p>
-            <p>this.props.status</p>
-            <button>Accept user is send to payment page</button>
-            <button>Reject /Delete first reject then delete</button>
+            <p>{request.status}</p>
+            <button>Accept</button>
+            <button>Reject/Delete</button>
           </div>
         </div>
       </div>
@@ -68,8 +68,8 @@ export default class UserProfile extends Component {
             </h1>
             <p className="title-req"> Click on the request to see details:</p>
             <div className="cart">
-              {this.state.requests.map((request, index) => {
-                this.getRequestCard(request, index);
+              { this.state.requests.map((request, index) => {
+                 return this.getRequestCard(request, index)
               })}
             </div>
           </div>

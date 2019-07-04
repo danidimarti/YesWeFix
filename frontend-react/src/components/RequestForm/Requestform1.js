@@ -27,7 +27,7 @@ export class RequestForm extends Component {
   // }
   
   handleFormSubmit = event => {
-    
+    debugger
     event.preventDefault();
     const userId = this.state.user;
     const shopId = this.state.shop;
@@ -35,7 +35,7 @@ export class RequestForm extends Component {
     const description = this.state.description;
     const imageUrl = this.state.imageUrl;
     
-    
+    debugger
      axios
       .post("http://localhost:5001/auth/request", {
         userId,
