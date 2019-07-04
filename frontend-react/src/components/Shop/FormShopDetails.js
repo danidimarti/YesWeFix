@@ -128,7 +128,7 @@ class FormShopDetails extends Component {
                   </div>
                   <p className="text-center text-black text-size">
                     Already have an account?{" "}
-                    <Link className="text-info" to="/auth/login">
+                    <Link className="text-info" to="/auth/login-user">
                       Login in
                     </Link>
                   </p>

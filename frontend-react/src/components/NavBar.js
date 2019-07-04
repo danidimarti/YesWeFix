@@ -26,7 +26,9 @@ class NavbarPage extends Component {
   //   });
   // };
 
+  // componentDidMount(){
 
+  // }
 
   showMenu(e) {
     e.preventDefault();
@@ -77,21 +79,11 @@ class NavbarPage extends Component {
           >
             My Account
           </button>
-
-          {this.state.isMenuOpen ? (
+           {this.state.isMenuOpen ? (
             <div className="dropdown-list">
               <ul className="menu" role="menu">
-                <li>
-                  <Link className="list-item" to="/auth/signup/user">
-                    Signup
-                  </Link>
-                </li>
-                <li>
-                  <Link className="list-item" to="/auth/login-user">
-                    Log in
-                  </Link>
-                </li>
                 <hr />
+                { localStorage.getItem("loggedIn") ?
                 <li >
                   {/* <button className="list-item-btn" onClick={this.props.logout}>  */}
                   <button className="list-item-btn" onClick={this.props.logout}> 
@@ -102,7 +94,22 @@ class NavbarPage extends Component {
                     </a>  */}
                     Logout
                     </button>
-                </li>
+                </li> 
+                : 
+                <>
+                  <li>
+                    <Link className="list-item" to="/auth/login-user">
+                      Log in
+                    </Link>
+                    
+                  </li>
+                  <li>
+                    <Link className="list-item" to="/auth/signup/user">
+                      Signup
+                    </Link>
+                  </li>
+                </>
+                }
               </ul>
             </div>
           ) : null}

@@ -52,7 +52,7 @@ export class Results extends Component {
       lat: center.lat(),
       lng: center.lng()
     };
-
+ 
     this.state.shopData.reduce((shopsInBound, shop) => {
       let shopLocation = {
         lng: shop.lng,
@@ -61,6 +61,7 @@ export class Results extends Component {
 
       if (checkIfInBounds(shopLocation, mapCenter)) {
         shopsInBound.push(shop);
+        debugger
       }
 
       this.setState({ shopResults: shopsInBound });

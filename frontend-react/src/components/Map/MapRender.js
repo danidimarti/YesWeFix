@@ -133,6 +133,7 @@ class MapRender extends Component {
             <WrappedMap
               onMapIdle={() => {
                 // let bounds = this.map.getBounds();
+                
                 let center = this.map.getCenter();
                 this.props.getMapBounds(center);
               }}
