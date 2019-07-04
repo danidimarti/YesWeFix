@@ -15,7 +15,7 @@
     cursor: pointer;
     /* width: 110px; */
     margin-left: 20%;
-    margin-top: 8%;    
+    margin-top: 8%;
     width: 60%;
 }
 
@@ -60,6 +60,96 @@ input::placeholder {
     line-height: 50px;
 }
 
-.card{
+/* USER PROFILE STYLE */
+
+.btn-toggle {
+    border-radius: 0px;
+    border: #1d8384;
+    background: #1d8384;
+    color: white;
+    cursor: pointer;
+    margin-left: 20%;
+    width: 60%;
+}
+
+.btn-toggle:hover {
+    background: #196d6e;
+    transition: all 0.30s;
+    border: #196d6e;
+    color: white;
+}
+
+.card {
     box-shadow: 0px 0px 7px #aaaaaa;
+}
+
+.cart {
+    font-size: 16px;
+    position: relative;
+    margin-top: -4px;
+}
+
+.collapse {
+    display: none
+}
+
+.collapse.in {
+    display: block
+}
+
+
+
+#salutation{
+    margin-top:-5%;
+    width: 100%;
+    margin-bottom: 5%;
+    font-size: 1.5em;
+    margin-left:20%;
+
+}
+
+.title-req {
+    
+    width: 100%;
+    margin-bottom: 1%;
+    font-size: 1.05em;
+    margin-left:20%;
+    font-weight: 500;
+}
+
+/* .collapsible {
+    background-color: #1d8384;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+  }
+  
+  .active, .collapsible:hover {
+    background-color: #196d6e;
+  }
+  
+  .content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
+  } */
+
+  .collapse {
+    
+    padding: 8px;
+    border: #1d8384;
+    background: #F9F9F9;
+    color: black;
+    
+    cursor: pointer;
+    /* width: 110px; */
+    margin-left: 20%;
+    
+    width: 60%;
 }

@@ -4,7 +4,7 @@ import { Link, Redirect } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 import "./ShopProfile.css";
 import UserProfile from "../User/Userprofile";
-import RequestForm from "../RequestForm/Requestform1";
+//import RequestForm from "../RequestForm/Requestform1";
 
 export class ShopButton extends Component {
   constructor(props) {
@@ -35,11 +35,7 @@ export class ShopButton extends Component {
       });
     }
 
-    // if (localStorage.getItem("loggedIn")) {
-    //   return <UserProfile />;
-    // } else {
-    //   return <Redirect to="/auth/login/user" />;
-    // }
+   
   };
 
   render() {
@@ -51,7 +47,8 @@ export class ShopButton extends Component {
               pathname: "/auth/request",
               state: {
                 shopId: this.props.shopData._id,
-                shopName: this.props.shopData.shopname
+                shopName: this.props.shopData.shopname,
+                currentUser: this.props.currentUser,
               }
             }}
           />
@@ -62,7 +59,7 @@ export class ShopButton extends Component {
           <Redirect
             to={{
               pathname: "/auth/login-user",
-              state: { origin: `/results/${this.props.shopData._id}` }
+              state: { origin: `/results/${this.props.shopData._id}`, currentUser: this.props.currentUser, }
             }}
           />
         ) : (

@@ -8,6 +8,7 @@ import ShopLogin from "./components/Shop/ShopLogin";
 import UserProfile from "./components/User/Userprofile";
 import UserSignup from "./components/User/UserSignup";
 import UserLogin from "./components/User/UserLogin";
+import ShopUser from "./components/ShopUser/ShopUser"
 
 import NavBar from "./components/NavBar";
 import HomePage from "./components/HomePage";
@@ -31,7 +32,8 @@ class App extends Component {
       user: null,
       location: null,
       isHome: true,
-      isResults: true
+      isResults: true,
+      // request: null
     };
     this.logout = this.logout.bind(this);
   }
@@ -46,18 +48,28 @@ class App extends Component {
   };
 
   setUser = user => {
+    
     this.setState({ user: user });
   };
+
+  // setRequest = request => {
+  //   this.setState({ request: request });
+  // } 
+
+  
+  
 
   fetchUser = () => {
     if (this.state.user === null) {
       this.service
         .currentUser()
         .then(response => {
+          
           console.log("response", response);
           this.setState({ user: response });
         })
         .catch(err => {
+          
           console.log(err);
           this.setState({ user: null });
         });
@@ -75,6 +87,7 @@ class App extends Component {
   }
 
   logout() {
+    
     this.service.logout();
     console.log("logout trigger");
     this.setState({ user: null });
@@ -126,7 +139,7 @@ class App extends Component {
             }}
           />
           <Route
-            path="/auth/login"
+            path="/auth/login-shop"
             render={props => {
               return <ShopLogin setUser={this.setUser} />;
             }}
@@ -138,8 +151,12 @@ class App extends Component {
             }}
           />
           <Route
-            path="/auth/currentuser/user"
+            exact path="/auth/currentuser/user"
             render={props => <UserProfile {...props} user={this.state.user} />}
+          />
+          <Route
+            path="/auth/currentuser/shop"
+            render={props => <ShopUser {...props} user={this.state.user} />}
           />
           <Route
             exact
@@ -156,19 +173,7 @@ class App extends Component {
               <RequestForm {...props} currentUser={this.state.user} />
             )}
           />
-          <Route
-            path="/auth/requestlist"
-            fetchUser={this.fetchUser}
-            render={props => (
-              <RequestList {...props} currentUser={this.state.user} />
-            )}
-          />
-          <Route
-            path="/auth/requestuserlist"
-            render={props => (
-              <RequestUserList {...props} currentUser={this.state.user} />
-            )}
-          />
+          
           <Route
             path="/auth/quoteform"
             render={props => (

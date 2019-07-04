@@ -49,7 +49,7 @@ export default class UserProfile extends Component {
               {request.description}
             </p>
             <p>{request.status}</p>
-            <button>Accept</button>
+            <button>Send Quote: send user to quote form</button>
             <button>Reject/Delete</button>
           </div>
         </div>
@@ -64,7 +64,7 @@ export default class UserProfile extends Component {
         {this.props.user ? (
           <div className="component" style={{ paddingTop: "-20%" }}>
             <h1 id="salutation">
-              Good to see you back, {this.props.user.username}!
+              Hey {this.props.user.username}, lots of new request voor jouw!
             </h1>
             <p className="title-req"> Click on the request to see details:</p>
             <div className="cart">
