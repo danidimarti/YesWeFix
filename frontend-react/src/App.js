@@ -173,19 +173,7 @@ class App extends Component {
               <RequestForm {...props} currentUser={this.state.user} />
             )}
           />
-          <Route
-            path="/auth/requestlist"
-            fetchUser={this.fetchUser}
-            render={props => (
-              <RequestList {...props} currentUser={this.state.user} />
-            )}
-          />
-          <Route
-            path="/auth/requestuserlist"
-            render={props => (
-              <RequestUserList {...props} currentUser={this.state.user} />
-            )}
-          />
+          
           <Route
             path="/auth/quoteform"
             render={props => (

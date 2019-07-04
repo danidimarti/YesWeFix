@@ -48,7 +48,9 @@ export class RequestForm extends Component {
         
         console.log(response);
         
-        this.props.history.push("/auth/currentuser/user")
+        this.props.history.push({pathname: "/auth/currentuser/user",
+      state:{ user: this.state.user}
+      })
         // this.setState({ requestForm: response, redirect: true });
       })
       
